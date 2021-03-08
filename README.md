@@ -1,6 +1,6 @@
 # Sharkquila ui demo
 
-This project is an in-depth description of npm package [sharkquila_ui_toolkits](https://github.com/enw860/sharkquila_ui_toolkits).
+This project is an in-depth description of npm package [sharkquila_ui_toolkit](https://github.com/enw860/sharkquila_ui_toolkit).
 
 ## What can you expect from this project?
 
