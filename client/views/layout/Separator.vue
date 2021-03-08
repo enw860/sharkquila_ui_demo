@@ -1,0 +1,160 @@
+<style lang="less">
+.SeparatorDemo .temp-wrapper {
+	width: 80%;
+	height: 80%;
+	position: relative;
+}
+</style>
+
+<template>
+	<div class="SeparatorDemo">
+		<ControlDemoTemplate>
+			<div slot="overview">
+				<p>This control is used to divide views.</p>
+			</div>
+
+			<div slot="properties">
+				<l-table
+					:colSettings="PROPS_COL_SETTINGS"
+					:tableData="PROPS_TABLE_DATA"
+				></l-table>
+			</div>
+
+			<div
+				class="temp-wrapper HLayout align-center flow-center"
+				slot="widgit"
+			>
+				<l-separator
+					ref="control"
+					:direction="state.direction"
+					:thickness="state.thickness"
+					:color="state.color"
+				/>
+			</div>
+
+			<div slot="control">
+				<l-text value="Controls" size="xxxlarge" />
+
+				<l-label-wrapper value="Direction:" size="small">
+					<l-input-single-select
+						slot="labelContent"
+						:value="state.direction"
+						:options="DIRECTIONS"
+						@change="updateDirection"
+					/>
+				</l-label-wrapper>
+
+				<l-label-wrapper value="Color:" size="small">
+					<l-input-color
+						slot="labelContent"
+						:value="state.color"
+						@change="updateColor"
+					/>
+				</l-label-wrapper>
+
+				<l-label-wrapper value="Thickness:" size="small">
+					<l-input-number
+						slot="labelContent"
+						:value="state.thickness"
+						@blur="updateThickness"
+						placeholder="Thickness"
+					/>
+				</l-label-wrapper>
+			</div>
+
+			<l-html-text-loader slot="structure" :value="state.codeStructure" />
+		</ControlDemoTemplate>
+	</div>
+</template>
+
+<script>
+import WidgitDemo from "../../components/WidgitDemo.vue";
+import ControlDemoTemplate from "../ControlDemoTemplate.vue";
+
+export default {
+	name: "SeparatorDemo",
+	displayName: "Separator",
+	components: {
+		WidgitDemo,
+		ControlDemoTemplate,
+	},
+	data: function () {
+		return {
+			DIRECTIONS: ["Horizontal", "Vertical"],
+			state: {
+				codeStructure: "",
+				direction: "Horizontal",
+				thickness: 1,
+				color: "#000000",
+			},
+			PROPS_COL_SETTINGS: [
+				{
+					name: "prop",
+					displayName: "Prop",
+					width: "130px",
+				},
+				{
+					name: "type",
+					displayName: "Type",
+					width: "110px",
+				},
+				{
+					name: "default",
+					displayName: "Default",
+					width: "110px",
+				},
+				{
+					name: "required",
+					displayName: "Required",
+					width: "130px",
+				},
+				{
+					name: "description",
+					displayName: "Description",
+				},
+			],
+			PROPS_TABLE_DATA: [
+				{
+					prop: "direction",
+					type: "String",
+					default: "horizontal",
+					required: "",
+					description:
+						"Direction of the separator, Options are horizontal and vertical.",
+				},
+				{
+					prop: "thickness",
+					type: "Number",
+					default: "0",
+					required: "",
+					description: "Thickness of the separator.",
+				},
+				{
+					prop: "color",
+					type: "Hex",
+					default: "",
+					required: "",
+					description: "Color of the separator.",
+				},
+			],
+		};
+	},
+	methods: {
+		updateDirection: function (event) {
+			this.state.direction = event.target.value;
+		},
+		updateColor: function (event) {
+			this.state.color = event.target.value;
+		},
+		updateThickness: function (event) {
+			this.state.thickness = parseFloat(event.target.value);
+		},
+	},
+	mounted: function () {
+		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+	},
+	updated: function () {
+		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+	},
+};
+</script>
