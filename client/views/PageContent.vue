@@ -110,7 +110,7 @@
 					<div class="HLayout">
 						<l-link
 							value="Github"
-							href="https://github.com/enw860/IApps/tree/main/client/main-vue"
+							href="https://github.com/enw860/sharkquila_ui_demo"
 						/>
 						<l-text value="- Version 2.0.0" color="#e0e0e0" />
 					</div>
