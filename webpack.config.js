@@ -13,20 +13,20 @@ module.exports = {
     "sharkquila": "./client/index.js",
   },
   resolve: {
-    extensions: [".vue", ".less", ".css"]
+    extensions: [".vue", ".js", ".less", ".css"]
   },
   output: {
     path: path.join(__dirname, outputDirectory),
-    filename: "[name]/[name].bundle.js",
+    filename: "[name].bundle.js",
   },
   plugins: [
     new VueLoaderPlugin(),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: "[name]/[name].bundle.min.css"
+      filename: "[name].bundle.min.css"
     }),
     new HtmlWebpackPlugin({
-      title: 'sharkquila UI',
+      title: 'Sharkquila UI',
       favicon: "./public/favicon.ico",
       template: "./public/index.html",
       filename: "index.html",
