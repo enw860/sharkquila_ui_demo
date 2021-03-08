@@ -81,7 +81,6 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/
@@ -104,6 +103,9 @@ dist
 # TernJS port file
 .tern-port
 
+# Database files
+server/database/DB
+
 # Mac DS_Store files
 .DS_Store
 */.DS_Store
@@ -111,4 +113,18 @@ dist
 # formater settings
 .prettierrc.json
 
+*.md
+!README*.md
+README.md
+
+# Mac DS_Store files
+.DS_Store
+*/.DS_Store
+
+.dockerignore
+
+Dockerfile
+Makefile
+
 .vscode
+.gitignore
