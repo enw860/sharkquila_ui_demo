@@ -1,5 +1,5 @@
 <template>
-	<div class="UIDemo">Hi</div>
+	<div class="SharkquilaUI">Hi</div>
 </template>
 
 <script>
@@ -7,13 +7,13 @@ import store from "./store/store";
 // import PageContent from "./views/PageContent";
 
 export default {
-	name: "UIDemo",
+	name: "Sharkquila UI",
 	components: {
 		// PageContent,
 	},
 	data: function () {
 		return {
-			screenMode: this.$store.state.uiDemo.screenMode,
+			screenMode: this.$store.state.main.screenMode,
 		};
 	},
 	props: {},
@@ -32,7 +32,7 @@ export default {
 	watch: {
 		screenMode(newVal, oldVal) {
 			console.warn(`Screen size changed from ${oldVal} to ${newVal}`);
-			store.dispatch("uiDemo/switchScreenMode", newVal);
+			store.dispatch("main/switchScreenMode", newVal);
 		},
 	},
 	mounted() {

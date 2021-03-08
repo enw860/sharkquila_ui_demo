@@ -2,7 +2,7 @@ export const namespaced = true
 
 const welcomPage = {
   category: "Welcome to",
-  displayName: "UI Demo",
+  displayName: "Sharkquila UI",
   widgetName: "Welcome",
 }
 

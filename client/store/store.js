@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as uiDemo from './modules/uiDemo.js'
+import * as main from './modules/main.js'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    uiDemo,
+    main,
   },
   state: {}
 })
