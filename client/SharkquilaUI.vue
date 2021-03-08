@@ -1,15 +1,15 @@
 <template>
-	<div class="SharkquilaUI">Hi</div>
+	<PageContent />
 </template>
 
 <script>
 import store from "./store/store";
-// import PageContent from "./views/PageContent";
+import PageContent from "./views/PageContent";
 
 export default {
-	name: "Sharkquila UI",
+	name: "SharkquilaUI",
 	components: {
-		// PageContent,
+		PageContent,
 	},
 	data: function () {
 		return {
