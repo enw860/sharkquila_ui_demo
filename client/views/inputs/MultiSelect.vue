@@ -27,7 +27,7 @@
 			<component
 				slot="widgit"
 				ref="control"
-				v-bind:is="state.widgit"
+				v-bind:is="widgitControl"
 				:options="state.options"
 				:value="state.values"
 				:layout="state.layout"
@@ -93,6 +93,7 @@
 </template>
 
 <script>
+import { normalizeInput } from "../../utils/utilities";
 import WidgitDemo from "../../components/WidgitDemo.vue";
 import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 
@@ -105,11 +106,14 @@ export default {
 	},
 	data: function () {
 		return {
-			TYPES: ["l-input-group-multiple"],
+			TYPES: ["Checkbox group"],
+			TYPES_MAPPING: {
+				"checkbox group": "l-input-group-multiple",
+			},
 			SIZES: ["Small", "Default", "Large", "xLarge"],
 			LAYOUT: ["Vertival", "Horizontal"],
 			state: {
-				widgit: "l-input-group-multiple",
+				widgit: "Checkbox group",
 				options: ["Item1", "Item2", "Item3", "Item4"],
 				values: ["Item2", "Item3"],
 				layout: "Vertival",
@@ -224,6 +228,11 @@ export default {
 				},
 			],
 		};
+	},
+	computed: {
+		widgitControl: function () {
+			return normalizeInput(this.TYPES_MAPPING, this.state.widgit);
+		},
 	},
 	methods: {
 		updateWidgit: function (event) {

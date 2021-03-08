@@ -25,7 +25,7 @@
 			</div>
 
 			<component
-				v-bind:is="state.widgit"
+				v-bind:is="widgitControl"
 				slot="widgit"
 				ref="control"
 				:options="state.options"
@@ -97,6 +97,7 @@
 </template>
 
 <script>
+import { normalizeInput } from "../../utils/utilities";
 import WidgitDemo from "../../components/WidgitDemo.vue";
 import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 
@@ -109,11 +110,15 @@ export default {
 	},
 	data: function () {
 		return {
-			TYPES: ["l-input-single-select", "l-input-group-single"],
+			TYPES: ["Single select", "Radio group"],
+			TYPES_MAPPING: {
+				"single select": "l-input-single-select",
+				"radio group": "l-input-group-single",
+			},
 			SIZES: ["Small", "Default", "Large", "xLarge"],
 			LAYOUT: ["Vertival", "Horizontal"],
 			state: {
-				widgit: "l-input-single-select",
+				widgit: "Single select",
 				options: ["Item1", "Item2", "Item3", "Item4"],
 				value: "Item1",
 				layout: "Vertival",
@@ -239,6 +244,11 @@ export default {
 				},
 			],
 		};
+	},
+	computed: {
+		widgitControl: function () {
+			return normalizeInput(this.TYPES_MAPPING, this.state.widgit);
+		},
 	},
 	methods: {
 		updateWidgit: function (event) {

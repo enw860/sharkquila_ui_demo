@@ -25,7 +25,7 @@
 			<component
 				slot="widgit"
 				ref="control"
-				v-bind:is="state.widgit"
+				v-bind:is="widgitControl"
 				:size="state.size"
 				:placeholder="state.placeholder"
 				:error="state.error"
@@ -39,7 +39,7 @@
 					<l-input-single-select
 						slot="labelContent"
 						:value="state.widgit"
-						:options="TYPE"
+						:options="TYPES"
 						@change="updateWidgit"
 					/>
 				</l-label-wrapper>
@@ -97,6 +97,7 @@
 </template>
 
 <script>
+import { normalizeInput } from "../../utils/utilities";
 import WidgitDemo from "../../components/WidgitDemo.vue";
 import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 
@@ -110,19 +111,20 @@ export default {
 	data: function () {
 		return {
 			SIZES: ["Small", "Default", "Large", "xLarge"],
-			TYPE: [
-				"l-input-text",
-				"l-input-number",
-				"l-input-password",
-				"l-input-textarea",
-				"l-input-color",
-			],
+			TYPES_MAPPING: {
+				text: "l-input-text",
+				number: "l-input-number",
+				password: "l-input-password",
+				textarea: "l-input-textarea",
+				color: "l-input-color",
+			},
+			TYPES: ["Text", "Number", "Password", "Textarea", "Color"],
 			state: {
 				placeholder: "Enter some inputs",
 				size: "Default",
 				error: "",
 				disabled: false,
-				widgit: "l-input-text",
+				widgit: "Text",
 				codeStructure: "",
 			},
 			PROPS_COL_SETTINGS: [
@@ -225,6 +227,11 @@ export default {
 				},
 			],
 		};
+	},
+	computed: {
+		widgitControl: function () {
+			return normalizeInput(this.TYPES_MAPPING, this.state.widgit);
+		},
 	},
 	methods: {
 		updateWidgit: function (event) {
