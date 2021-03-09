@@ -170,13 +170,13 @@ export default {
 				},
 				{
 					active: false,
-					name: "Code",
-					href: "#code",
+					name: "Demo",
+					href: "#demo",
 				},
 				{
 					active: false,
-					name: "Demo",
-					href: "#demo",
+					name: "Code",
+					href: "#code",
 				},
 				{
 					active: false,
