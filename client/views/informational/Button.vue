@@ -110,6 +110,12 @@
 				</l-label-wrapper>
 			</div>
 
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
+
 			<l-html-text-loader slot="structure" :value="state.codeStructure" />
 		</ControlDemoTemplate>
 	</div>
@@ -244,6 +250,22 @@ export default {
 				},
 			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-button\
+						value="${this.state.value}"\
+						icon="${this.state.icon}"\
+						iconPosition="${this.state.iconPosition}"\
+						btnStyle="${this.state.btnStyle}"\
+						size="${this.state.btnSize}"\
+						:disabled="${!this.state.isActive}"\
+						@click="{function}"\
+					/>
+				</template>`;
+		},
 	},
 	methods: {
 		updateButtonValue: function (event) {

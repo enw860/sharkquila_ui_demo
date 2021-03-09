@@ -65,6 +65,12 @@
 				</l-label-wrapper>
 			</div>
 
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
+
 			<l-html-text-loader slot="structure" :value="state.codeStructure" />
 		</ControlDemoTemplate>
 	</div>
@@ -161,6 +167,20 @@ export default {
 				},
 			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-bread-crumbs\
+						steps="[{name, click, disabled}...]"\
+						size="${this.state.fontSize}"\
+						color="${this.state.fontColor}"\
+						separator="${this.state.separator}"\
+						:fontWeight="${this.state.fontWeight}"\
+					/>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateFontColor: function (event) {

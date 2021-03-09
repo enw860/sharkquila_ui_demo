@@ -82,6 +82,12 @@
 				</l-label-wrapper>
 			</div>
 
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
+
 			<l-html-text-loader slot="structure" :value="state.codeStructure" />
 		</ControlDemoTemplate>
 	</div>
@@ -162,6 +168,26 @@ export default {
 				},
 			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-avatar\
+						content="Lionel Wu"\
+						avatarSize="large"\
+						shape="${this.state.shape}"\
+						:isActive="${this.state.isActive}"\
+					>
+						<l-badge\
+							slot="badge"\
+							vPosition="${this.state.vPosition}"\
+							backgroundColor="${this.state.backgroundColor}"\
+							:content="${this.state.content}"\
+						/>\
+					</l-avatar>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateContent: function (event) {

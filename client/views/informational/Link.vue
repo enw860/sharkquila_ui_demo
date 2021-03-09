@@ -117,6 +117,12 @@
 				</l-label-wrapper>
 			</div>
 
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
+
 			<l-html-text-loader slot="structure" :value="state.codeStructure" />
 		</ControlDemoTemplate>
 	</div>
@@ -257,6 +263,23 @@ export default {
 				},
 			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-link\
+						value="${this.state.value}"\
+						href="${this.state.href}"\
+						color="${this.state.color}"\
+						:size="${this.state.fontSize}"\
+						:fontWeight="${this.state.fontWeight}"\
+						:openInNewTab="${this.state.openInNewTab}"\
+						:disabled="${this.state.disabled}"\
+						@click="{function}"\
+					/>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateValue: function (event) {

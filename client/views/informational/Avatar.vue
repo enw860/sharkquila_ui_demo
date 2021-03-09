@@ -117,6 +117,12 @@
 				</l-label-wrapper>
 			</div>
 
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
+
 			<l-html-text-loader slot="structure" :value="state.codeStructure" />
 		</ControlDemoTemplate>
 	</div>
@@ -254,6 +260,22 @@ export default {
 				},
 			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-avatar\
+						content="${this.state.content}"\
+						shape="${this.state.shape}"\
+						avatarSize="${this.state.size}"\
+						type="${this.state.type}"\
+						avatarColor="${this.state.avatarColor}"\
+						iconColor="${this.state.iconColor}"\
+						:isActive="${this.state.isActive}"\
+					/>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateContent: function (event) {

@@ -85,6 +85,12 @@
 				</l-label-wrapper>
 			</div>
 
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
+
 			<l-html-text-loader slot="structure" :value="state.codeStructure" />
 		</ControlDemoTemplate>
 	</div>
@@ -185,6 +191,21 @@ export default {
 				},
 			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-clock\
+						format="${this.state.timeFormat}"\
+						fontSize="${this.state.fontSize}"\
+						:clockSize="${parseFloat(this.state.clockSize)}"\
+						:timezoneOffset="${this.state.timezoneOffset}"\
+						:showTimeString="${this.state.showTimeString}"\
+						:showDateString="${this.state.showDateString}"\
+					/>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateClockSize: function (event) {
