@@ -97,40 +97,16 @@ export default {
 	},
 	data: function () {
 		return {
-			SHAPES: ["Round", "Square"],
-			SIZES: ["Default", "Small", "Large", "xLarge"],
-			VPOSITION: ["Top", "Center", "Bottom"],
+			SHAPES: ["round", "square"],
+			SIZES: ["default", "small", "large", "xlarge"],
+			VPOSITION: [],
 			state: {
 				isActive: true,
-				shape: "Square",
+				shape: "square",
 				content: 18,
-				vPosition: "Top",
+				vPosition: "top",
 				backgroundColor: "#da1e28",
 			},
-			PROPS_TABLE_DATA: [
-				{
-					prop: "content",
-					type: "Number",
-					default: "99",
-					required: "true",
-					description:
-						"Number of news. will cap to +99 if the value greater than 99 or -99 if less than -99.",
-				},
-				{
-					prop: "vPosition",
-					type: "String",
-					default: "Top",
-					required: "",
-					description: "Position where the badge shows.",
-				},
-				{
-					prop: "backgroundColor",
-					type: "Hex",
-					default: "#da1e28",
-					required: "",
-					description: "Background color of the badge control.",
-				},
-			],
 		};
 	},
 	computed: {
@@ -172,6 +148,12 @@ export default {
 	},
 	mounted: function () {
 		this.$refs.DT.updateControl(this.$refs.control);
+
+		const { props } = this.$refs.control.$options || {};
+		if (props) {
+			const { vPosition } = props;
+			this.VPOSITION = vPosition.options;
+		}
 	},
 	updated: function () {
 		this.$refs.DT.setControlDOMStructure(this.$refs.control);
