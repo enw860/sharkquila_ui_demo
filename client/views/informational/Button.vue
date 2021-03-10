@@ -6,27 +6,13 @@
 
 <template>
 	<div class="ButtonDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>
 					The button control is used to perform some actions while
 					being clicked. Could be also used as an static icon (e.g.
 					empty btn value + icon + no on click function)
 				</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
-			</div>
-
-			<div slot="events">
-				<l-table
-					:colSettings="ENENTS_COL_SETTINGS"
-					:tableData="ENENTS_TABLE_DATA"
-				></l-table>
 			</div>
 
 			<l-button
@@ -115,8 +101,6 @@
 				type="<Vue template>"
 				:value="codeBody"
 			/>
-
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -134,121 +118,18 @@ export default {
 	},
 	data: function () {
 		return {
-			SIZES: ["Default", "Small", "Large", "xLarge"],
-			ICON_POSITION: ["left", "right"],
-			BUTTON_STYLE: [
-				"Default",
-				"Primary",
-				"Success",
-				"Danger",
-				"Info",
-				"Dark",
-				"White",
-				"Transparent",
-			],
+			SIZES: [],
+			ICON_POSITION: [],
+			BUTTON_STYLE: [],
 			state: {
-				codeStructure: "",
 				value: "Click me",
 				icon: "",
 				iconPosition: "left",
-				btnStyle: "Primary",
-				btnSize: "Default",
+				btnStyle: "primary",
+				btnSize: "default",
 				onClickFunctionBody: `alert("Response to click action on button");`,
 				isActive: true,
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "value",
-					type: "String",
-					default: "Button",
-					required: "true",
-					description: "Context of button control.",
-				},
-				{
-					prop: "size",
-					type: "String",
-					default: "Default",
-					required: "",
-					description: "Size of the button control.",
-				},
-				{
-					prop: "icon",
-					type: "String",
-					default: "",
-					required: "",
-					description: "Fontawsome icon class, e.g fa-apple.",
-				},
-				{
-					prop: "iconPosition",
-					type: "String",
-					default: "left",
-					required: "",
-					description: "Position of the icon, either left or right.",
-				},
-				{
-					prop: "btnStyle",
-					type: "String",
-					default: "Default",
-					required: "",
-					description: "Predefined button color style.",
-				},
-				{
-					prop: "disabled",
-					type: "Boolean",
-					default: "false",
-					required: "",
-					description: "Whether the button is disabled or not.",
-				},
-			],
-			ENENTS_COL_SETTINGS: [
-				{
-					name: "method",
-					displayName: "Method",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			ENENTS_TABLE_DATA: [
-				{
-					method: "@click",
-					description:
-						"Customized binded action, triggered on button onclick.",
-				},
-				{
-					method: "onclick",
-					description:
-						"External control, triggers on button onclick event.",
-				},
-			],
 		};
 	},
 	computed: {
@@ -294,10 +175,18 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.updateControl(this.$refs.control);
+
+		const { props } = this.$refs.control.$options || {};
+		if (props) {
+			const { size, iconPosition, btnStyle } = props;
+			this.SIZES = size.options;
+			this.ICON_POSITION = iconPosition.options;
+			this.BUTTON_STYLE = btnStyle.options;
+		}
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.setControlDOMStructure(this.$refs.control);
 	},
 };
 </script>
