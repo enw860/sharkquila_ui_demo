@@ -1,24 +1,10 @@
 <template>
 	<div class="TooltipDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>
 					This control is used to add a tooltip for a given content.
 				</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
-			</div>
-
-			<div slot="events">
-				<l-table
-					:colSettings="ENENTS_COL_SETTINGS"
-					:tableData="ENENTS_TABLE_DATA"
-				></l-table>
 			</div>
 
 			<l-tooltip-wrapper
@@ -87,8 +73,6 @@
 					/>
 				</l-label-wrapper>
 			</div>
-
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -106,102 +90,33 @@ export default {
 	},
 	data: function () {
 		return {
-			MPOSITIONS: ["Right", "Left", "Top", "Bottom"],
-			SPOSITIONS: ["Start", "Center", "End"],
-			SIZES: ["Small", "Default", "Large", "xLarge"],
+			MPOSITIONS: [],
+			SPOSITIONS: [],
+			SIZES: [],
 			state: {
-				codeStructure: "",
 				value: "Tooltip",
-				size: "Default",
-				mPosition: "Top",
-				sPosition: "Start",
+				size: "default",
+				mPosition: "top",
+				sPosition: "start",
 				displayOnHover: true,
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "value",
-					type: "Array",
-					default: "[]",
-					required: "",
-					description: "Text show in the tooltip box.",
-				},
-				{
-					prop: "size",
-					type: "String",
-					default: "default",
-					required: "",
-					description: "Size of the text.",
-				},
-				{
-					prop: "mPosition",
-					type: "String",
-					default: "top",
-					required: "",
-					description: "Vertical position of the tooltip.",
-				},
-				{
-					prop: "sPosition",
-					type: "String",
-					default: "start",
-					required: "",
-					description: "Horizontal position of the tooltip.",
-				},
-				{
-					prop: "displayOnHover",
-					type: "Boolean",
-					default: "true",
-					required: "",
-					description: "Show the tooltip on hover.",
-				},
-			],
-			ENENTS_COL_SETTINGS: [
-				{
-					name: "method",
-					displayName: "Method",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			ENENTS_TABLE_DATA: [
-				{
-					method: "showTooltip(event)",
-					description: "Display the tooltip.",
-				},
-				{
-					method: "hideTooltip(event)",
-					description: "Hide the tooltip.",
-				},
-			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-tooltip-wrapper\
+						value="${this.state.value}"\
+						size="${this.state.size}"\
+						mPosition="${this.state.mPosition}"\
+						sPosition="${this.state.sPosition}"\
+						:displayOnHover="${this.state.displayOnHover}"\
+					>\
+						<l-button slot="content" value="Hover on me"/>\
+					</l-tooltip-wrapper>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateTooltip: function (event) {
@@ -221,10 +136,18 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.updateControl(this.$refs.control);
+
+		const { props } = this.$refs.control.$options || {};
+		if (props) {
+			const { size, sPosition, mPosition } = props;
+			this.SIZES = size.options;
+			this.SPOSITIONS = sPosition.options;
+			this.MPOSITIONS = mPosition.options;
+		}
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.setControlDOMStructure(this.$refs.control);
 	},
 };
 </script>
