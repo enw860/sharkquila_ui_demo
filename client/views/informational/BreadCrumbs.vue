@@ -103,7 +103,7 @@ export default {
 						steps="[{name, click, disabled}...]"\
 						size="${this.state.fontSize}"\
 						color="${this.state.fontColor}"\
-						separator="${this.state.separator}"\
+						separator="${this.state.separator.replace("<", "&lt").replace(">", "&gt")}"\
 						:fontWeight="${this.state.fontWeight}"\
 					/>\
 				</template>`;
@@ -129,7 +129,7 @@ export default {
 		const { props } = this.$refs.control.$options || {};
 		if (props) {
 			const { size } = props;
-			this.FONT_SIZES = size.options;
+			this.FONT_SIZES = (size || {}).options || [];
 		}
 	},
 	updated: function () {

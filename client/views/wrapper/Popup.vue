@@ -130,8 +130,8 @@ export default {
 		const { props } = this.$refs.control.$options || {};
 		if (props) {
 			const { size, direction } = props;
-			this.SIZES = size.options;
-			this.DIRECTIONS = direction.options;
+			this.SIZES = (size || {}).options || [];
+			this.DIRECTIONS = (direction || {}).options || [];
 		}
 	},
 	updated: function () {

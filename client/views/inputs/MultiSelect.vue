@@ -153,8 +153,8 @@ export default {
 			const { props } = this.$refs.control.$options || {};
 			if (props) {
 				const { size, layout } = props;
-				this.SIZES = size.options;
-				this.LAYOUT = layout.options;
+				this.SIZES = (size || {}).options || [];
+				this.LAYOUT = (layout || {}).options || [];
 			}
 		},
 	},

@@ -141,9 +141,9 @@ export default {
 		const { props } = this.$refs.control.$options || {};
 		if (props) {
 			const { size, sPosition, mPosition } = props;
-			this.SIZES = size.options;
-			this.SPOSITIONS = sPosition.options;
-			this.MPOSITIONS = mPosition.options;
+			this.SIZES = (size || {}).options || [];
+			this.SPOSITIONS = (sPosition || {}).options || [];
+			this.MPOSITIONS = (mPosition || {}).options || [];
 		}
 	},
 	updated: function () {

@@ -191,7 +191,7 @@ export default {
 		const { props } = this.$refs.control.$options || {};
 		if (props) {
 			const { size } = props;
-			this.FONT_SIZES = size.options;
+			this.FONT_SIZES = (size || {}).options || [];
 		}
 	},
 	updated: function () {

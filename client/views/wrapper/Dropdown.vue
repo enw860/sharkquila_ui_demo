@@ -130,8 +130,8 @@ export default {
 		const { props } = this.$refs.control.$options || {};
 		if (props) {
 			const { size, colorStyle } = props;
-			this.STYLES = size.options;
-			this.SIZES = colorStyle.options;
+			this.STYLES = (size || {}).options || [];
+			this.SIZES = (colorStyle || {}).options || [];
 		}
 	},
 	updated: function () {

@@ -115,7 +115,7 @@ export default {
 		const { props } = this.$refs.control.$options || {};
 		if (props) {
 			const { direction } = props;
-			this.DIRECTIONS = direction.options;
+			this.DIRECTIONS = (direction || {}).options || [];
 		}
 	},
 	updated: function () {

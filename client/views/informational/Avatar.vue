@@ -196,9 +196,9 @@ export default {
 		const { props } = this.$refs.control.$options || {};
 		if (props) {
 			const { shape, type, avatarSize } = props;
-			this.SHAPES = shape.options;
-			this.TYPES = type.options;
-			this.SIZES = avatarSize.options;
+			this.SHAPES = (shape || {}).options || [];
+			this.TYPES = (type || {}).options || [];
+			this.SIZES = (avatarSize || {}).options || [];
 		}
 	},
 	updated: function () {

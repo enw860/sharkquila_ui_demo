@@ -180,9 +180,9 @@ export default {
 		const { props } = this.$refs.control.$options || {};
 		if (props) {
 			const { size, iconPosition, btnStyle } = props;
-			this.SIZES = size.options;
-			this.ICON_POSITION = iconPosition.options;
-			this.BUTTON_STYLE = btnStyle.options;
+			this.SIZES = (size || {}).options;
+			this.ICON_POSITION = (iconPosition || {}).options || [];
+			this.BUTTON_STYLE = (btnStyle || {}).options || [];
 		}
 	},
 	updated: function () {

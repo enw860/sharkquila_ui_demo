@@ -152,7 +152,7 @@ export default {
 		const { props } = this.$refs.control.$options || {};
 		if (props) {
 			const { vPosition } = props;
-			this.VPOSITION = vPosition.options;
+			this.VPOSITION = (vPosition || {}).options || [];
 		}
 	},
 	updated: function () {

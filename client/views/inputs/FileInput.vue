@@ -111,7 +111,7 @@ export default {
 		const { props } = this.$refs.control.$options || {};
 		if (props) {
 			const { size } = props;
-			this.SIZES = size.options;
+			this.SIZES = (size || {}).options || [];
 		}
 	},
 	updated: function () {

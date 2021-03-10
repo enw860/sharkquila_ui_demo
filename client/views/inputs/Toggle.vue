@@ -167,9 +167,9 @@ export default {
 		const { props } = this.$refs.control.$options || {};
 		if (props) {
 			const { size, toggleStyle, labelType } = props;
-			this.SIZES = size.options;
-			this.STYLES = toggleStyle.options;
-			this.LABELTYPE = labelType.options;
+			this.SIZES = (size || {}).options || [];
+			this.STYLES = (toggleStyle || {}).options || [];
+			this.LABELTYPE = (labelType || {}).options || [];
 		}
 	},
 	updated: function () {
