@@ -4,9 +4,9 @@
 			<div slot="overview">
 				<p>
 					This control is used to display a range of options, and
-					allow user to select multiple values. Could be combined with
-					Label Wrapper control to provide more advance uses.
-					(CheckboxGroup)
+					allow user to choose multiple values. It could be also
+					combined with Label Wrapper control to provide more advance
+					uses.
 				</p>
 			</div>
 

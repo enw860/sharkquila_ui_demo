@@ -12,7 +12,7 @@
 	<div class="DropdownDemo">
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>This control is used to hide and expand views.</p>
+				<p>This control is used to hide and expand a section.</p>
 			</div>
 
 			<l-dropdown-wrapper

@@ -2,7 +2,10 @@
 	<div class="ClockDemo">
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>The button control is used to display time.</p>
+				<p>
+					The clock control is used to display the time (could be set
+					to adapt different time zone).
+				</p>
 			</div>
 
 			<l-clock

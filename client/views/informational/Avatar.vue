@@ -4,7 +4,7 @@
 			<div slot="overview">
 				<p>
 					The avatar component is used to represent users on an
-					Internet forum. It provides an embodiment of a user's
+					internet forum. It uses to provide an embodiment of a user's
 					characters or ideas.
 				</p>
 			</div>

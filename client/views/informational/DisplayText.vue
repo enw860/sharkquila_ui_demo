@@ -2,7 +2,7 @@
 	<div class="DisplayTextDemo">
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>This control is used to display plain text.</p>
+				<p>This control is used to display a plain text.</p>
 			</div>
 
 			<l-text

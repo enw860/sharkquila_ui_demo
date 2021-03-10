@@ -11,7 +11,7 @@
 	z-index: 1000;
 
 	> .Button {
-		color: @white;
+		color: @white !important;
 		&[role="button"]:active {
 			color: @white !important;
 		}

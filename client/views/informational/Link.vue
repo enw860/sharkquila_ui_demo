@@ -8,7 +8,10 @@
 	<div class="LinkDemo">
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>This control is used to display a link.</p>
+				<p>
+					This control is used to display a link that could used to
+					launch a link or launch an action.
+				</p>
 			</div>
 
 			<l-link

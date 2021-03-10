@@ -10,8 +10,8 @@
 			<div slot="overview">
 				<p>
 					The button control is used to perform some actions while
-					being clicked. Could be also used as an static icon (e.g.
-					empty btn value + icon + no on click function)
+					being clicked. However, it could be also used as an static
+					icon (e.g. empty button value + icon + no on click function)
 				</p>
 			</div>
 

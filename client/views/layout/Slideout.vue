@@ -16,7 +16,10 @@
 	<div class="SlideoutDemo">
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>This control is used as slideout.</p>
+				<p>
+					This control is used as slideout that showing user some
+					infomation. (e.g navigation or form)
+				</p>
 			</div>
 
 			<div

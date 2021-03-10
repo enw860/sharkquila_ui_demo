@@ -110,9 +110,10 @@
 					<div class="HLayout">
 						<l-link
 							value="Github"
+							color="#0f62fe"
 							href="https://github.com/enw860/sharkquila_ui_demo"
 						/>
-						<l-text value="- Version 1.0.0" color="#e0e0e0" />
+						<l-text value="- Version 1.1.0" color="#e0e0e0" />
 					</div>
 					<div class="HLayout">
 						<l-text
@@ -121,12 +122,14 @@
 						/>
 						<l-link
 							value="Lionel Wu."
+							color="#0f62fe"
 							href="https://www.linkedin.com/in/enhao-wu-18a596138"
 						/>
 						<l-text value="Licensed under the" color="#e0e0e0" />
 						<l-link
 							value="MIT License."
-							href="https://github.com/enw860/IApps/blob/main/LICENSE"
+							color="#0f62fe"
+							href="https://github.com/enw860/sharkquila_ui_demo/LICENSE"
 						/>
 					</div>
 				</div>

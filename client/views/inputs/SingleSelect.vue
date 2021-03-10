@@ -4,9 +4,8 @@
 			<div slot="overview">
 				<p>
 					This control is used to display a range of options, and only
-					allow user to select one value. Could be combined with Label
-					Wrapper control to provide more advance uses. (SingleSelect
-					and RadioGroup)
+					allow user to choose one value. It could be also combined
+					with Label Wrapper control to provide more advance uses.
 				</p>
 			</div>
 

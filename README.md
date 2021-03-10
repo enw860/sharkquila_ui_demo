@@ -11,8 +11,10 @@ As per UI components listed in the navigation bar at the site, it will describe 
 * Overview: The designiated use cases for the control.
 * Live demo: The demonstration of the control in run time.
 * Controls: Part of the configeration options used for manipulate the control.
-* Code: The actual code for configure the target control.
+* Code: Vue code for fast startup.
+* DOM structure: DOM structure of the current control.
 * Settings: All of the configurable fields with default values.
+* Slots: Available slots of the control. (if any)
 * Events: Desiginated events that could be bind to the control. (if any)
 * Methods: Buildin functions that could be called by referring the control. (if any)
 

@@ -2,7 +2,7 @@
 	<div class="FileInputDemo">
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>Use to upload one or more files.</p>
+				<p>The control is used to upload one or more files.</p>
 			</div>
 
 			<l-input-file

@@ -3,8 +3,9 @@
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>
-					Different types of text inputs. (Plain text, number,
-					password, color and text area)
+					Different types of text inputs used for collect user's
+					inputs. It could be also combined with Label Wrapper control
+					to provide more advance uses.
 				</p>
 			</div>
 

@@ -4,7 +4,7 @@
 			<div slot="overview">
 				<p>
 					The badge is a sub-component of avatar. It is used to
-					representing if there is an update for a user/events.
+					represent an updating event.
 				</p>
 			</div>
 

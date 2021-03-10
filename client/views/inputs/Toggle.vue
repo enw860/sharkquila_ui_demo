@@ -2,7 +2,10 @@
 	<div class="ToggleDemo">
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>Toggle between two states.</p>
+				<p>
+					Toggle between two states. It could be also combined with
+					Label Wrapper control to provide more advance uses.
+				</p>
 			</div>
 
 			<l-toggle

@@ -4,6 +4,8 @@
 			<div slot="overview">
 				<p>
 					This control is used to add a tooltip for a given content.
+					It could be used to show either a static tooltip or a on
+					hover tooltip.
 				</p>
 			</div>
 

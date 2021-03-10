@@ -3,9 +3,9 @@
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>
-					The breadcrumbs are often used as page navigators. The flow
-					of breadcrumbs shows the depth of the page. (the last anchor
-					is always disabled)
+					The breadcrumbs are often used as page navigators. It shows
+					the flow as well as depth of the current page. (the last
+					anchor represent the current page and it is always disabled)
 				</p>
 			</div>
 

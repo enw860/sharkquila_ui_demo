@@ -2,7 +2,9 @@
 	<div class="LabelWrapperDemo">
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>This control is used to add a label for control.</p>
+				<p>
+					This control is designed to add a label for input controls.
+				</p>
 			</div>
 
 			<l-label-wrapper

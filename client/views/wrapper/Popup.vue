@@ -2,7 +2,10 @@
 	<div class="PopupDemo">
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>This control is used to add a label for control.</p>
+				<p>
+					This control is used to trigger a popup menu for designated
+					trigger control.
+				</p>
 			</div>
 
 			<l-popup-wrapper
