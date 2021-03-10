@@ -102,7 +102,7 @@ export default {
 				{
 					name: "prop",
 					displayName: "Prop",
-					width: "130px",
+					width: "150px",
 				},
 				{
 					name: "type",
@@ -130,7 +130,7 @@ export default {
 				{
 					name: "method",
 					displayName: "Method",
-					width: "130px",
+					width: "150px",
 				},
 				{
 					name: "description",
@@ -143,7 +143,7 @@ export default {
 				{
 					name: "event",
 					displayName: "Event",
-					width: "130px",
+					width: "150px",
 				},
 				{
 					name: "description",
