@@ -148,6 +148,8 @@ export default {
 			this.state.disabled = !event.target.checked;
 		},
 		updateControlSettings: function () {
+			this.$refs.DT.updateControl(this.$refs.control);
+
 			const { props } = this.$refs.control.$options || {};
 			if (props) {
 				const { size, layout } = props;
@@ -157,11 +159,9 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.$refs.DT.updateControl(this.$refs.control);
 		this.updateControlSettings();
 	},
 	updated: function () {
-		this.$refs.DT.setControlDOMStructure(this.$refs.control);
 		this.updateControlSettings();
 	},
 };
