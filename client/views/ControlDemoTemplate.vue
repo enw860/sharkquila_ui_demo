@@ -44,7 +44,11 @@
 			<div class="SectionLabel">
 				<a name="structure">DOM structure (Live)</a>
 			</div>
-			<l-html-text-loader slot="structure" :value="codeStructure" />
+			<l-html-text-loader
+				slot="structure"
+				:wrapOffset="wrapOffset"
+				:value="codeStructure"
+			/>
 		</div>
 
 		<div class="Section" v-if="props_tbl_data.length > 0">
@@ -89,6 +93,8 @@ export default {
 	},
 	data: function () {
 		return {
+			wrapOffset: NaN,
+
 			codeStructure: "",
 
 			props_tbl_data: [],
@@ -153,13 +159,14 @@ export default {
 		},
 	},
 	methods: {
-		updateControl: function (control) {
+		updateControl: function (control, wrapOffset) {
 			this.setControlTables(control);
-			this.setControlDOMStructure(control);
+			this.setControlDOMStructure(control, wrapOffset);
 		},
 
-		setControlDOMStructure: function (control) {
+		setControlDOMStructure: function (control, wrapOffset) {
 			this.codeStructure = `${control.$el.outerHTML}`;
+			this.wrapOffset = wrapOffset;
 		},
 
 		setControlTables: function (control) {
