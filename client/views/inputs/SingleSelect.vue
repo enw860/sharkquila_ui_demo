@@ -126,7 +126,7 @@ export default {
 			return `\
 				<template>\
 					<${this.widgitControl}\
-						options="${this.state.options}"\
+						options="[${this.state.options}]"\
 						value="${this.state.value}"\
 						${this.state.layout.length === 0 ? `layout=${this.state.layout}` : ""}\
 						size="${this.state.size}"\
