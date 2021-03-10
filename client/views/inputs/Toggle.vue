@@ -1,22 +1,8 @@
 <template>
 	<div class="ToggleDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>Toggle between two states.</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
-			</div>
-
-			<div slot="events">
-				<l-table
-					:colSettings="ENENTS_COL_SETTINGS"
-					:tableData="ENENTS_TABLE_DATA"
-				></l-table>
 			</div>
 
 			<l-toggle
@@ -27,7 +13,7 @@
 				:toggleStyle="state.style"
 				:onLabel="state.onLabel"
 				:offLabel="state.offLabel"
-				:labelType="toggleLabelType"
+				:labelType="state.labelType"
 				:disabled="state.disabled"
 			/>
 
@@ -52,6 +38,15 @@
 					/>
 				</l-label-wrapper>
 
+				<l-label-wrapper value="Label type:" size="small">
+					<l-input-single-select
+						slot="labelContent"
+						:value="state.labelType"
+						:options="LABELTYPE"
+						@change="updateLabelType"
+					/>
+				</l-label-wrapper>
+
 				<l-label-wrapper value="On label:" size="small">
 					<l-input-text
 						slot="labelContent"
@@ -72,17 +67,6 @@
 					/>
 				</l-label-wrapper>
 
-				<l-label-wrapper value="Label type:" size="small">
-					<l-toggle
-						slot="labelContent"
-						:state="state.isIconLabel"
-						onLabel="Icon"
-						offLabel="Text"
-						toggleStyle="success"
-						@toggle="updateLabelType"
-					/>
-				</l-label-wrapper>
-
 				<l-label-wrapper value="Disabled:" size="small">
 					<l-toggle
 						slot="labelContent"
@@ -95,7 +79,11 @@
 				</l-label-wrapper>
 			</div>
 
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -113,122 +101,33 @@ export default {
 	},
 	data: function () {
 		return {
-			SIZES: ["Small", "Default", "Large", "xLarge"],
-			STYLES: ["Primary", "Success", "Danger", "Info"],
+			SIZES: [],
+			STYLES: [],
+			LABELTYPE: [],
 			state: {
-				style: "Danger",
-				size: "Default",
-				isIconLabel: false,
+				style: "danger",
+				size: "default",
+				labelType: "text",
 				disabled: false,
 				onLabel: "On",
 				offLabel: "Off",
-				codeStructure: "",
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "state",
-					type: "Boolean",
-					default: "false",
-					required: "",
-					description: "Initial state of the toggle control.",
-				},
-				{
-					prop: "size",
-					type: "String",
-					default: "default",
-					required: "",
-					description: "Size of the text.",
-				},
-				{
-					prop: "toggleStyle",
-					type: "String",
-					default: "",
-					required: "",
-					description: "Style of the toggle control.",
-				},
-				{
-					prop: "labelType",
-					type: "String",
-					default: "text",
-					required: "",
-					description: "Options are text and icon",
-				},
-				{
-					prop: "onLabel",
-					type: "String",
-					default: "On",
-					required: "",
-					description:
-						"On label, text label when label type is text, otherwise it represent the fontawsome icon class.",
-				},
-				{
-					prop: "offLabel",
-					type: "String",
-					default: "Off",
-					required: "",
-					description:
-						"Off label, text label when label type is text, otherwise it represent the fontawsome icon class.",
-				},
-				{
-					prop: "disabled",
-					type: "Boolean",
-					default: "false",
-					required: "",
-					description: "Disable the link.",
-				},
-			],
-			ENENTS_COL_SETTINGS: [
-				{
-					name: "method",
-					displayName: "Method",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			ENENTS_TABLE_DATA: [
-				{
-					method: "@click(event)",
-					description: "Triggered on value clicked.",
-				},
-				{
-					method: "getState()",
-					description: "Get current control state.",
-				},
-			],
 		};
 	},
 	computed: {
-		toggleLabelType: function () {
-			return this.state.isIconLabel ? "icon" : "text";
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-toggle\
+						state="true"\
+						size="${this.state.size}"\
+						toggleStyle="${this.state.style}"\
+						labelType="${this.state.labelType}"\
+						onLabel="${this.state.onLabel}"\
+						offLabel="${this.state.offLabel}"\
+						:disabled="${this.state.disabled}"\
+					/>
+				</template>`;
 		},
 	},
 	methods: {
@@ -245,8 +144,8 @@ export default {
 			this.state.offLabel = event.target.value;
 		},
 		updateLabelType: function (event) {
-			this.state.isIconLabel = event.target.checked;
-			if (this.state.isIconLabel) {
+			this.state.labelType = event.target.value;
+			if (this.state.labelType === "icon") {
 				this.state.onLabel = "fa-check";
 				this.state.offLabel = "fa-close";
 				this.$refs.onLabel.setValue("fa-check");
@@ -263,10 +162,18 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.updateControl(this.$refs.control, 2);
+
+		const { props } = this.$refs.control.$options || {};
+		if (props) {
+			const { size, toggleStyle, labelType } = props;
+			this.SIZES = size.options;
+			this.STYLES = toggleStyle.options;
+			this.LABELTYPE = labelType.options;
+		}
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.setControlDOMStructure(this.$refs.control, 2);
 	},
 };
 </script>
