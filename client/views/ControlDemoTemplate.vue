@@ -61,6 +61,16 @@
 			></l-table>
 		</div>
 
+		<div class="Section" v-if="slots_tbl_data.length > 0">
+			<div class="SectionLabel">
+				<a name="properties">Slots</a>
+			</div>
+			<l-table
+				:colSettings="SLOTS_TBL_SETTINGS"
+				:tableData="slots_tbl_data"
+			></l-table>
+		</div>
+
 		<div class="Section" v-if="methods_tbl_data.length > 0">
 			<div class="SectionLabel">
 				<a name="properties">Methods</a>
@@ -150,6 +160,19 @@ export default {
 					displayName: "Description",
 				},
 			],
+
+			slots_tbl_data: [],
+			SLOTS_TBL_SETTINGS: [
+				{
+					name: "slot",
+					displayName: "Slot",
+					width: "150px",
+				},
+				{
+					name: "description",
+					displayName: "Description",
+				},
+			],
 		};
 	},
 	props: {
@@ -170,12 +193,13 @@ export default {
 		},
 
 		setControlTables: function (control) {
-			const { props, expose_methods, expose_events } =
+			const { props, expose_methods, expose_events, expose_slots } =
 				control.$options || {};
 
 			this.updatePropsTable(props);
 			this.updateMethodsTable(expose_methods);
 			this.updateEventsTable(expose_events);
+			this.updateSlotsTable(expose_slots);
 		},
 
 		updatePropsTable: function (props) {
@@ -206,6 +230,16 @@ export default {
 				const settings = events[field];
 				return {
 					event: field,
+					description: settings.description || "",
+				};
+			});
+		},
+
+		updateSlotsTable: function (slots) {
+			this.slots_tbl_data = Object.keys(slots || {}).map((field) => {
+				const settings = slots[field];
+				return {
+					slot: field,
 					description: settings.description || "",
 				};
 			});

@@ -152,6 +152,8 @@ export default {
 						iconColor="${this.state.iconColor}"\
 						:isActive="${this.state.isActive}"\
 					/>\
+						<l-badge slot="badge" />\
+					</l-avatar>\
 				</template>`;
 		},
 	},
