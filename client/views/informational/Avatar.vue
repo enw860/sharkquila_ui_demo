@@ -1,34 +1,20 @@
 <template>
 	<div class="AvatarDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>
 					The avatar component is used to represent users on an
-					Internet forum. It provides an embodiment of a user's
+					internet forum. It uses to provide an embodiment of a user's
 					characters or ideas.
 				</p>
 			</div>
 
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
-			</div>
-
-			<div slot="events">
-				<l-table
-					:colSettings="ENENTS_COL_SETTINGS"
-					:tableData="ENENTS_TABLE_DATA"
-				></l-table>
-			</div>
-
 			<l-avatar
-				ref="avatar"
+				ref="control"
 				slot="widgit"
 				:content="state.content"
 				:shape="state.shape"
-				:avatarSize="state.size"
+				:avatarSize="state.avatarSize"
 				:type="state.type"
 				:avatarColor="state.avatarColor"
 				:iconColor="state.iconColor"
@@ -45,9 +31,9 @@
 						:value="state.content"
 						@blur="updateContent"
 						:placeholder="
-							state.type === 'Text'
+							state.type === 'text'
 								? 'Avatar name'
-								: state.type === 'Icon'
+								: state.type === 'icon'
 								? 'Avatar icon class'
 								: 'Image URL'
 						"
@@ -66,7 +52,7 @@
 				<l-label-wrapper value="Size:" size="small">
 					<l-input-single-select
 						slot="labelContent"
-						:value="state.size"
+						:value="state.avatarSize"
 						:options="SIZES"
 						@change="updateSize"
 					/>
@@ -84,7 +70,7 @@
 				<l-label-wrapper
 					value="Avatar background color:"
 					size="small"
-					v-if="state.type !== 'Image'"
+					v-if="state.type !== 'image'"
 				>
 					<l-input-color
 						slot="labelContent"
@@ -96,7 +82,7 @@
 				<l-label-wrapper
 					value="Icon color:"
 					size="small"
-					v-if="state.type !== 'Image'"
+					v-if="state.type !== 'image'"
 				>
 					<l-input-color
 						slot="labelContent"
@@ -117,7 +103,11 @@
 				</l-label-wrapper>
 			</div>
 
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -135,125 +125,37 @@ export default {
 	},
 	data: function () {
 		return {
-			SHAPES: ["Round", "Square"],
-			TYPES: ["Text", "Icon", "Image"],
-			SIZES: ["Default", "Small", "Large", "xLarge"],
+			SHAPES: [],
+			TYPES: [],
+			SIZES: [],
 			state: {
 				isActive: true,
-				shape: "Round",
-				type: "Text",
-				size: "xLarge",
+				shape: "round",
+				type: "text",
+				avatarSize: "xlarge",
 				avatarColor: "#0f62fe",
 				iconColor: "#ffffff",
-				content: "Demo",
-				codeStructure: "",
+				content: "avatar",
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "content",
-					type: "String",
-					default: "",
-					required: "true",
-					description:
-						"Name to the text type, fontawesome class name to the icon type and url for the image type.",
-				},
-				{
-					prop: "type",
-					type: "String",
-					default: "text",
-					required: "",
-					description:
-						"Type of the control. Options are 'text', 'image' and 'icon'.",
-				},
-				{
-					prop: "shape",
-					type: "String",
-					default: "round",
-					required: "",
-					description:
-						"Shape of the control. Options are 'round' and 'square'.",
-				},
-				{
-					prop: "avatarSize",
-					type: "String",
-					default: "default",
-					required: "",
-					description:
-						"Size of the control. Options are 'small', 'default', 'large', and 'xlarge'.",
-				},
-				{
-					prop: "avatarColor",
-					type: "Hex",
-					default: "",
-					required: "",
-					description:
-						"Background color of the avatar (for text and icon type). If the color is unset, it will use automatically generated dark color as background color.",
-				},
-				{
-					prop: "iconColor",
-					type: "Hex",
-					default: "#ffffff",
-					required: "",
-					description: "Icon color of the avatar text and the icon.",
-				},
-				{
-					prop: "isActive",
-					type: "Boolean",
-					default: "true",
-					required: "",
-					description: "Shows if the avatar is active or not.",
-				},
-			],
-			ENENTS_COL_SETTINGS: [
-				{
-					name: "method",
-					displayName: "Method",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			ENENTS_TABLE_DATA: [
-				{
-					method: "@click",
-					description:
-						"Customized binded action, triggered on avatar onclick.",
-				},
-				{
-					method: "onclick",
-					description:
-						"External control, triggers on avatar onclick event.",
-				},
-			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-avatar\
+						content="${this.state.content}"\
+						shape="${this.state.shape}"\
+						avatarSize="${this.state.avatarSize}"\
+						type="${this.state.type}"\
+						avatarColor="${this.state.avatarColor}"\
+						iconColor="${this.state.iconColor}"\
+						:isActive="${this.state.isActive}"\
+					/>\
+						<l-badge slot="badge" />\
+					</l-avatar>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateContent: function (event) {
@@ -263,16 +165,16 @@ export default {
 			this.state.shape = event.target.value;
 		},
 		updateSize: function (event) {
-			this.state.size = event.target.value;
+			this.state.avatarSize = event.target.value;
 		},
 		updateType: function (event) {
-			if (event.target.value === "Image") {
+			if (event.target.value === "image") {
 				this.state.content =
 					"https://previews.123rf.com/images/pongcpre/pongcpre1607/pongcpre160700046/61442802-a-hand-sign-of-thumb-point-upward-meaning-ok-good-like-etc-with-white-background.jpg";
-			} else if (event.target.value === "Icon") {
+			} else if (event.target.value === "icon") {
 				this.state.content = "fa fa-apple";
 			} else {
-				this.state.content = "Demo";
+				this.state.content = "avatar";
 			}
 
 			this.state.type = event.target.value;
@@ -289,10 +191,18 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.avatar.$el.outerHTML}`;
+		this.$refs.DT.updateControl(this.$refs.control);
+
+		const { props } = this.$refs.control.$options || {};
+		if (props) {
+			const { shape, type, avatarSize } = props;
+			this.SHAPES = (shape || {}).options || [];
+			this.TYPES = (type || {}).options || [];
+			this.SIZES = (avatarSize || {}).options || [];
+		}
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.avatar.$el.outerHTML}`;
+		this.$refs.DT.setControlDOMStructure(this.$refs.control);
 	},
 };
 </script>

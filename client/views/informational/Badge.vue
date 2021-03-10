@@ -1,18 +1,11 @@
 <template>
 	<div class="BadgeDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>
 					The badge is a sub-component of avatar. It is used to
-					representing if there is an update for a user/events.
+					represent an updating event.
 				</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
 			</div>
 
 			<l-avatar
@@ -23,7 +16,7 @@
 				:isActive="state.isActive"
 			>
 				<l-badge
-					ref="badge"
+					ref="control"
 					slot="badge"
 					:content="state.content"
 					:vPosition="state.vPosition"
@@ -82,7 +75,11 @@
 				</l-label-wrapper>
 			</div>
 
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -100,68 +97,37 @@ export default {
 	},
 	data: function () {
 		return {
-			SHAPES: ["Round", "Square"],
-			SIZES: ["Default", "Small", "Large", "xLarge"],
-			VPOSITION: ["Top", "Center", "Bottom"],
+			SHAPES: ["round", "square"],
+			SIZES: ["default", "small", "large", "xlarge"],
+			VPOSITION: [],
 			state: {
 				isActive: true,
-				shape: "Square",
+				shape: "square",
 				content: 18,
-				vPosition: "Top",
+				vPosition: "top",
 				backgroundColor: "#da1e28",
-				codeStructure: "",
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "content",
-					type: "Number",
-					default: "99",
-					required: "true",
-					description:
-						"Number of news. will cap to +99 if the value greater than 99 or -99 if less than -99.",
-				},
-				{
-					prop: "vPosition",
-					type: "String",
-					default: "Top",
-					required: "",
-					description: "Position where the badge shows.",
-				},
-				{
-					prop: "backgroundColor",
-					type: "Hex",
-					default: "#da1e28",
-					required: "",
-					description: "Background color of the badge control.",
-				},
-			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-avatar\
+						content="Lionel Wu"\
+						avatarSize="large"\
+						shape="${this.state.shape}"\
+						:isActive="${this.state.isActive}"\
+					>
+						<l-badge\
+							slot="badge"\
+							vPosition="${this.state.vPosition}"\
+							backgroundColor="${this.state.backgroundColor}"\
+							:content="${this.state.content}"\
+						/>\
+					</l-avatar>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateContent: function (event) {
@@ -181,10 +147,16 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.badge.$el.outerHTML}`;
+		this.$refs.DT.updateControl(this.$refs.control);
+
+		const { props } = this.$refs.control.$options || {};
+		if (props) {
+			const { vPosition } = props;
+			this.VPOSITION = (vPosition || {}).options || [];
+		}
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.badge.$el.outerHTML}`;
+		this.$refs.DT.setControlDOMStructure(this.$refs.control);
 	},
 };
 </script>

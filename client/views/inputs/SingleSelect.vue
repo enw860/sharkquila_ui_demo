@@ -1,27 +1,12 @@
 <template>
 	<div class="SingleSelectDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>
 					This control is used to display a range of options, and only
-					allow user to select one value. Could be combined with Label
-					Wrapper control to provide more advance uses. (SingleSelect
-					and RadioGroup)
+					allow user to choose one value. It could be also combined
+					with Label Wrapper control to provide more advance uses.
 				</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
-			</div>
-
-			<div slot="events">
-				<l-table
-					:colSettings="ENENTS_COL_SETTINGS"
-					:tableData="ENENTS_TABLE_DATA"
-				></l-table>
 			</div>
 
 			<component
@@ -60,7 +45,7 @@
 				<l-label-wrapper
 					value="Layout:"
 					size="small"
-					v-if="state.widgit !== 'SingleSelect'"
+					v-if="state.widgit !== 'Single select'"
 				>
 					<l-input-single-select
 						slot="labelContent"
@@ -91,7 +76,11 @@
 				</l-label-wrapper>
 			</div>
 
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -115,139 +104,35 @@ export default {
 				"single select": "l-input-single-select",
 				"radio group": "l-input-group-single",
 			},
-			SIZES: ["Small", "Default", "Large", "xLarge"],
-			LAYOUT: ["Vertival", "Horizontal"],
+			SIZES: [],
+			LAYOUT: [],
 			state: {
 				widgit: "Single select",
 				options: ["Item1", "Item2", "Item3", "Item4"],
 				value: "Item1",
-				layout: "Vertival",
-				size: "Default",
+				layout: "vertival",
+				size: "default",
 				error: "",
 				disabled: false,
-				codeStructure: "",
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "size",
-					type: "String",
-					default: "default",
-					required: "",
-					description: "Size of the text.",
-				},
-				{
-					prop: "options",
-					type: "Array",
-					default: "[<String>]",
-					required: "true",
-					description: "Range of options.",
-				},
-				{
-					prop: "value",
-					type: "<String>",
-					default: "The first option",
-					required: "",
-					description: "Selected value.",
-				},
-				{
-					prop: "error",
-					type: "String",
-					default: "",
-					required: "",
-					description: "Passed in error message.",
-				},
-				{
-					prop: "layout",
-					type: "String",
-					default: "Vertical",
-					required: "",
-					description:
-						"Layout of the radio buttons. (not for Single select)",
-				},
-				{
-					prop: "disabled",
-					type: "Boolean",
-					default: "false",
-					required: "",
-					description: "Disable the link.",
-				},
-			],
-			ENENTS_COL_SETTINGS: [
-				{
-					name: "method",
-					displayName: "Method",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			ENENTS_TABLE_DATA: [
-				{
-					method: "@change(event)",
-					description: "Triggered on value change.",
-				},
-				{
-					method: "@focus(event)",
-					description:
-						"Triggered on value gainning focus. (SingleSelect only)",
-				},
-				{
-					method: "@blur(event)",
-					description:
-						"Triggered on value lossing focus. (SingleSelect only)",
-				},
-				{
-					method: "setValueByIndex(index)",
-					description:
-						"Set value of the control by feed in the selected item's index.",
-				},
-				{
-					method: "setValueByValue(value)",
-					description:
-						"Set value of the control by feed in the selected item's value.",
-				},
-				{
-					method: "getSelectedIndex()",
-					description: "Get the index of selected value.",
-				},
-				{
-					method: "getSelectedValue()",
-					description: "Get selected value.",
-				},
-			],
 		};
 	},
 	computed: {
 		widgitControl: function () {
 			return normalizeInput(this.TYPES_MAPPING, this.state.widgit);
+		},
+		codeBody: function () {
+			return `\
+				<template>\
+					<${this.widgitControl}\
+						options="[${this.state.options}]"\
+						value="${this.state.value}"\
+						${this.state.layout.length === 0 ? `layout=${this.state.layout}` : ""}\
+						size="${this.state.size}"\
+						error="${this.state.error}"\
+						:disabled="${this.state.disabled}"\
+					/>\
+				</template>`;
 		},
 	},
 	methods: {
@@ -266,12 +151,22 @@ export default {
 		updateDisabled: function (event) {
 			this.state.disabled = !event.target.checked;
 		},
+		updateControlSettings: function () {
+			this.$refs.DT.updateControl(this.$refs.control);
+
+			const { props } = this.$refs.control.$options || {};
+			if (props) {
+				const { size, layout } = props;
+				this.SIZES = (size || {}).options || [];
+				this.LAYOUT = (layout || {}).options || [];
+			}
+		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.updateControlSettings();
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.updateControlSettings();
 	},
 };
 </script>

@@ -12,7 +12,7 @@
 .Nav-slide.NavigatorWrapper,
 .Nav-slide .SlideoutContent {
 	width: 250px;
-	background-color: @grey-100;
+	background-color: @grey-100 !important;
 	color: @white !important;
 
 	.Navigator {

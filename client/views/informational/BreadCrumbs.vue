@@ -1,19 +1,12 @@
 <template>
 	<div class="BreadCrumbsDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>
-					The breadcrumbs are often used as page navigators. The flow
-					of breadcrumbs shows the depth of the page. (the last anchor
-					is always disabled)
+					The breadcrumbs are often used as page navigators. It shows
+					the flow as well as depth of the current page. (the last
+					anchor represent the current page and it is always disabled)
 				</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
 			</div>
 
 			<l-bread-crumbs
@@ -65,7 +58,11 @@
 				</l-label-wrapper>
 			</div>
 
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -83,7 +80,7 @@ export default {
 	},
 	data: function () {
 		return {
-			FONT_SIZES: ["Default", "Xsmall", "Small", "Large", "xlarge"],
+			FONT_SIZES: [],
 			FONT_WEIGHT: ["400", "500", "600", "700", "800"],
 			state: {
 				steps: [
@@ -91,76 +88,26 @@ export default {
 					{ name: "Link2", click: () => alert("Link2") },
 					{ name: "Link3", click: () => alert("Link3") },
 				],
-				codeStructure: "",
 				separator: "/",
-				fontSize: "Default",
+				fontSize: "default",
 				fontWeight: "400",
 				fontColor: "#0f62fe",
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "steps",
-					type: "Array",
-					default: "[ ]",
-					required: "",
-					description: "[{name: <name>, click: <function>}...]",
-				},
-				{
-					prop: "size",
-					type: "String",
-					default: "auto",
-					required: "",
-					description: "Size of the text.",
-				},
-				{
-					prop: "fontWeight",
-					type: "Number",
-					default: "400",
-					required: "",
-					description: "Font weight of the text.",
-				},
-				{
-					prop: "color",
-					type: "Hex",
-					default: "",
-					required: "",
-					description: "Font color of the text.",
-				},
-				{
-					prop: "separator",
-					type: "String",
-					default: "/",
-					required: "",
-					description: "Delimiter of bread crumbs.",
-				},
-			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-bread-crumbs\
+						steps="[{name, click, disabled}...]"\
+						size="${this.state.fontSize}"\
+						color="${this.state.fontColor}"\
+						separator="${this.state.separator.replace("<", "&lt").replace(">", "&gt")}"\
+						:fontWeight="${this.state.fontWeight}"\
+					/>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateFontColor: function (event) {
@@ -177,10 +124,16 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.updateControl(this.$refs.control);
+
+		const { props } = this.$refs.control.$options || {};
+		if (props) {
+			const { size } = props;
+			this.FONT_SIZES = (size || {}).options || [];
+		}
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.setControlDOMStructure(this.$refs.control);
 	},
 };
 </script>

@@ -1,15 +1,10 @@
 <template>
 	<div class="LabelWrapperDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>This control is used to add a label for control.</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
+				<p>
+					This control is designed to add a label for input controls.
+				</p>
 			</div>
 
 			<l-label-wrapper
@@ -77,7 +72,11 @@
 				</l-label-wrapper>
 			</div>
 
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -95,82 +94,32 @@ export default {
 	},
 	data: function () {
 		return {
-			POSITIONS: ["Top", "Left"],
-			SIZES: ["Small", "Default", "Large", "xLarge"],
+			POSITIONS: [],
+			SIZES: [],
 			state: {
-				codeStructure: "",
 				value: "This is a testing title: ",
-				position: "Top",
-				size: "Default",
+				position: "top",
+				size: "default",
 				required: false,
 				disabled: false,
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "value",
-					type: "String",
-					default: "Title",
-					required: "",
-					description: "Context of the label.",
-				},
-				{
-					prop: "position",
-					type: "String",
-					default: "top",
-					required: "",
-					description:
-						"Position of the label. Options are left and top",
-				},
-				{
-					prop: "size",
-					type: "String",
-					default: "default",
-					required: "",
-					description:
-						"Size of the label and the inner control size.",
-				},
-				{
-					prop: "required",
-					type: "Boolean",
-					default: "false",
-					required: "",
-					description: "State if the field is required.",
-				},
-				{
-					prop: "disabled",
-					type: "Boolean",
-					default: "false",
-					required: "",
-					description: "Disabled the label and the inner context.",
-				},
-			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-label-wrapper\
+						value="${this.state.value}"\
+						size="${this.state.size}"\
+						position="${this.state.position}"\
+						:required="${this.state.required}"\
+						:disabled="${this.state.disabled}"\
+					>\
+						<l-input-text slot="labelContent" placeholder="Demo input" />\
+					</l-label-wrapper>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateLabel: function (event) {
@@ -190,10 +139,17 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.updateControl(this.$refs.control, 2);
+
+		const { props } = this.$refs.control.$options || {};
+		if (props) {
+			const { size, position } = props;
+			this.SIZES = (size || {}).options || [];
+			this.POSITIONS = (position || {}).options || [];
+		}
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.setControlDOMStructure(this.$refs.control, 2);
 	},
 };
 </script>

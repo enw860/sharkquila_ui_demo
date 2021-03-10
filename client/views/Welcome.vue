@@ -37,23 +37,23 @@
 			<div class="BP-body">
 				<p>
 					This site is used for demostrating the usage of compositing
-					a website by the
+					a website by the Vue toolkit - 
 					<l-link
 						size="large"
-						value="UI Toolkits"
-						href="https://github.com/enw860/IApps/tree/main/client/controls/vue"
-					/>
-					that were writen in Vue.
+						value="Sharkquila UI"
+                        color="#0f62fe"
+						href="https://github.com/enw860/sharkquila_ui_toolkit"
+					/>.
 				</p>
 
                 <p>
-					The toolkits were designed for minimizing the amount of effot 
-                    that spend on writting basic UI components while building a 
-                    website. Those high quality toolkits will handle not only the 
-                    UI details but also provide a standardlize UX experience across 
-                    all of your pages. This webapp is an example of using these UI
-                    toolkits for that purpose, you will see the power of the concept
-                    while you exploring the app.
+					Sharkquila UI toolkits were designed for minimizing the amount of 
+                    effot that spend on writting the basic UI components while building 
+                    a website. Those toolkits will handle not only the visual effects of
+                    the control but also provide a standardlize UX experience across 
+                    all the pages. This webapp is used as an example of using Sharkquila 
+                    UI toolkit for that purpose, you will see the power of the concept
+                    while you exploring the site.
 				</p>
 			</div>
 		</section>
@@ -62,14 +62,14 @@
 			<l-text class="BP-title" value="Features" />
 			<div class="BP-body">
                 <p>
-					You could use this app as a playground of seeing how the toolkits
-                    performed in run time, then copy and paste the code snippet in
-                    your app as a quick startup.
+					You could use this site as a playground for seeing how the toolkits
+                    performed in run time environment, then you could copy and paste the 
+                    code snippet in your app as a quick startup.
 				</p>
 
                 <p>
 					All of the desiginated color style for controls are themeable, 
-                    which means you can change the color of the pre-defined color
+                    which means you can change the color of any pre-defined color
                     style as your wish.
 				</p>
 
@@ -86,25 +86,37 @@
                         <li>
                             <div class="Feature-row">
                                 <strong>Live demo: </strong>
-                                <span>The demonstration of the control in run time.</span>
+                                <span>The demonstration of the control in run time environemnt.</span>
                             </div>
                         </li>
                         <li>
                             <div class="Feature-row">
                                 <strong>Controls: </strong>
-                                <span>Part of the configeration options used for manipulate the control.</span>
+                                <span>Configeration options used for manipulate the control.</span>
                             </div>
                         </li>
                         <li>
                             <div class="Feature-row">
                                 <strong>Code: </strong>
-                                <span>The actual code for configure the target control.</span>
+                                <span>Vue code for fast startup.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="Feature-row">
+                                <strong>DOM: </strong>
+                                <span>DOM structure of the current control.</span>
                             </div>
                         </li>
                         <li>
                             <div class="Feature-row">
                                 <strong>Settings: </strong>
                                 <span>All of the configurable fields with default values.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="Feature-row">
+                                <strong>Slots: </strong>
+                                <span>Available slots of the control. (if any)</span>
                             </div>
                         </li>
                         <li>

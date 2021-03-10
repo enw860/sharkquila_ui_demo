@@ -1,27 +1,13 @@
 <template>
 	<div class="MultiSelectDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>
 					This control is used to display a range of options, and
-					allow user to select multiple values. Could be combined with
-					Label Wrapper control to provide more advance uses.
-					(CheckboxGroup)
+					allow user to choose multiple values. It could be also
+					combined with Label Wrapper control to provide more advance
+					uses.
 				</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
-			</div>
-
-			<div slot="events">
-				<l-table
-					:colSettings="ENENTS_COL_SETTINGS"
-					:tableData="ENENTS_TABLE_DATA"
-				></l-table>
 			</div>
 
 			<component
@@ -87,7 +73,11 @@
 				</l-label-wrapper>
 			</div>
 
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -110,128 +100,35 @@ export default {
 			TYPES_MAPPING: {
 				"checkbox group": "l-input-group-multiple",
 			},
-			SIZES: ["Small", "Default", "Large", "xLarge"],
-			LAYOUT: ["Vertival", "Horizontal"],
+			SIZES: [],
+			LAYOUT: [],
 			state: {
 				widgit: "Checkbox group",
 				options: ["Item1", "Item2", "Item3", "Item4"],
 				values: ["Item2", "Item3"],
-				layout: "Vertival",
-				size: "Default",
+				layout: "vertival",
+				size: "default",
 				error: "",
 				disabled: false,
-				codeStructure: "",
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "size",
-					type: "String",
-					default: "default",
-					required: "",
-					description: "Size of the text.",
-				},
-				{
-					prop: "options",
-					type: "Array",
-					default: "[<String>]",
-					required: "true",
-					description: "Range of options.",
-				},
-				{
-					prop: "value",
-					type: "[<String>]",
-					default: "[]",
-					required: "",
-					description: "List of selected values.",
-				},
-				{
-					prop: "error",
-					type: "String",
-					default: "",
-					required: "",
-					description: "Passed in error message.",
-				},
-				{
-					prop: "layout",
-					type: "String",
-					default: "Vertical",
-					required: "",
-					description: "Layout of the checkboxes.",
-				},
-				{
-					prop: "disabled",
-					type: "Boolean",
-					default: "false",
-					required: "",
-					description: "Disable the link.",
-				},
-			],
-			ENENTS_COL_SETTINGS: [
-				{
-					name: "method",
-					displayName: "Method",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			ENENTS_TABLE_DATA: [
-				{
-					method: "@change(event)",
-					description: "Triggered on value change.",
-				},
-				{
-					method: "setValueByIndexs(indexs)",
-					description:
-						"Set values of the control by feed in an array of selected items' indexs.",
-				},
-				{
-					method: "setValueByValues(values)",
-					description:
-						"Set values of the control by feed in an array of selected items' values.",
-				},
-				{
-					method: "getSelectedIndex()",
-					description: "Get all indexs of selected values.",
-				},
-				{
-					method: "getSelectedValue()",
-					description: "Get all selected values.",
-				},
-			],
 		};
 	},
 	computed: {
 		widgitControl: function () {
 			return normalizeInput(this.TYPES_MAPPING, this.state.widgit);
+		},
+		codeBody: function () {
+			return `\
+				<template>\
+					<${this.widgitControl}\
+						options="[${this.state.options}]"\
+						value="[${this.state.values}]"\
+						layout="${this.state.layout}"\
+						size="${this.state.size}"\
+						error="${this.state.error}"\
+						:disabled="${this.state.disabled}"\
+					/>\
+				</template>`;
 		},
 	},
 	methods: {
@@ -250,12 +147,22 @@ export default {
 		updateDisabled: function (event) {
 			this.state.disabled = !event.target.checked;
 		},
+		updateControlSettings: function () {
+			this.$refs.DT.updateControl(this.$refs.control);
+
+			const { props } = this.$refs.control.$options || {};
+			if (props) {
+				const { size, layout } = props;
+				this.SIZES = (size || {}).options || [];
+				this.LAYOUT = (layout || {}).options || [];
+			}
+		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.updateControlSettings();
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.updateControlSettings();
 	},
 };
 </script>
