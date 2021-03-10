@@ -6,23 +6,9 @@
 
 <template>
 	<div class="LinkDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>This control is used to display a link.</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
-			</div>
-
-			<div slot="events">
-				<l-table
-					:colSettings="ENENTS_COL_SETTINGS"
-					:tableData="ENENTS_TABLE_DATA"
-				></l-table>
 			</div>
 
 			<l-link
@@ -122,8 +108,6 @@
 				type="<Vue template>"
 				:value="codeBody"
 			/>
-
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -141,127 +125,18 @@ export default {
 	},
 	data: function () {
 		return {
-			FONT_SIZES: [
-				"Default",
-				"xSmall",
-				"Small",
-				"Large",
-				"xLarge",
-				"xxLarge",
-				"xxxLarge",
-			],
+			FONT_SIZES: [],
 			FONT_WEIGHT: ["400", "600", "800"],
 			state: {
 				value: "Some text",
-				fontSize: "Default",
+				fontSize: "default",
 				fontWeight: "400",
 				color: "#0f62fe",
 				href: "",
 				openInNewTab: true,
 				disabled: false,
 				onClickFunctionBody: "javascript:void(0);",
-				codeStructure: "",
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "value",
-					type: "String",
-					default: "",
-					required: "true",
-					description: "Content of display.",
-				},
-				{
-					prop: "size",
-					type: "String",
-					default: "default",
-					required: "",
-					description: "Size of the text.",
-				},
-				{
-					prop: "fontWeight",
-					type: "Number",
-					default: 400,
-					required: "",
-					description: "Font weight of the text.",
-				},
-				{
-					prop: "color",
-					type: "Hex",
-					default: "#000000",
-					required: "",
-					description: "Font color of the text.",
-				},
-				{
-					prop: "herf",
-					type: "String",
-					default: "",
-					required: "",
-					description: "The relevant link.",
-				},
-				{
-					prop: "openInNewTab",
-					type: "Boolean",
-					default: "true",
-					required: "",
-					description: "Open the link address in a new window.",
-				},
-				{
-					prop: "disabled",
-					type: "Boolean",
-					default: "false",
-					required: "",
-					description: "Disable the link.",
-				},
-			],
-			ENENTS_COL_SETTINGS: [
-				{
-					name: "method",
-					displayName: "Method",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			ENENTS_TABLE_DATA: [
-				{
-					method: "@click",
-					description:
-						"Customized binded action, triggered on link onclick.",
-				},
-				{
-					method: "onclick",
-					description:
-						"External control, triggers on button link event.",
-				},
-			],
 		};
 	},
 	computed: {
@@ -311,10 +186,16 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.updateControl(this.$refs.control);
+
+		const { props } = this.$refs.control.$options || {};
+		if (props) {
+			const { size } = props;
+			this.FONT_SIZES = size.options;
+		}
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.setControlDOMStructure(this.$refs.control);
 	},
 };
 </script>
