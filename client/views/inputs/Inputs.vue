@@ -1,25 +1,11 @@
 <template>
 	<div class="InputsDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>
 					Different types of text inputs. (Plain text, number,
 					password, color and text area)
 				</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
-			</div>
-
-			<div slot="events">
-				<l-table
-					:colSettings="ENENTS_COL_SETTINGS"
-					:tableData="ENENTS_TABLE_DATA"
-				></l-table>
 			</div>
 
 			<component
@@ -56,7 +42,7 @@
 				<l-label-wrapper
 					value="Placeholder:"
 					size="small"
-					v-if="state.widgit !== 'ColorInput'"
+					v-if="state.widgit !== 'Color'"
 				>
 					<l-input-text
 						slot="labelContent"
@@ -69,7 +55,7 @@
 				<l-label-wrapper
 					value="Error message:"
 					size="small"
-					v-if="state.widgit !== 'ColorInput'"
+					v-if="state.widgit !== 'Color'"
 				>
 					<l-input-text
 						slot="labelContent"
@@ -91,7 +77,11 @@
 				</l-label-wrapper>
 			</div>
 
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -110,7 +100,7 @@ export default {
 	},
 	data: function () {
 		return {
-			SIZES: ["Small", "Default", "Large", "xLarge"],
+			SIZES: [],
 			TYPES_MAPPING: {
 				text: "l-input-text",
 				number: "l-input-number",
@@ -121,116 +111,31 @@ export default {
 			TYPES: ["Text", "Number", "Password", "Textarea", "Color"],
 			state: {
 				placeholder: "Enter some inputs",
-				size: "Default",
+				size: "default",
 				error: "",
 				disabled: false,
 				widgit: "Text",
-				codeStructure: "",
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "size",
-					type: "String",
-					default: "default",
-					required: "",
-					description: "Size of the text.",
-				},
-				{
-					prop: "value",
-					type: "String",
-					default: "",
-					required: "",
-					description:
-						"String for all text based input, Number for number input, Hex for color",
-				},
-				{
-					prop: "placeholder",
-					type: "String",
-					default: "",
-					required: "",
-					description:
-						"Placeholder text. (Not available for Color Input)",
-				},
-				{
-					prop: "error",
-					type: "String",
-					default: "",
-					required: "",
-					description:
-						"Passed in error message. (Not available for Color Input)",
-				},
-				{
-					prop: "disabled",
-					type: "Boolean",
-					default: "false",
-					required: "",
-					description: "Disable the link.",
-				},
-			],
-			ENENTS_COL_SETTINGS: [
-				{
-					name: "method",
-					displayName: "Method",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			ENENTS_TABLE_DATA: [
-				{
-					method: "@change(event)",
-					description: "Triggered on value change.",
-				},
-				{
-					method: "@focus(event)",
-					description: "Triggered on value gainning focus.",
-				},
-				{
-					method: "@blur(event)",
-					description: "Triggered on value lossing focus",
-				},
-				{
-					method: "setValue(value)",
-					description: "Set value of the control.",
-				},
-				{
-					method: "getValue()",
-					description: "Get value of the control.",
-				},
-			],
 		};
 	},
 	computed: {
 		widgitControl: function () {
 			return normalizeInput(this.TYPES_MAPPING, this.state.widgit);
+		},
+		codeBody: function () {
+			return `\
+				<template>\
+					<${this.widgitControl}\
+						size="${this.state.size}"\
+						error="${this.state.error}"\
+						${
+							this.widgitControl !== "Color"
+								? `placeholder="${this.state.placeholder}"`
+								: ""
+						}\
+						:disabled="${this.state.disabled}"\
+					/>\
+				</template>`;
 		},
 	},
 	methods: {
@@ -249,12 +154,21 @@ export default {
 		updateDisabled: function (event) {
 			this.state.disabled = !event.target.checked;
 		},
+		updateControlSettings: function () {
+			this.$refs.DT.updateControl(this.$refs.control, 2);
+
+			const { props } = this.$refs.control.$options || {};
+			if (props) {
+				const { size } = props;
+				this.SIZES = (size || {}).options || [];
+			}
+		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.updateControlSettings();
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.updateControlSettings();
 	},
 };
 </script>
