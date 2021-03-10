@@ -172,7 +172,7 @@ export default {
 		},
 
 		updatePropsTable: function (props) {
-			this.props_tbl_data = Object.keys(props).map((field) => {
+			this.props_tbl_data = Object.keys(props || {}).map((field) => {
 				const settings = props[field];
 				return {
 					prop: `${!!settings.required ? "*" : ""}${field}`,
@@ -185,7 +185,7 @@ export default {
 		},
 
 		updateMethodsTable: function (methods) {
-			this.methods_tbl_data = Object.keys(methods).map((field) => {
+			this.methods_tbl_data = Object.keys(methods || {}).map((field) => {
 				const settings = methods[field];
 				return {
 					method: field,
@@ -195,7 +195,7 @@ export default {
 		},
 
 		updateEventsTable: function (events) {
-			this.events_tbl_data = Object.keys(events).map((field) => {
+			this.events_tbl_data = Object.keys(events || {}).map((field) => {
 				const settings = events[field];
 				return {
 					event: field,

@@ -1,18 +1,11 @@
 <template>
 	<div class="BadgeDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>
 					The badge is a sub-component of avatar. It is used to
 					representing if there is an update for a user/events.
 				</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
 			</div>
 
 			<l-avatar
@@ -23,7 +16,7 @@
 				:isActive="state.isActive"
 			>
 				<l-badge
-					ref="badge"
+					ref="control"
 					slot="badge"
 					:content="state.content"
 					:vPosition="state.vPosition"
@@ -87,8 +80,6 @@
 				type="<Vue template>"
 				:value="codeBody"
 			/>
-
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -115,34 +106,7 @@ export default {
 				content: 18,
 				vPosition: "Top",
 				backgroundColor: "#da1e28",
-				codeStructure: "",
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
 			PROPS_TABLE_DATA: [
 				{
 					prop: "content",
@@ -207,10 +171,10 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.badge.$el.outerHTML}`;
+		this.$refs.DT.updateControl(this.$refs.control);
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.badge.$el.outerHTML}`;
+		this.$refs.DT.setControlDOMStructure(this.$refs.control);
 	},
 };
 </script>
