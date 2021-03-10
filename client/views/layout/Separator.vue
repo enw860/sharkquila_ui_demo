@@ -8,16 +8,9 @@
 
 <template>
 	<div class="SeparatorDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>This control is used to divide views.</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
 			</div>
 
 			<div
@@ -62,7 +55,12 @@
 				</l-label-wrapper>
 			</div>
 
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:wrapOffset="1"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -80,64 +78,25 @@ export default {
 	},
 	data: function () {
 		return {
-			DIRECTIONS: ["Horizontal", "Vertical"],
+			DIRECTIONS: [],
 			state: {
-				codeStructure: "",
-				direction: "Horizontal",
+				direction: "horizontal",
 				thickness: 1,
 				color: "#000000",
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "direction",
-					type: "String",
-					default: "horizontal",
-					required: "",
-					description:
-						"Direction of the separator, Options are horizontal and vertical.",
-				},
-				{
-					prop: "thickness",
-					type: "Number",
-					default: "0",
-					required: "",
-					description: "Thickness of the separator.",
-				},
-				{
-					prop: "color",
-					type: "Hex",
-					default: "",
-					required: "",
-					description: "Color of the separator.",
-				},
-			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-separator\
+						direction="${this.state.direction}"\
+						color="${this.state.color}"\
+						:thickness="${this.state.thickness}"\
+					/>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateDirection: function (event) {
@@ -151,10 +110,16 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.updateControl(this.$refs.control, 1);
+
+		const { props } = this.$refs.control.$options || {};
+		if (props) {
+			const { direction } = props;
+			this.DIRECTIONS = direction.options;
+		}
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.setControlDOMStructure(this.$refs.control, 1);
 	},
 };
 </script>
