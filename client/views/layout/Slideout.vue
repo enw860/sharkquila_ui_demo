@@ -14,23 +14,12 @@
 
 <template>
 	<div class="SlideoutDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>This control is used as slideout.</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
-			</div>
-
-			<div slot="events">
-				<l-table
-					:colSettings="ENENTS_COL_SETTINGS"
-					:tableData="ENENTS_TABLE_DATA"
-				></l-table>
+				<p>
+					This control is used as slideout that showing user some
+					infomation. (e.g navigation or form)
+				</p>
 			</div>
 
 			<div
@@ -94,7 +83,11 @@
 				/>
 			</div>
 
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -112,80 +105,27 @@ export default {
 	},
 	data: function () {
 		return {
-			DIRECTIONS: ["Left", "Right"],
+			DIRECTIONS: [],
 			state: {
-				codeStructure: "",
-				direction: "Left",
+				direction: "left",
 				onShowFuncBody: "console.warn('Show slideout');",
 				onHideFuncBody: "console.warn('Hide slideout');",
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "direction",
-					type: "String",
-					default: "left",
-					required: "",
-					description:
-						"Direction of the slideout, Options are left and right.",
-				},
-			],
-
-			ENENTS_COL_SETTINGS: [
-				{
-					name: "method",
-					displayName: "Method",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			ENENTS_TABLE_DATA: [
-				{
-					method: "@show",
-					description: "Triggered on slideout show up.",
-				},
-				{
-					method: "@hide",
-					description: "Triggered on slideout hide.",
-				},
-				{
-					method: "showSlideout(event)",
-					description: "Show the slideout.",
-				},
-				{
-					method: "hideSlideout(event)",
-					description: "Hide the slideout.",
-				},
-			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-slideout\
+						direction="${this.state.direction}"\
+						@show="{function}"\
+						@hide="{function}"\
+					>\
+						<div slot="content"></div>\
+					</l-slideout>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateDirection: function (event) {
@@ -208,10 +148,16 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.updateControl(this.$refs.control, 2);
+
+		const { props } = this.$refs.control.$options || {};
+		if (props) {
+			const { direction } = props;
+			this.DIRECTIONS = (direction || {}).options || [];
+		}
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.setControlDOMStructure(this.$refs.control, 2);
 	},
 };
 </script>

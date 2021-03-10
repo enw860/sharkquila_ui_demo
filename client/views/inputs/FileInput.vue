@@ -1,22 +1,8 @@
 <template>
 	<div class="FileInputDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>Use to upload one or more files.</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
-			</div>
-
-			<div slot="events">
-				<l-table
-					:colSettings="ENENTS_COL_SETTINGS"
-					:tableData="ENENTS_TABLE_DATA"
-				></l-table>
+				<p>The control is used to upload one or more files.</p>
 			</div>
 
 			<l-input-file
@@ -65,7 +51,12 @@
 				</l-label-wrapper>
 			</div>
 
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:wrapOffset="2"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -83,84 +74,25 @@ export default {
 	},
 	data: function () {
 		return {
-			SIZES: ["Small", "Default", "Large", "xLarge"],
+			SIZES: [],
 			state: {
-				size: "Default",
+				size: "default",
 				disabled: false,
 				multipleFiles: false,
-				codeStructure: "",
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "size",
-					type: "String",
-					default: "default",
-					required: "",
-					description: "Size of the text.",
-				},
-				{
-					prop: "multipleFile",
-					type: "Boolean",
-					default: "false",
-					required: "",
-					description: "Enable to choose multiple files.",
-				},
-				{
-					prop: "disabled",
-					type: "Boolean",
-					default: "false",
-					required: "",
-					description: "Disable the link.",
-				},
-			],
-			ENENTS_COL_SETTINGS: [
-				{
-					name: "method",
-					displayName: "Method",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			ENENTS_TABLE_DATA: [
-				{
-					method: "@change(event)",
-					description: "Triggered on value change.",
-				},
-				{
-					method: "getValue()",
-					description: "Get choosed file/files.",
-				},
-			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-input-file\
+						size="${this.state.size}"\
+						multipleFile="${this.state.multipleFiles}"\
+						:disabled="${this.state.disabled}"\
+					/>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateSize: function (event) {
@@ -174,10 +106,16 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.updateControl(this.$refs.control);
+
+		const { props } = this.$refs.control.$options || {};
+		if (props) {
+			const { size } = props;
+			this.SIZES = (size || {}).options || [];
+		}
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.setControlDOMStructure(this.$refs.control);
 	},
 };
 </script>

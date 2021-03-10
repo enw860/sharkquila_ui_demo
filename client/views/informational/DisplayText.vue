@@ -1,15 +1,8 @@
 <template>
 	<div class="DisplayTextDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>This control is used to display plain text.</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
+				<p>This control is used to display a plain text.</p>
 			</div>
 
 			<l-text
@@ -61,7 +54,11 @@
 				</l-label-wrapper>
 			</div>
 
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -79,80 +76,28 @@ export default {
 	},
 	data: function () {
 		return {
-			FONT_SIZES: [
-				"Default",
-				"xSmall",
-				"Small",
-				"Large",
-				"xLarge",
-				"xxLarge",
-				"xxxLarge",
-			],
+			FONT_SIZES: [],
 			FONT_WEIGHT: ["400", "600", "800"],
 			state: {
 				value: "Some text",
-				fontSize: "Default",
+				fontSize: "default",
 				fontWeight: "400",
 				color: "#000",
-				codeStructure: "",
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "value",
-					type: "String",
-					default: "",
-					required: "true",
-					description: "Content of display.",
-				},
-				{
-					prop: "size",
-					type: "String",
-					default: "default",
-					required: "",
-					description: "Size of the text.",
-				},
-				{
-					prop: "fontWeight",
-					type: "Number",
-					default: 400,
-					required: "",
-					description: "Font weight of the text.",
-				},
-				{
-					prop: "color",
-					type: "Hex",
-					default: "#000000",
-					required: "",
-					description: "Font color of the text.",
-				},
-			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-text\
+						value="${this.state.value}"\
+						size="${this.state.fontSize}"\
+						color="${this.state.color}"\
+						:fontWeight="${this.state.fontWeight}"\
+					/>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateValue: function (event) {
@@ -171,8 +116,17 @@ export default {
 	mounted: function () {
 		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
 	},
+	mounted: function () {
+		this.$refs.DT.updateControl(this.$refs.control, 1);
+
+		const { props } = this.$refs.control.$options || {};
+		if (props) {
+			const { size } = props;
+			this.FONT_SIZES = (size || {}).options || [];
+		}
+	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.setControlDOMStructure(this.$refs.control, 1);
 	},
 };
 </script>

@@ -1,15 +1,11 @@
 <template>
 	<div class="ClockDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>The button control is used to display time.</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
+				<p>
+					The clock control is used to display the time (could be set
+					to adapt different time zone).
+				</p>
 			</div>
 
 			<l-clock
@@ -85,7 +81,11 @@
 				</l-label-wrapper>
 			</div>
 
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -106,7 +106,6 @@ export default {
 			CLOCK_SIZES: ["100", "150", "200", "250", "300"],
 			TIME_FORMAT: ["hh:mm", "hh:mm:ss", "dd:hh:ss:mm"],
 			state: {
-				codeStructure: "",
 				clockSize: "150",
 				timeFormat: "hh:mm:ss",
 				fontSize: "0.7em",
@@ -114,77 +113,22 @@ export default {
 				showTimeString: false,
 				showDateString: false,
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "clockSize",
-					type: "Number",
-					default: "150",
-					required: "",
-					description: "Width and height of the clock control",
-				},
-				{
-					prop: "format",
-					type: "String",
-					default: "hh:mm:ss",
-					required: "",
-					description: "Time format of the displayed time string",
-				},
-				{
-					prop: "fontSize",
-					type: "String",
-					default: "0.7em",
-					required: "",
-					description: "Font size of the time string",
-				},
-				{
-					prop: "timezoneOffset",
-					type: "Number",
-					default: "0",
-					required: "",
-					description: "Time zone offset in hours",
-				},
-				{
-					prop: "showTimeString",
-					type: "Boolean",
-					default: "false",
-					required: "",
-					description: "Display time string or not.",
-				},
-				{
-					prop: "showDateString",
-					type: "Boolean",
-					default: "false",
-					required: "",
-					description: "Display date string or not",
-				},
-			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-clock\
+						format="${this.state.timeFormat}"\
+						fontSize="${this.state.fontSize}"\
+						:clockSize="${parseFloat(this.state.clockSize)}"\
+						:timezoneOffset="${this.state.timezoneOffset}"\
+						:showTimeString="${this.state.showTimeString}"\
+						:showDateString="${this.state.showDateString}"\
+					/>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateClockSize: function (event) {
@@ -207,10 +151,10 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.updateControl(this.$refs.control);
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.setControlDOMStructure(this.$refs.control);
 	},
 };
 </script>

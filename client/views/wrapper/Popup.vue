@@ -1,22 +1,11 @@
 <template>
 	<div class="PopupDemo">
-		<ControlDemoTemplate>
+		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>This control is used to add a label for control.</p>
-			</div>
-
-			<div slot="properties">
-				<l-table
-					:colSettings="PROPS_COL_SETTINGS"
-					:tableData="PROPS_TABLE_DATA"
-				></l-table>
-			</div>
-
-			<div slot="events">
-				<l-table
-					:colSettings="ENENTS_COL_SETTINGS"
-					:tableData="ENENTS_TABLE_DATA"
-				></l-table>
+				<p>
+					This control is used to trigger a popup menu for designated
+					trigger control.
+				</p>
 			</div>
 
 			<l-popup-wrapper
@@ -56,7 +45,12 @@
 				</l-label-wrapper>
 			</div>
 
-			<l-html-text-loader slot="structure" :value="state.codeStructure" />
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:wrapOffset="2"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -74,10 +68,9 @@ export default {
 	},
 	data: function () {
 		return {
-			DIRECTIONS: ["Right", "Left"],
-			SIZES: ["Small", "Default", "Large", "xLarge"],
+			DIRECTIONS: [],
+			SIZES: [],
 			state: {
-				codeStructure: "",
 				value: [
 					{
 						name: "Center",
@@ -104,82 +97,24 @@ export default {
 						disabled: true,
 					},
 				],
-				direction: "Right",
-				size: "Default",
+				direction: "right",
+				size: "default",
 			},
-			PROPS_COL_SETTINGS: [
-				{
-					name: "prop",
-					displayName: "Prop",
-					width: "130px",
-				},
-				{
-					name: "type",
-					displayName: "Type",
-					width: "110px",
-				},
-				{
-					name: "default",
-					displayName: "Default",
-					width: "110px",
-				},
-				{
-					name: "required",
-					displayName: "Required",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			PROPS_TABLE_DATA: [
-				{
-					prop: "value",
-					type: "Array",
-					default: "[]",
-					required: "",
-					description:
-						"Options of the popup menu. {name, icon, method, disabled}",
-				},
-				{
-					prop: "direction",
-					type: "String",
-					default: "left",
-					required: "",
-					description:
-						"Position of the icon in pop up menu. Options are left and right",
-				},
-				{
-					prop: "size",
-					type: "String",
-					default: "default",
-					required: "",
-					description: "Size of the text.",
-				},
-			],
-			ENENTS_COL_SETTINGS: [
-				{
-					name: "method",
-					displayName: "Method",
-					width: "130px",
-				},
-				{
-					name: "description",
-					displayName: "Description",
-				},
-			],
-			ENENTS_TABLE_DATA: [
-				{
-					method: "showPopup()",
-					description: "Display the popup menu.",
-				},
-				{
-					method: "hidePopup(event)",
-					description: "Hide the popup menu.",
-				},
-			],
 		};
+	},
+	computed: {
+		codeBody: function () {
+			return `\
+				<template>\
+					<l-popup-wrapper\
+						value="{object...}"\
+						size="${this.state.size}"\
+						direction="${this.state.direction}"\
+					>\
+						<l-button slot="trigger" value="Click me"/>\
+					</l-popup-wrapper>\
+				</template>`;
+		},
 	},
 	methods: {
 		updateSize: function (event) {
@@ -193,10 +128,17 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.updateControl(this.$refs.control);
+
+		const { props } = this.$refs.control.$options || {};
+		if (props) {
+			const { size, direction } = props;
+			this.SIZES = (size || {}).options || [];
+			this.DIRECTIONS = (direction || {}).options || [];
+		}
 	},
 	updated: function () {
-		this.state.codeStructure = `${this.$refs.control.$el.outerHTML}`;
+		this.$refs.DT.setControlDOMStructure(this.$refs.control);
 	},
 };
 </script>
