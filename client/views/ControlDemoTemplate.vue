@@ -112,7 +112,7 @@ export default {
 				{
 					name: "prop",
 					displayName: "Prop",
-					width: "150px",
+					width: "180px",
 				},
 				{
 					name: "type",
@@ -140,7 +140,7 @@ export default {
 				{
 					name: "method",
 					displayName: "Method",
-					width: "150px",
+					width: "180px",
 				},
 				{
 					name: "description",
@@ -153,7 +153,7 @@ export default {
 				{
 					name: "event",
 					displayName: "Event",
-					width: "150px",
+					width: "180px",
 				},
 				{
 					name: "description",
@@ -166,7 +166,7 @@ export default {
 				{
 					name: "slot",
 					displayName: "Slot",
-					width: "150px",
+					width: "180px",
 				},
 				{
 					name: "description",
