@@ -118,13 +118,13 @@ export default {
 						method: () => {
 							this.switchContextTerm(entry);
 							this.$refs.search.setValue("");
-							this.$refs.popup.hidePopup(null, true);
+							this.$refs.popup.hidePopup();
 						},
 					};
 				});
 				this.$refs.popup.showPopup();
 			} else {
-				this.$refs.popup.hidePopup(null, true);
+				this.$refs.popup.hidePopup();
 			}
 		},
 		openPopup: function (event) {
