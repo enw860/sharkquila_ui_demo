@@ -74,6 +74,11 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "BreadCrumbsDemo",
 	displayName: "Bread crumbs",
+	controlMapping: [
+		{
+			keywords: ["l-bread-crumbs", "navigation", "informational"],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,

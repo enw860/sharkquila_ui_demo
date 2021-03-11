@@ -112,6 +112,17 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "ButtonDemo",
 	displayName: "Button",
+	controlMapping: [
+		{
+			keywords: [
+				"l-button",
+				"click",
+				"icon",
+				"icon button",
+				"informational",
+			],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,

@@ -101,7 +101,7 @@ export default {
 	displayName: "Slideout",
 	controlMapping: [
 		{
-			keywords: ["l-slideout", "sidebar", "shift"],
+			keywords: ["l-slideout", "sidebar", "shift", "layout"],
 		},
 	],
 	components: {

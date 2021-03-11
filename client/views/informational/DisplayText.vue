@@ -70,6 +70,17 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "DisplayTextDemo",
 	displayName: "Plain text",
+	controlMapping: [
+		{
+			keywords: [
+				"l-text",
+				"plain text",
+				"title",
+				"header",
+				"informational",
+			],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,

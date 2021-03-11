@@ -119,6 +119,11 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "AvatarDemo",
 	displayName: "Avatar",
+	controlMapping: [
+		{
+			keywords: ["l-avatar", "logo", "icon", "informational"],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,
