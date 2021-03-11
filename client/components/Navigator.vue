@@ -54,7 +54,11 @@
 			>
 				<div slot="content">
 					<l-button
-						v-bind:class="[term === pageContent ? 'selected' : '']"
+						v-bind:class="[
+							term.widgetName === pageContent.widgetName
+								? 'selected'
+								: '',
+						]"
 						v-for="term in categories[category]"
 						:key="term.widgetName"
 						:value="term.displayName"

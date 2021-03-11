@@ -24,14 +24,17 @@
 	.Popup {
 		margin-right: 16px;
 
-		.SearchBar > .InputText {
-			padding-right: 32px;
-			z-index: 50;
+		.SearchBar > .InputBox > .InputWrap > input {
+			padding-right: 30px;
+			z-index: 100;
+			background-color: transparent;
+			color: @white;
 		}
 
 		.SearchBar > .Button {
-			margin-left: -32px;
-			z-index: 100;
+			margin-left: -30px;
+			z-index: 50;
+			color: @white;
 		}
 
 		.popupContent {
