@@ -79,7 +79,7 @@
 import store from "../store/store";
 import Logo from "./Logo.vue";
 
-import { matchByKeyword } from "../utils/keywords";
+import { matchByKeyword } from "../utils/searchControls";
 
 export default {
 	name: "MenuBar",
