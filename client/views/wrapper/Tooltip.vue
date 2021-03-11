@@ -86,6 +86,11 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "TooltipDemo",
 	displayName: "Tooltip",
+	controlMapping: [
+		{
+			keywords: ["l-tooltip-wrapper", "hint"],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,
