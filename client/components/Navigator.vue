@@ -95,7 +95,7 @@ export default {
 				}),
 				Inputs: InputsDC.map((control) => {
 					return {
-						category: "Inputs",
+						category: "Input",
 						displayName: control.displayName || control.name,
 						widgetName: control.name,
 					};

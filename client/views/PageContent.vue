@@ -103,7 +103,11 @@
 				</div>
 
 				<div class="PageContentBody VLayour align-center">
-					<component v-bind:is="pageContent.widgetName"></component>
+					<component
+						ref="component"
+						v-bind:is="pageContent.widgetName"
+						:initWidgit="pageContent.value"
+					></component>
 				</div>
 
 				<div class="PageContentFooter">
