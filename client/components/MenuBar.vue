@@ -68,7 +68,7 @@
 						ref="search"
 						placeholder="Search"
 						size="small"
-						@keypress="enterSearch"
+						@keyup="enterSearch"
 						@focus="openPopup"
 					/>
 					<l-button icon="fa-search" value btnStyle="transparent" />
