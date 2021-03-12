@@ -77,11 +77,11 @@ export default {
 	controlMapping: [
 		{
 			keywords: [
-				"l-bread-crumbs",
-				"navigation",
-				"information",
 				"bread",
 				"crumb",
+				"navigation",
+				"information",
+				"l-bread-crumbs",
 			],
 		},
 	],

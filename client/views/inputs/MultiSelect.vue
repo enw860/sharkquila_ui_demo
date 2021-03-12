@@ -95,10 +95,11 @@ export default {
 		{
 			value: "Checkbox group",
 			keywords: [
-				"l-input-group-multiple",
 				"checkbox",
+				"input",
 				"groups",
 				"multiple",
+				"l-input-group-multiple",
 			],
 		},
 	],

@@ -99,29 +99,23 @@ export default {
 	controlMapping: [
 		{
 			value: "Text",
-			keywords: ["l-input-text", "text"],
+			keywords: ["text", "input", "l-input-text"],
 		},
 		{
 			value: "Number",
-			keywords: [
-				"l-input-number",
-				"integer",
-				"float",
-				"decimal",
-				"number",
-			],
+			keywords: ["integer", "number", "input", "l-input-number"],
 		},
 		{
 			value: "Password",
-			keywords: ["l-input-password", "password"],
+			keywords: ["password", "input", "l-input-password"],
 		},
 		{
 			value: "Textarea",
-			keywords: ["l-input-textarea", "textarea"],
+			keywords: ["textarea", "input", "l-input-textarea"],
 		},
 		{
 			value: "Color",
-			keywords: ["l-input-color", "color"],
+			keywords: ["color", "input", "l-input-color"],
 		},
 	],
 	components: {

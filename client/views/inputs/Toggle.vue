@@ -100,7 +100,7 @@ export default {
 	displayName: "Toggle",
 	controlMapping: [
 		{
-			keywords: ["l-toggle", "switcher", "checkbox", "input", "toggle"],
+			keywords: ["toggle", "switcher", "checkbox", "input", "l-toggle"],
 		},
 	],
 	components: {

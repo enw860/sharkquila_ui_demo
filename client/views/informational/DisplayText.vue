@@ -73,13 +73,13 @@ export default {
 	controlMapping: [
 		{
 			keywords: [
-				"l-text",
+				"text",
 				"plain",
+				"display",
 				"title",
 				"header",
 				"informational",
-				"display",
-				"text",
+				"l-text",
 			],
 		},
 	],

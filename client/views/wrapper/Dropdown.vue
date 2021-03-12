@@ -85,11 +85,11 @@ export default {
 	controlMapping: [
 		{
 			keywords: [
-				"l-dropdown-wrapper",
+				"dropdown",
 				"collaspe",
 				"expand",
-				"dropdown",
 				"wrapper",
+				"l-dropdown-wrapper",
 			],
 		},
 	],

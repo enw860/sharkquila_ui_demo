@@ -97,11 +97,11 @@ export default {
 	controlMapping: [
 		{
 			value: "Single select",
-			keywords: ["l-input-single-select", "select", "single"],
+			keywords: ["select", "single", "input", "l-input-single-select"],
 		},
 		{
 			value: "Radio group",
-			keywords: ["l-input-group-single", "radio", "group"],
+			keywords: ["radio", "groups", "input", "l-input-group-single"],
 		},
 	],
 	components: {

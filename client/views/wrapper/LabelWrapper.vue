@@ -90,7 +90,7 @@ export default {
 	displayName: "Label wrapper",
 	controlMapping: [
 		{
-			keywords: ["l-label-wrapper", "title", "label", "wrapper"],
+			keywords: ["label", "wrapper", "title", "l-label-wrapper"],
 		},
 	],
 	components: {

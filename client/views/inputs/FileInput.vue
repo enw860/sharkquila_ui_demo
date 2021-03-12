@@ -70,7 +70,7 @@ export default {
 	displayName: "File input",
 	controlMapping: [
 		{
-			keywords: ["l-input-file", "file", "document", "upload", "input"],
+			keywords: ["file", "input", "document", "upload", "l-input-file"],
 		},
 	],
 	components: {

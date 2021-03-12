@@ -114,7 +114,7 @@ export default {
 	displayName: "Button",
 	controlMapping: [
 		{
-			keywords: ["l-button", "icon", "button", "informational"],
+			keywords: ["icon", "button", "informational", "l-button"],
 		},
 	],
 	components: {

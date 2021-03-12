@@ -74,7 +74,7 @@ export default {
 	displayName: "Separator",
 	controlMapping: [
 		{
-			keywords: ["l-separator", "separate", "layout", "separat"],
+			keywords: ["separat", "layout", "l-separator"],
 		},
 	],
 	components: {
