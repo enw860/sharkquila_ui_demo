@@ -74,7 +74,7 @@ export default {
 		{
 			keywords: [
 				"l-text",
-				"plain text",
+				"plain",
 				"title",
 				"header",
 				"informational",

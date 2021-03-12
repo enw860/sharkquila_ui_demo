@@ -124,7 +124,7 @@ export default {
 	displayName: "Link",
 	controlMapping: [
 		{
-			keywords: ["l-link", "anchor", "url", "informational", "link"],
+			keywords: ["l-link", "anchor", "url", "information", "link"],
 		},
 	],
 	components: {

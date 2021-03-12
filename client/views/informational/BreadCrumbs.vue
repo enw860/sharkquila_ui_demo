@@ -79,7 +79,7 @@ export default {
 			keywords: [
 				"l-bread-crumbs",
 				"navigation",
-				"informational",
+				"information",
 				"bread",
 				"crumb",
 			],

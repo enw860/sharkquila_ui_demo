@@ -93,14 +93,7 @@ export default {
 	displayName: "Badge",
 	controlMapping: [
 		{
-			keywords: [
-				"l-badge",
-				"hallmark",
-				"mark",
-				"notify",
-				"informational",
-				"badge",
-			],
+			keywords: ["l-badge", "mark", "information", "badge"],
 		},
 	],
 	components: {
