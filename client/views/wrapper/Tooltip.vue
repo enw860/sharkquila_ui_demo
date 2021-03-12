@@ -75,6 +75,13 @@
 					/>
 				</l-label-wrapper>
 			</div>
+
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:wrapOffset="2"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
