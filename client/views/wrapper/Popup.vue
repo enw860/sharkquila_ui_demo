@@ -64,13 +64,7 @@ export default {
 	displayName: "Popup",
 	controlMapping: [
 		{
-			keywords: [
-				"l-popup-wrapper",
-				"menu",
-				"options",
-				"popup",
-				"wrapper",
-			],
+			keywords: ["l-popup-wrapper", "menu", "popup", "wrapper"],
 		},
 	],
 	components: {

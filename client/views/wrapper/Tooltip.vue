@@ -95,7 +95,7 @@ export default {
 	displayName: "Tooltip",
 	controlMapping: [
 		{
-			keywords: ["l-tooltip-wrapper", "hint", "tooltip", "wrapper"],
+			keywords: ["l-tooltip-wrapper", "tooltip", "wrapper"],
 		},
 	],
 	components: {
