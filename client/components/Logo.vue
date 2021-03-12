@@ -42,7 +42,7 @@
 			}
 
 			&.head {
-				margin-top: -6px;
+				margin-top: -4px;
 				margin-left: -95px;
 			}
 		}
