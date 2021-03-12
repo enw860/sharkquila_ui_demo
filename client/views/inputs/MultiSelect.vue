@@ -97,7 +97,7 @@ export default {
 			keywords: [
 				"l-input-group-multiple",
 				"checkbox",
-				"group",
+				"groups",
 				"multiple",
 			],
 		},

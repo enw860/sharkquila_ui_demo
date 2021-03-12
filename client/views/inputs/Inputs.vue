@@ -113,7 +113,7 @@ export default {
 		},
 		{
 			value: "Password",
-			keywords: ["l-input-password", "secret", "credential", "password"],
+			keywords: ["l-input-password", "password"],
 		},
 		{
 			value: "Textarea",

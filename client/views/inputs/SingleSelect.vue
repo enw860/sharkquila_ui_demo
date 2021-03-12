@@ -101,7 +101,7 @@ export default {
 		},
 		{
 			value: "Radio group",
-			keywords: ["l-input-group-single", "radio group"],
+			keywords: ["l-input-group-single", "radio", "group"],
 		},
 	],
 	components: {
