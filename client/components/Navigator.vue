@@ -9,9 +9,20 @@
 	border-right: 1px solid @white;
 }
 
+.SlideoutContent {
+	.Logo {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background-color: @grey-100;
+	}
+}
+
 .Nav-slide.NavigatorWrapper,
 .Nav-slide .SlideoutContent {
 	width: 250px;
+	overflow-y: auto;
+
 	background-color: @grey-100 !important;
 	color: @white !important;
 

@@ -28,6 +28,10 @@
 	> .displayName {
 		font-size: 64px;
 		letter-spacing: 2px;
+
+		&.small {
+			font-size: 48px;
+		}
 	}
 }
 
@@ -59,7 +63,8 @@
 	color: @white;
 	padding: 24px 10%;
 
-	> .HLayout * {
+	.HLayout,
+	.DisplayText {
 		margin-right: 8px;
 	}
 }
@@ -78,14 +83,17 @@
 					<span class="category">{{
 						pageContent.category || "Catogory"
 					}}</span>
-					<span class="displayName">{{
+					<span class="displayName" v-bind:class="[screenMode]">{{
 						pageContent.displayName || "Display name"
 					}}</span>
 				</div>
 
 				<div
 					class="PageContentNav HLayout"
-					v-if="pageContent.category !== 'Welcome to'"
+					v-if="
+						pageContent.category !== 'Welcome to' &&
+						screenMode !== 'small'
+					"
 				>
 					<div
 						class="NavBlock"
@@ -119,22 +127,34 @@
 						/>
 						<l-text value="- Version 1.2.0" color="#e0e0e0" />
 					</div>
-					<div class="HLayout">
-						<l-text
-							value="Designed and built by "
-							color="#e0e0e0"
-						/>
-						<l-link
-							value="Lionel Wu."
-							color="#0f62fe"
-							href="https://www.linkedin.com/in/enhao-wu-18a596138"
-						/>
-						<l-text value="Licensed under the" color="#e0e0e0" />
-						<l-link
-							value="MIT License."
-							color="#0f62fe"
-							href="https://github.com/enw860/sharkquila_ui_demo/LICENSE"
-						/>
+
+					<div
+						v-bind:class="[
+							screenMode === 'small' ? 'VLayout' : 'HLayout',
+						]"
+					>
+						<div class="HLayout">
+							<l-text
+								value="Designed and built by "
+								color="#e0e0e0"
+							/>
+							<l-link
+								value="Lionel Wu."
+								color="#0f62fe"
+								href="https://www.linkedin.com/in/enhao-wu-18a596138"
+							/>
+						</div>
+						<div class="HLayout">
+							<l-text
+								value="Licensed under the"
+								color="#e0e0e0"
+							/>
+							<l-link
+								value="MIT License."
+								color="#0f62fe"
+								href="https://github.com/enw860/sharkquila_ui_demo/LICENSE"
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
