@@ -122,6 +122,11 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "LinkDemo",
 	displayName: "Link",
+	controlMapping: [
+		{
+			keywords: ["link", "anchor", "information", "l-link"],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,

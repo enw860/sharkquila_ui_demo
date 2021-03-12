@@ -28,6 +28,7 @@
 				<l-label-wrapper value="Type:" size="small">
 					<l-input-single-select
 						slot="labelContent"
+						ref="typeSelector"
 						:value="state.widgit"
 						:options="TYPES"
 						@change="updateWidgit"
@@ -90,6 +91,18 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "MultiSelectDemo",
 	displayName: "Mutiple select",
+	controlMapping: [
+		{
+			value: "Checkbox group",
+			keywords: [
+				"checkbox",
+				"input",
+				"groups",
+				"multiple",
+				"l-input-group-multiple",
+			],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,
@@ -103,7 +116,7 @@ export default {
 			SIZES: [],
 			LAYOUT: [],
 			state: {
-				widgit: "Checkbox group",
+				widgit: this.initWidgit,
 				options: ["Item1", "Item2", "Item3", "Item4"],
 				values: ["Item2", "Item3"],
 				layout: "vertival",
@@ -112,6 +125,12 @@ export default {
 				disabled: false,
 			},
 		};
+	},
+	props: {
+		initWidgit: {
+			type: String,
+			default: "Checkbox group",
+		},
 	},
 	computed: {
 		widgitControl: function () {
@@ -155,6 +174,17 @@ export default {
 				const { size, layout } = props;
 				this.SIZES = (size || {}).options || [];
 				this.LAYOUT = (layout || {}).options || [];
+			}
+		},
+	},
+	watch: {
+		initWidgit: function (newVal, oldVal) {
+			if (this.$refs.typeSelector) {
+				this.$refs.typeSelector.onchange({
+					target: {
+						value: newVal,
+					},
+				});
 			}
 		},
 	},

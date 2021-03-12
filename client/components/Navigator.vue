@@ -9,9 +9,20 @@
 	border-right: 1px solid @white;
 }
 
+.SlideoutContent {
+	.Logo {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background-color: @grey-100;
+	}
+}
+
 .Nav-slide.NavigatorWrapper,
 .Nav-slide .SlideoutContent {
 	width: 250px;
+	overflow-y: auto;
+
 	background-color: @grey-100 !important;
 	color: @white !important;
 
@@ -54,7 +65,11 @@
 			>
 				<div slot="content">
 					<l-button
-						v-bind:class="[term === pageContent ? 'selected' : '']"
+						v-bind:class="[
+							term.widgetName === pageContent.widgetName
+								? 'selected'
+								: '',
+						]"
 						v-for="term in categories[category]"
 						:key="term.widgetName"
 						:value="term.displayName"
@@ -95,7 +110,7 @@ export default {
 				}),
 				Inputs: InputsDC.map((control) => {
 					return {
-						category: "Inputs",
+						category: "Input",
 						displayName: control.displayName || control.name,
 						widgetName: control.name,
 					};

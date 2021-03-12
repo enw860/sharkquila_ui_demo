@@ -82,6 +82,17 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "DropdownDemo",
 	displayName: "Dropdown",
+	controlMapping: [
+		{
+			keywords: [
+				"dropdown",
+				"collaspe",
+				"expand",
+				"wrapper",
+				"l-dropdown-wrapper",
+			],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,

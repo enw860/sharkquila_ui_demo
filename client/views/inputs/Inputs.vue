@@ -25,6 +25,7 @@
 				<l-label-wrapper value="Type:" size="small">
 					<l-input-single-select
 						slot="labelContent"
+						ref="typeSelector"
 						:value="state.widgit"
 						:options="TYPES"
 						@change="updateWidgit"
@@ -95,6 +96,28 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "InputsDemo",
 	displayName: "Text inputs",
+	controlMapping: [
+		{
+			value: "Text",
+			keywords: ["text", "input", "l-input-text"],
+		},
+		{
+			value: "Number",
+			keywords: ["integer", "number", "input", "l-input-number"],
+		},
+		{
+			value: "Password",
+			keywords: ["password", "input", "l-input-password"],
+		},
+		{
+			value: "Textarea",
+			keywords: ["textarea", "input", "l-input-textarea"],
+		},
+		{
+			value: "Color",
+			keywords: ["color", "input", "l-input-color"],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,
@@ -115,9 +138,16 @@ export default {
 				size: "default",
 				error: "",
 				disabled: false,
-				widgit: "Text",
+				widgit: this.initWidgit,
 			},
 		};
+	},
+
+	props: {
+		initWidgit: {
+			type: String,
+			default: "Text",
+		},
 	},
 	computed: {
 		widgitControl: function () {
@@ -162,6 +192,17 @@ export default {
 			if (props) {
 				const { size } = props;
 				this.SIZES = (size || {}).options || [];
+			}
+		},
+	},
+	watch: {
+		initWidgit: function (newVal, oldVal) {
+			if (this.$refs.typeSelector) {
+				this.$refs.typeSelector.onchange({
+					target: {
+						value: newVal,
+					},
+				});
 			}
 		},
 	},

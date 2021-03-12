@@ -97,7 +97,12 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 
 export default {
 	name: "ToggleDemo",
-	displayName: "Toggle pill",
+	displayName: "Toggle",
+	controlMapping: [
+		{
+			keywords: ["toggle", "switcher", "checkbox", "input", "l-toggle"],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,

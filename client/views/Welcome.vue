@@ -16,7 +16,8 @@
 		max-width: 800px;
 	}
 
-	.Feature-row {
+	.Feature-row,
+	.Feature-col {
 		display: flex;
 		align-items: flex-start;
 
@@ -26,6 +27,10 @@
 			min-width: 90px;
 			display: inline-block;
 		}
+	}
+
+	.Feature-col {
+		flex-direction: column;
 	}
 }
 </style>
@@ -78,55 +83,55 @@
 					describe the component in following dimentions:
                     <ul>
                         <li>
-                            <div class="Feature-row">
+                            <div v-bind:class="[screenMode===`small` ? `Feature-col`:`Feature-row`]">
                                 <strong>Overview: </strong>
                                 <span>The designiated use cases for the control.</span>
                             </div>
                         </li>
                         <li>
-                            <div class="Feature-row">
+                            <div v-bind:class="[screenMode===`small` ? `Feature-col`:`Feature-row`]">
                                 <strong>Live demo: </strong>
                                 <span>The demonstration of the control in run time environemnt.</span>
                             </div>
                         </li>
                         <li>
-                            <div class="Feature-row">
+                            <div v-bind:class="[screenMode===`small` ? `Feature-col`:`Feature-row`]">
                                 <strong>Controls: </strong>
                                 <span>Configeration options used for manipulate the control.</span>
                             </div>
                         </li>
                         <li>
-                            <div class="Feature-row">
+                            <div v-bind:class="[screenMode===`small` ? `Feature-col`:`Feature-row`]">
                                 <strong>Code: </strong>
                                 <span>Vue code for fast startup.</span>
                             </div>
                         </li>
                         <li>
-                            <div class="Feature-row">
+                            <div v-bind:class="[screenMode===`small` ? `Feature-col`:`Feature-row`]">
                                 <strong>DOM: </strong>
                                 <span>DOM structure of the current control.</span>
                             </div>
                         </li>
                         <li>
-                            <div class="Feature-row">
+                            <div v-bind:class="[screenMode===`small` ? `Feature-col`:`Feature-row`]">
                                 <strong>Settings: </strong>
                                 <span>All of the configurable fields with default values.</span>
                             </div>
                         </li>
                         <li>
-                            <div class="Feature-row">
+                            <div v-bind:class="[screenMode===`small` ? `Feature-col`:`Feature-row`]">
                                 <strong>Slots: </strong>
                                 <span>Available slots of the control. (if any)</span>
                             </div>
                         </li>
                         <li>
-                            <div class="Feature-row">
+                            <div v-bind:class="[screenMode===`small` ? `Feature-col`:`Feature-row`]">
                                 <strong>Events: </strong>
                                 <span>Desiginated events that could be bind to the control. (if any)</span>
                             </div>
                         </li>
                         <li>
-                            <div class="Feature-row">
+                            <div v-bind:class="[screenMode===`small` ? `Feature-col`:`Feature-row`]">
                                 <strong>Methods: </strong>
                                 <span>Buildin functions that could be called by referring the control. (if any)</span>
                             </div>
@@ -143,5 +148,10 @@ export default {
 	name: "Welcome",
 	components: {},
 	methods: {},
+	computed: {
+		screenMode: function () {
+			return this.$store.state.main.screenMode;
+		},
+	},
 };
 </script>

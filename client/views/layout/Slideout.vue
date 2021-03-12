@@ -99,6 +99,11 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "SlideoutDemo",
 	displayName: "Slideout",
+	controlMapping: [
+		{
+			keywords: ["slide", "layout", "out", "l-slideout"],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,

@@ -97,6 +97,11 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "ClockDemo",
 	displayName: "Clock",
+	controlMapping: [
+		{
+			keywords: ["clock", "information", "time", "watch", "l-clock"],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,

@@ -68,6 +68,11 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "FileInputDemo",
 	displayName: "File input",
+	controlMapping: [
+		{
+			keywords: ["file", "input", "document", "upload", "l-input-file"],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,

@@ -132,6 +132,7 @@ export default {
 				{
 					name: "description",
 					displayName: "Description",
+					width: "250px",
 				},
 			],
 
@@ -145,6 +146,7 @@ export default {
 				{
 					name: "description",
 					displayName: "Description",
+					width: "250px",
 				},
 			],
 
@@ -158,6 +160,7 @@ export default {
 				{
 					name: "description",
 					displayName: "Description",
+					width: "250px",
 				},
 			],
 
@@ -171,6 +174,7 @@ export default {
 				{
 					name: "description",
 					displayName: "Description",
+					width: "250px",
 				},
 			],
 		};

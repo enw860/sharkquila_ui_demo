@@ -62,6 +62,11 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "PopupDemo",
 	displayName: "Popup",
+	controlMapping: [
+		{
+			keywords: ["popup", "menu", "wrapper", "l-popup-wrapper"],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,

@@ -91,6 +91,11 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "BadgeDemo",
 	displayName: "Badge",
+	controlMapping: [
+		{
+			keywords: ["badge", "information", "l-badge"],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,

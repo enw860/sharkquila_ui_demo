@@ -75,6 +75,13 @@
 					/>
 				</l-label-wrapper>
 			</div>
+
+			<l-html-text-loader
+				slot="code"
+				type="<Vue template>"
+				:wrapOffset="2"
+				:value="codeBody"
+			/>
 		</ControlDemoTemplate>
 	</div>
 </template>
@@ -86,6 +93,11 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "TooltipDemo",
 	displayName: "Tooltip",
+	controlMapping: [
+		{
+			keywords: ["tooltip", "wrapper", "l-tooltip-wrapper"],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,

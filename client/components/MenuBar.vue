@@ -8,7 +8,7 @@
 	background-color: @grey-090;
 	position: sticky;
 	top: 0;
-	z-index: 1000;
+	z-index: 1001;
 
 	> .Button {
 		color: @white !important;
@@ -21,17 +21,24 @@
 		margin-right: auto;
 	}
 
-	.SearchBar {
+	.Popup {
 		margin-right: 16px;
 
-		> .InputText {
-			padding-right: 32px;
-			z-index: 50;
+		.SearchBar > .InputBox > .InputWrap > input {
+			padding-right: 30px;
+			z-index: 100;
+			background-color: transparent;
+			color: @white;
 		}
 
-		> .Button {
-			margin-left: -32px;
-			z-index: 100;
+		.SearchBar > .Button {
+			margin-left: -30px;
+			z-index: 50;
+			color: @white;
+		}
+
+		.popupContent {
+			width: 100%;
 		}
 	}
 }
@@ -49,10 +56,25 @@
 			btnStyle="transparent"
 		/>
 
-		<div class="SearchBar HLayout">
-			<l-input-text placeholder="Search" size="small" />
-			<l-button icon="fa-search" value btnStyle="transparent" />
-		</div>
+		<l-popup-wrapper
+			ref="popup"
+			size="default"
+			direction="left"
+			:value="options"
+		>
+			<div class="SearchBarWrapper" slot="trigger">
+				<div class="SearchBar HLayout">
+					<l-input-text
+						ref="search"
+						placeholder="Search"
+						size="small"
+						@keyup="enterSearch"
+						@focus="openPopup"
+					/>
+					<l-button icon="fa-search" value btnStyle="transparent" />
+				</div>
+			</div>
+		</l-popup-wrapper>
 	</div>
 </template>
 
@@ -60,10 +82,18 @@
 import store from "../store/store";
 import Logo from "./Logo.vue";
 
+import { matchByKeyword } from "../utils/searchControls";
+
 export default {
 	name: "MenuBar",
 	components: {
 		Logo,
+	},
+	data: function () {
+		return {
+			options: [],
+			lengthTriggerSearch: 3,
+		};
 	},
 	computed: {
 		screenMode: function () {
@@ -73,6 +103,38 @@ export default {
 	methods: {
 		launchNav: function (event) {
 			store.dispatch("main/openNav");
+		},
+		enterSearch: function (event) {
+			const value = event.target.value;
+			if (value.length >= this.lengthTriggerSearch) {
+				const matchedTerms = matchByKeyword(value);
+				this.options = matchedTerms.map((entry) => {
+					const displayName =
+						entry.displayName +
+						(!!entry.value ? `- ${entry.value}` : "");
+
+					return {
+						name: displayName,
+						method: () => {
+							this.switchContextTerm(entry);
+							this.$refs.search.setValue("");
+							this.$refs.popup.hidePopup();
+						},
+					};
+				});
+				this.$refs.popup.showPopup();
+			} else {
+				this.$refs.popup.hidePopup();
+			}
+		},
+		openPopup: function (event) {
+			const value = event.target.value;
+			if (value.length >= this.lengthTriggerSearch) {
+				this.$refs.popup.showPopup();
+			}
+		},
+		switchContextTerm: function (term) {
+			store.dispatch("main/switchMainContent", term);
 		},
 	},
 };

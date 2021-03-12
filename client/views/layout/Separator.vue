@@ -72,6 +72,11 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "SeparatorDemo",
 	displayName: "Separator",
+	controlMapping: [
+		{
+			keywords: ["separat", "layout", "l-separator"],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,

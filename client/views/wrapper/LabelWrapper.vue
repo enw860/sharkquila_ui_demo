@@ -88,6 +88,11 @@ import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 export default {
 	name: "LabelWrapperDemo",
 	displayName: "Label wrapper",
+	controlMapping: [
+		{
+			keywords: ["label", "wrapper", "title", "l-label-wrapper"],
+		},
+	],
 	components: {
 		WidgitDemo,
 		ControlDemoTemplate,
