@@ -84,7 +84,13 @@ export default {
 	displayName: "Dropdown",
 	controlMapping: [
 		{
-			keywords: ["l-dropdown-wrapper", "collaspe", "expand"],
+			keywords: [
+				"l-dropdown-wrapper",
+				"collaspe",
+				"expand",
+				"dropdown",
+				"wrapper",
+			],
 		},
 	],
 	components: {

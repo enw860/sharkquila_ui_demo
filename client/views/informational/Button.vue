@@ -120,6 +120,7 @@ export default {
 				"icon",
 				"icon button",
 				"informational",
+				"button",
 			],
 		},
 	],

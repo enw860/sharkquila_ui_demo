@@ -99,7 +99,14 @@ export default {
 	displayName: "Clock",
 	controlMapping: [
 		{
-			keywords: ["l-clock", "time", "timer", "watch", "informational"],
+			keywords: [
+				"l-clock",
+				"time",
+				"timer",
+				"watch",
+				"informational",
+				"clock",
+			],
 		},
 	],
 	components: {

@@ -121,7 +121,7 @@ export default {
 	displayName: "Avatar",
 	controlMapping: [
 		{
-			keywords: ["l-avatar", "logo", "icon", "informational"],
+			keywords: ["l-avatar", "logo", "icon", "informational", "avatar"],
 		},
 	],
 	components: {

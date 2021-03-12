@@ -103,19 +103,25 @@ export default {
 		},
 		{
 			value: "Number",
-			keywords: ["l-input-number", "integer", "float", "decimal"],
+			keywords: [
+				"l-input-number",
+				"integer",
+				"float",
+				"decimal",
+				"number",
+			],
 		},
 		{
 			value: "Password",
-			keywords: ["l-input-password", "secret", "credential"],
+			keywords: ["l-input-password", "secret", "credential", "password"],
 		},
 		{
 			value: "Textarea",
-			keywords: ["l-input-textarea"],
+			keywords: ["l-input-textarea", "textarea"],
 		},
 		{
 			value: "Color",
-			keywords: ["l-input-color"],
+			keywords: ["l-input-color", "color"],
 		},
 	],
 	components: {

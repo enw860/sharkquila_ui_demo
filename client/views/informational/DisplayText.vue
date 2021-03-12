@@ -78,6 +78,8 @@ export default {
 				"title",
 				"header",
 				"informational",
+				"display",
+				"text",
 			],
 		},
 	],

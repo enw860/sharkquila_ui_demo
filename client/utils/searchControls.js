@@ -27,7 +27,10 @@ function initEntries(entries, category) {
 export function matchByKeyword(value) {
     return ENTRIES.reduce((result, entry) => {
         for (const keyword of entry.keywords) {
-            if (keyword.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+            const _keyword = keyword.toLowerCase();
+            const _value = value.toLowerCase();
+            if (_keyword.indexOf(_value.toLowerCase()) > -1
+                || _value.indexOf(_keyword.toLowerCase()) > -1) {
                 let dupEntry = Object.assign({}, entry);
                 delete dupEntry.keywords;
                 return [...result, dupEntry]

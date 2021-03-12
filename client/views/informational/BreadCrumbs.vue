@@ -76,7 +76,13 @@ export default {
 	displayName: "Bread crumbs",
 	controlMapping: [
 		{
-			keywords: ["l-bread-crumbs", "navigation", "informational"],
+			keywords: [
+				"l-bread-crumbs",
+				"navigation",
+				"informational",
+				"bread",
+				"crumb",
+			],
 		},
 	],
 	components: {
