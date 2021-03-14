@@ -72,12 +72,6 @@
                     code snippet in your app as a quick startup.
 				</p>
 
-                <p>
-					All of the desiginated color style for controls are themeable, 
-                    which means you can change the color of any pre-defined color
-                    style as your wish.
-				</p>
-
 				<p>
 					As per UI components listed in the navigation bar, it will
 					describe the component in following dimentions:

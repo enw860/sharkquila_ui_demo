@@ -6,8 +6,6 @@ This project is an in-depth description of npm package [sharkquila_ui_toolkit](h
 
 You could use this site as a playground for seeing how the toolkits performed in run time environment, then you could copy and paste the code snippet in your app as a quick startup.
 
-All of the desiginated color style for controls are themeable, which means you can change the color of any pre-defined color style as your wish.
-
 As per UI components listed in the navigation bar, it will describe the component in following dimentions:
 
 * Overview: The designiated use cases for the control.
