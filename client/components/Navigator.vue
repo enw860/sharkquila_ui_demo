@@ -91,6 +91,7 @@ import InformationalDC from "../views/informational";
 import InputsDC from "../views/inputs";
 import LayoutDC from "../views/layout";
 import WrapperDC from "../views/wrapper";
+import OtherDC from "../views/other";
 
 export default {
 	name: "Navigator",
@@ -125,6 +126,13 @@ export default {
 				Wrapper: WrapperDC.map((control) => {
 					return {
 						category: "Wrapper",
+						displayName: control.displayName || control.name,
+						widgetName: control.name,
+					};
+				}),
+				Other: OtherDC.map((control) => {
+					return {
+						category: "Other",
 						displayName: control.displayName || control.name,
 						widgetName: control.name,
 					};

@@ -117,15 +117,7 @@ export default {
 	displayName: "Bootstrap classes",
 	controlMapping: [
 		{
-			keywords: [
-				"horizontal",
-				"vertial",
-				"layout",
-				"left",
-				"right",
-				"between",
-				"class",
-			],
+			keywords: ["class", "bootstrap", "horizontal", "vertial", "layout"],
 		},
 	],
 	components: {

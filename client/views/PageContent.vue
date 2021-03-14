@@ -172,6 +172,7 @@ import InformationalDC from "./informational";
 import InputsDC from "./inputs";
 import LayoutDC from "./layout";
 import WrapperDC from "./wrapper";
+import OtherDC from "./other";
 
 export default {
 	name: "PageContent",
@@ -179,13 +180,16 @@ export default {
 		Navigator,
 		MenuBar,
 		Welcome,
-		...[...InformationalDC, ...InputsDC, ...LayoutDC, ...WrapperDC].reduce(
-			(moduleObj, control) => {
-				moduleObj[control.name] = control;
-				return moduleObj;
-			},
-			{}
-		),
+		...[
+			...InformationalDC,
+			...InputsDC,
+			...LayoutDC,
+			...WrapperDC,
+			...OtherDC,
+		].reduce((moduleObj, control) => {
+			moduleObj[control.name] = control;
+			return moduleObj;
+		}, {}),
 	},
 	data: function () {
 		return {
