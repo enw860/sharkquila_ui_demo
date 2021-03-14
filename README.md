@@ -4,9 +4,11 @@ This project is an in-depth description of npm package [sharkquila_ui_toolkit](h
 
 ## What can you expect from this project?
 
-You could threat this project as a playground of seeing how the toolkits performed in run time environment as well as copy and paste the code snippet in your app as a quick startup.
+You could use this site as a playground for seeing how the toolkits performed in run time environment, then you could copy and paste the code snippet in your app as a quick startup.
 
-As per UI components listed in the navigation bar at the site, it will describe the component in following dimentions:
+All of the desiginated color style for controls are themeable, which means you can change the color of any pre-defined color style as your wish.
+
+As per UI components listed in the navigation bar, it will describe the component in following dimentions:
 
 * Overview: The designiated use cases for the control.
 * Live demo: The demonstration of the control in run time.
