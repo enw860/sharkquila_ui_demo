@@ -154,6 +154,7 @@ export default {
 	methods: {
 		switchContextTerm: function (term) {
 			store.dispatch("main/switchMainContent", term);
+			this.$refs.nav.hideSlideout && this.$refs.nav.hideSlideout();
 		},
 		onHide: function () {
 			store.dispatch("main/hideNav");
