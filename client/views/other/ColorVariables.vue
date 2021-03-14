@@ -25,7 +25,7 @@
 	}
 
 	.Color-option {
-		padding: 8px;
+		padding: 10px 16px;
 	}
 
 	.Hex-color {
@@ -84,7 +84,6 @@
 </template>
 
 <script>
-import WidgitDemo from "../../components/WidgitDemo.vue";
 import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 
 const DANGER = [
@@ -161,7 +160,6 @@ export default {
 		},
 	],
 	components: {
-		WidgitDemo,
 		ControlDemoTemplate,
 	},
 	data: function () {
