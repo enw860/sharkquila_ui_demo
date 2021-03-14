@@ -1,5 +1,6 @@
+import ColorVariablesDemo from "./ColorVariables";
 import LayoutClassesDemo from "./LayoutClasses";
 
 export default [
-    LayoutClassesDemo
+    ColorVariablesDemo, LayoutClassesDemo
 ]

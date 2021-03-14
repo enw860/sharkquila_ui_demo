@@ -31,7 +31,7 @@ export default {
 	},
 	watch: {
 		screenMode(newVal, oldVal) {
-			console.warn(`Screen size changed from ${oldVal} to ${newVal}`);
+			console.debug(`Screen size changed from ${oldVal} to ${newVal}`);
 			store.dispatch("main/switchScreenMode", newVal);
 		},
 	},

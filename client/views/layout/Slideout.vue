@@ -113,8 +113,8 @@ export default {
 			DIRECTIONS: [],
 			state: {
 				direction: "left",
-				onShowFuncBody: "console.warn('Show slideout');",
-				onHideFuncBody: "console.warn('Hide slideout');",
+				onShowFuncBody: "console.log('Show slideout');",
+				onHideFuncBody: "console.log('Hide slideout');",
 			},
 		};
 	},

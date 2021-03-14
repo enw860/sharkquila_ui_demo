@@ -91,8 +91,8 @@
 				<div
 					class="PageContentNav HLayout"
 					v-if="
-						pageContent.category !== 'Welcome to' &&
-						screenMode !== 'small'
+						hideLinksControls.indexOf(pageContent.displayName) <
+							0 && screenMode !== 'small'
 					"
 				>
 					<div
@@ -215,6 +215,7 @@ export default {
 					href: "#properties",
 				},
 			],
+			hideLinksControls: ["Sharkquila UI", "Color variables"],
 		};
 	},
 	computed: {
@@ -267,7 +268,7 @@ export default {
 	},
 	watch: {
 		pageContent: function (newVal, oldVal) {
-			console.log(`content switch: from ${oldVal} to ${newVal}`);
+			console.debug(`content switch: from ${oldVal} to ${newVal}`);
 			this.resetPage();
 		},
 	},

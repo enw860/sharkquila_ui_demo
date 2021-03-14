@@ -51,11 +51,13 @@
 			/>
 		</div>
 
-		<div class="Section" v-if="!!this.$slots['settings']">
+		<div class="Section" v-if="!!this.$slots['other']">
 			<div class="SectionLabel">
-				<a name="properties">Settings</a>
+				<a name="properties">{{
+					this.$slots["other"][0].data.attrs.title || "Properties"
+				}}</a>
 			</div>
-			<slot class="Settings" name="settings"></slot>
+			<slot name="other"></slot>
 		</div>
 
 		<div class="Section" v-if="props_tbl_data.length > 0">

@@ -9,13 +9,13 @@
 }
 
 .Layout-demo-block {
-	width: 26px;
-	height: 26px;
+	width: 32px;
+	height: 32px;
 	display: flex;
 	align-content: center;
 	justify-content: center;
 	margin: 1px;
-	padding: 5px;
+	padding: 9px;
 	line-height: 14px;
 	border: 1px solid @grey-100;
 	background-color: @grey-030;
@@ -27,12 +27,12 @@
 		<ControlDemoTemplate>
 			<div slot="overview">
 				<p>
-					This control is used to demonstarte the bootstrapt layout
-					classes.
+					This control is used to demonstarte the bootstrapt flex
+					layout classes.
 				</p>
 			</div>
 
-			<div slot="settings">
+			<div slot="other" title="Classes">
 				<l-table
 					:colSettings="PROPS_TBL_SETTINGS"
 					:tableData="props_tbl_data"
