@@ -125,7 +125,7 @@
 							color="#0f62fe"
 							href="https://github.com/enw860/sharkquila_ui_demo"
 						/>
-						<l-text value="- Version 1.2.0" color="#e0e0e0" />
+						<l-text value="- Version 1.3.0" color="#e0e0e0" />
 					</div>
 
 					<div
