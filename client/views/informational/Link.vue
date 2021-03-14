@@ -116,7 +116,6 @@
 </template>
 
 <script>
-import WidgitDemo from "../../components/WidgitDemo.vue";
 import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 
 export default {
@@ -128,7 +127,6 @@ export default {
 		},
 	],
 	components: {
-		WidgitDemo,
 		ControlDemoTemplate,
 	},
 	data: function () {

@@ -51,6 +51,15 @@
 			/>
 		</div>
 
+		<div class="Section" v-if="!!this.$slots['other']">
+			<div class="SectionLabel">
+				<a name="properties">{{
+					this.$slots["other"][0].data.attrs.title || "Properties"
+				}}</a>
+			</div>
+			<slot name="other"></slot>
+		</div>
+
 		<div class="Section" v-if="props_tbl_data.length > 0">
 			<div class="SectionLabel">
 				<a name="properties">Settings</a>
@@ -193,6 +202,11 @@ export default {
 
 		setControlDOMStructure: function (control, wrapOffset) {
 			this.codeStructure = `${control.$el.outerHTML}`;
+			this.wrapOffset = wrapOffset;
+		},
+
+		setControlDOMStructureManual: function (control, wrapOffset) {
+			this.codeStructure = `${control.outerHTML}`;
 			this.wrapOffset = wrapOffset;
 		},
 

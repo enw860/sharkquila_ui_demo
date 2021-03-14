@@ -1,6 +1,6 @@
 {
   "name": "sharkquila_ui_demo",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A powerful description of sharkquila_ui_toolkit",
   "main": "server/index.js",
   "scripts": {
@@ -51,7 +51,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "morgan": "^1.10.0",
-    "sharkquila_ui_toolkit": "^1.1.3"
+    "sharkquila_ui_toolkit": "^1.1.4"
   },
   "repository": {
     "type": "git",

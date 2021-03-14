@@ -91,8 +91,8 @@
 				<div
 					class="PageContentNav HLayout"
 					v-if="
-						pageContent.category !== 'Welcome to' &&
-						screenMode !== 'small'
+						hideLinksControls.indexOf(pageContent.displayName) <
+							0 && screenMode !== 'small'
 					"
 				>
 					<div
@@ -125,7 +125,7 @@
 							color="#0f62fe"
 							href="https://github.com/enw860/sharkquila_ui_demo"
 						/>
-						<l-text value="- Version 1.2.0" color="#e0e0e0" />
+						<l-text value="- Version 1.3.0" color="#e0e0e0" />
 					</div>
 
 					<div
@@ -172,6 +172,7 @@ import InformationalDC from "./informational";
 import InputsDC from "./inputs";
 import LayoutDC from "./layout";
 import WrapperDC from "./wrapper";
+import OtherDC from "./other";
 
 export default {
 	name: "PageContent",
@@ -179,13 +180,16 @@ export default {
 		Navigator,
 		MenuBar,
 		Welcome,
-		...[...InformationalDC, ...InputsDC, ...LayoutDC, ...WrapperDC].reduce(
-			(moduleObj, control) => {
-				moduleObj[control.name] = control;
-				return moduleObj;
-			},
-			{}
-		),
+		...[
+			...InformationalDC,
+			...InputsDC,
+			...LayoutDC,
+			...WrapperDC,
+			...OtherDC,
+		].reduce((moduleObj, control) => {
+			moduleObj[control.name] = control;
+			return moduleObj;
+		}, {}),
 	},
 	data: function () {
 		return {
@@ -211,6 +215,7 @@ export default {
 					href: "#properties",
 				},
 			],
+			hideLinksControls: ["Sharkquila UI", "Color variables"],
 		};
 	},
 	computed: {
@@ -263,7 +268,7 @@ export default {
 	},
 	watch: {
 		pageContent: function (newVal, oldVal) {
-			console.log(`content switch: from ${oldVal} to ${newVal}`);
+			console.debug(`content switch: from ${oldVal} to ${newVal}`);
 			this.resetPage();
 		},
 	},

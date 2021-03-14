@@ -68,7 +68,6 @@
 </template>
 
 <script>
-import WidgitDemo from "../../components/WidgitDemo.vue";
 import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 
 export default {
@@ -86,7 +85,6 @@ export default {
 		},
 	],
 	components: {
-		WidgitDemo,
 		ControlDemoTemplate,
 	},
 	data: function () {
@@ -114,7 +112,7 @@ export default {
 						steps="[{name, click, disabled}...]"\
 						size="${this.state.fontSize}"\
 						color="${this.state.fontColor}"\
-						separator="${this.state.separator.replace("<", "&lt").replace(">", "&gt")}"\
+						separator="${this.state.separator}"\
 						:fontWeight="${this.state.fontWeight}"\
 					/>\
 				</template>`;

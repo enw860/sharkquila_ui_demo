@@ -2,12 +2,14 @@ import Informational from "../views/informational";
 import Input from "../views/inputs";
 import Layout from "../views/layout";
 import Wrapper from "../views/wrapper";
+import Other from "../views/other";
 
 const ENTRIES = [
     ...initEntries(Informational, "Infomational"),
     ...initEntries(Input, "Input"),
     ...initEntries(Layout, "Layout"),
     ...initEntries(Wrapper, "Wrapper"),
+    ...initEntries(Other, "Other"),
 ];
 
 function initEntries(entries, category) {
