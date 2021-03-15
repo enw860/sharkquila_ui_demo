@@ -4,7 +4,7 @@
   "description": "A powerful description of sharkquila_ui_toolkit",
   "main": "server/index.js",
   "scripts": {
-    "start": "npm run build & npm run server",
+    "start": "npm run server",
     "build": "webpack --mode production",
     "server": "node ./server/index.js --mode production",
     "dev": "concurrently \"npm run devServer\" \"npm run devClient\"",
@@ -38,9 +38,10 @@
     "vue-loader": "^15.9.6",
     "vue-template-compiler": "^2.6.11",
     "vuex": "^3.6.0",
-    "webpack": "^4.0.0",
+    "webpack": "^4.46.0",
     "webpack-cli": "^4.3.1",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "sharkquila_ui_toolkit": "^1.1.6"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -50,8 +51,7 @@
     "ddos": "^0.2.1",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
-    "morgan": "^1.10.0",
-    "sharkquila_ui_toolkit": "^1.1.5"
+    "morgan": "^1.10.0"
   },
   "repository": {
     "type": "git",
