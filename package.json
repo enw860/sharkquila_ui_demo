@@ -4,7 +4,7 @@
   "description": "A powerful description of sharkquila_ui_toolkit",
   "main": "server/index.js",
   "scripts": {
-    "start": "npm run build & npm run server",
+    "start": "npm run server",
     "build": "webpack --mode production",
     "server": "node ./server/index.js --mode production",
     "dev": "concurrently \"npm run devServer\" \"npm run devClient\"",
