@@ -25,7 +25,7 @@
 			</l-avatar>
 
 			<div slot="control">
-				<l-text value="Controls" size="xxxlarge" />
+				<l-text value="Controls" size="xlarge" />
 
 				<l-label-wrapper value="Badge content:" size="small">
 					<l-input-number

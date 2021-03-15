@@ -26,7 +26,7 @@
 			</l-tooltip-wrapper>
 
 			<div slot="control">
-				<l-text value="Controls" size="xxxlarge" />
+				<l-text value="Controls" size="xlarge" />
 
 				<l-label-wrapper value="Tooltip text:" size="small">
 					<l-input-text

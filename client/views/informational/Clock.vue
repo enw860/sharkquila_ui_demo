@@ -20,7 +20,7 @@
 			/>
 
 			<div slot="control">
-				<l-text value="Controls" size="xxxlarge" />
+				<l-text value="Controls" size="xlarge" />
 
 				<l-label-wrapper value="Clock size:" size="small">
 					<l-input-single-select

@@ -20,7 +20,7 @@
 			/>
 
 			<div slot="control">
-				<l-text value="Controls" size="xxxlarge" />
+				<l-text value="Controls" size="xlarge" />
 
 				<l-label-wrapper value="Font weight:" size="small">
 					<l-input-single-select

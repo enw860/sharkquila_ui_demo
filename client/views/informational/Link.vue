@@ -28,7 +28,7 @@
 			/>
 
 			<div slot="control">
-				<l-text value="Controls" size="xxxlarge" />
+				<l-text value="Controls" size="xlarge" />
 
 				<l-label-wrapper value="Value:" size="small">
 					<l-input-text
