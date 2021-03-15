@@ -2,6 +2,8 @@
 
 This project is an in-depth description of npm package [sharkquila_ui_toolkit](https://github.com/enw860/sharkquila_ui_toolkit).
 
+You can initiate your own project with this [template](https://github.com/enw860/sharkquila_quick_startup) as a quick startup. 
+
 ## What can you expect from this project?
 
 You could use this site as a playground for seeing how the toolkits performed in run time environment, then you could copy and paste the code snippet in your app as a quick startup.
