@@ -22,7 +22,7 @@
 			/>
 
 			<div slot="control">
-				<l-text value="Controls" size="xxxlarge" />
+				<l-text value="Controls" size="xlarge" />
 
 				<l-label-wrapper value="Type:" size="small">
 					<l-input-single-select

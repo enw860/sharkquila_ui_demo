@@ -38,7 +38,7 @@
 					>
 						<l-text
 							value="<This is a demo block>"
-							size="xxxlarge"
+							size="xlarge"
 							color="#ffffff"
 						/>
 					</div>
@@ -46,7 +46,7 @@
 			</div>
 
 			<div slot="control">
-				<l-text value="Controls" size="xxxlarge" />
+				<l-text value="Controls" size="xlarge" />
 
 				<l-label-wrapper value="Direction:" size="small">
 					<l-input-single-select

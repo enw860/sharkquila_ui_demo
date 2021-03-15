@@ -29,14 +29,14 @@
 				>
 					<l-text
 						value="<Demo block>"
-						size="xxxlarge"
+						size="xlarge"
 						color="#000000"
 					/>
 				</div>
 			</l-dropdown-wrapper>
 
 			<div slot="control">
-				<l-text value="Controls" size="xxxlarge" />
+				<l-text value="Controls" size="xlarge" />
 
 				<l-label-wrapper value="Title:" size="small">
 					<l-input-text
