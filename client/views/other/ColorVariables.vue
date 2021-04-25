@@ -1,39 +1,3 @@
-<style lang="less">
-@import "../../style/theme.less";
-
-.ColorVariablesDemo {
-	.code {
-		background-color: @grey-010;
-		padding: 16px 32px;
-		border-left: 6px solid @grey-090;
-		font-weight: 500;
-	}
-}
-
-.ColorVariablesDemo .Color-wrapper {
-	flex-wrap: wrap;
-
-	.Color-block.regular {
-		max-width: 325px;
-		width: calc(50% - 4px);
-		margin: 0 2px 24px 2px;
-	}
-
-	.Color-block.small {
-		width: 100%;
-		margin-bottom: 24px;
-	}
-
-	.Color-option {
-		padding: 10px 16px;
-	}
-
-	.Hex-color {
-		width: 60px;
-	}
-}
-</style>
-
 <template>
 	<div class="ColorVariablesDemo">
 		<ControlDemoTemplate>

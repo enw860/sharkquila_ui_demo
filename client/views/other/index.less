@@ -1,0 +1,51 @@
+.ColorVariablesDemo {
+	.code {
+		background-color: @grey-010;
+		padding: 16px 32px;
+		border-left: 6px solid @grey-090;
+		font-weight: 500;
+	}
+}
+
+.ColorVariablesDemo .Color-wrapper {
+	flex-wrap: wrap;
+
+	.Color-block.regular {
+		max-width: 325px;
+		width: calc(50% - 4px);
+		margin: 0 2px 24px 2px;
+	}
+
+	.Color-block.small {
+		width: 100%;
+		margin-bottom: 24px;
+	}
+
+	.Color-option {
+		padding: 10px 16px;
+	}
+
+	.Hex-color {
+		width: 60px;
+	}
+}
+
+.LayoutClassDemo .content-wrapper {
+	width: 60%;
+	height: 50%;
+	position: relative;
+	border: 1px solid @grey-100;
+}
+
+.Layout-demo-block {
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	margin: 1px;
+	padding: 9px;
+	line-height: 14px;
+	border: 1px solid @grey-100;
+	background-color: @grey-030;
+}

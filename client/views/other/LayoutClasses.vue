@@ -1,27 +1,3 @@
-<style lang="less">
-@import "../../style/theme.less";
-
-.LayoutClassDemo .content-wrapper {
-	width: 60%;
-	height: 50%;
-	position: relative;
-	border: 1px solid @grey-100;
-}
-
-.Layout-demo-block {
-	width: 32px;
-	height: 32px;
-	display: flex;
-	align-content: center;
-	justify-content: center;
-	margin: 1px;
-	padding: 9px;
-	line-height: 14px;
-	border: 1px solid @grey-100;
-	background-color: @grey-030;
-}
-</style>
-
 <template>
 	<div class="LayoutClassDemo">
 		<ControlDemoTemplate>

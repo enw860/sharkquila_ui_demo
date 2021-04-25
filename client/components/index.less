@@ -1,0 +1,166 @@
+.Logo {
+	cursor: pointer;
+	height: 48px;
+	padding: 8px 16px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	width: 250px;
+
+	&:focus {
+		outline: 2px solid @primary-060;
+		outline-offset: -2px;
+	}
+
+	& > div {
+		color: @primary-060;
+		font-size: 32px;
+	}
+
+	& > span {
+		font-size: 24px;
+		line-height: 32px;
+		font-weight: 600;
+		color: @white;
+		margin-left: 8px;
+		margin-right: 8px;
+	}
+
+	& > .IconWrapper {
+		width: 32px;
+		height: 36px;
+		overflow: hidden;
+
+		> svg {
+			-webkit-transform: scaleX(-1);
+			transform: scaleX(-1);
+
+			&.tail {
+				margin-top: -16px;
+			}
+
+			&.head {
+				margin-top: -4px;
+				margin-left: -95px;
+			}
+		}
+	}
+}
+
+.MenuBar {
+	width: 100%;
+	height: 54px;
+	border-bottom: 1px solid @grey-020;
+	background-color: @grey-090;
+	position: sticky;
+	top: 0;
+	z-index: 1001;
+
+	> .Button {
+		color: @white !important;
+		&[role="button"]:active {
+			color: @white !important;
+		}
+	}
+
+	> .Logo {
+		margin-right: auto;
+	}
+
+	.Popup {
+		margin-right: 16px;
+
+		.SearchBar > .InputBox > .InputWrap > input {
+			padding-right: 30px;
+			z-index: 100;
+			background-color: transparent;
+			color: @white;
+		}
+
+		.SearchBar > .Button {
+			margin-left: -30px;
+			z-index: 50;
+			color: @white;
+		}
+
+		.popupContent {
+			width: 100%;
+		}
+	}
+}
+
+.NavigatorWrapper {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	border-right: 1px solid @white;
+}
+
+.SlideoutContent {
+	.Logo {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background-color: @grey-100;
+	}
+}
+
+.Nav-slide.NavigatorWrapper,
+.Nav-slide .SlideoutContent {
+	width: 250px;
+	overflow-y: auto;
+
+	background-color: @grey-100 !important;
+	color: @white !important;
+
+	.Navigator {
+		width: 250px;
+		.DropdownContent div.Button {
+			width: 100%;
+
+			&:not(:last-child) {
+				margin-bottom: 4px;
+			}
+
+			&.selected {
+				border-left: 4px solid @primary-060;
+			}
+		}
+	}
+}
+
+
+.widgitDemoControl {
+	width: 100%;
+
+	.widgit {
+		width: 60%;
+		margin-right: 16px;
+		position: relative;
+
+		> .Background-color-control {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+
+		> .Demo-box {
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+		}
+	}
+
+	.widgitControl {
+		width: 40%;
+
+		> * > * {
+			margin-left: 8px;
+			margin-right: 8px;
+		}
+
+		> * > *:not(:last-child) {
+			margin-bottom: 16px;
+		}
+	}
+}

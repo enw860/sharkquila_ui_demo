@@ -1,16 +1,3 @@
-<style lang="less">
-.Section {
-	&:not(:last-child) {
-		margin-bottom: 48px;
-	}
-}
-
-.SectionLabel {
-	font-size: 32px;
-	margin-bottom: 16px;
-}
-</style>
-
 <template>
 	<div>
 		<div class="Section" v-if="!!this.$slots['overview']">

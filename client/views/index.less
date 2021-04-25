@@ -1,0 +1,114 @@
+@import "./other/index.less";
+
+.PageContentWrapper {
+	min-height: calc(100vh - 54px);
+
+	&.small {
+		width: 100vw;
+	}
+	&.regular {
+		margin-left: 250px;
+		width: calc(100vw - 250px);
+	}
+}
+
+.PageContentHeader {
+	width: 100%;
+	background-color: @grey-100;
+	color: @white;
+	padding: 64px 10% 32px 10%;
+	border-bottom: 1px solid @grey-070;
+
+	> .category {
+		font-size: 24px;
+		letter-spacing: 1px;
+	}
+
+	> .displayName {
+		font-size: 64px;
+		letter-spacing: 2px;
+
+		&.small {
+			font-size: 48px;
+		}
+	}
+}
+
+.PageContentNav {
+	width: 100%;
+	padding: 0 calc(~"10% - 16px");
+	background-color: @grey-100;
+	position: sticky;
+	top: 54px;
+	z-index: 1000;
+
+	.NavBlock {
+		> .Button.active {
+			border-top: 2px solid @primary-060;
+			background-color: @grey-070;
+		}
+	}
+}
+
+.PageContentBody {
+	width: 100%;
+	padding: 32px 10%;
+}
+
+.PageContentFooter {
+	margin-top: auto;
+	width: 100%;
+	background-color: @grey-100;
+	color: @white;
+	padding: 24px 10%;
+
+	.HLayout,
+	.DisplayText {
+		margin-right: 8px;
+	}
+}
+
+.Section {
+	&:not(:last-child) {
+		margin-bottom: 48px;
+	}
+}
+
+.SectionLabel {
+	font-size: 32px;
+	margin-bottom: 16px;
+}
+
+
+.Welcome {
+	.Bullet-point:not(:last-child) {
+		margin-bottom: 48px;
+	}
+
+	.BP-title {
+		font-size: 32px;
+		line-height: 32px;
+		margin-bottom: 16px;
+	}
+
+	.BP-body p {
+		max-width: 800px;
+	}
+
+	.Feature-row,
+	.Feature-col {
+		display: flex;
+		align-items: flex-start;
+
+		strong {
+			font-weight: 500;
+			width: 90px;
+			min-width: 90px;
+			display: inline-block;
+		}
+	}
+
+	.Feature-col {
+		flex-direction: column;
+	}
+}
