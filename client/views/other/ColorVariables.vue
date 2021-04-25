@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import ControlDemoTemplate from "../ControlDemoTemplate.vue";
+import ControlDemoTemplate from "../main/ControlDemoTemplate.vue";
 
 const DANGER = [
 	{ name: "@danger-100", value: "#2d0709" },

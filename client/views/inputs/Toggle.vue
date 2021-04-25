@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import ControlDemoTemplate from "../ControlDemoTemplate.vue";
+import ControlDemoTemplate from "../main/ControlDemoTemplate.vue";
 
 export default {
 	name: "ToggleDemo",

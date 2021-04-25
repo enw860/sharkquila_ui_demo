@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import WidgitDemo from "../components/WidgitDemo.vue";
+import WidgitDemo from "../../components/WidgitDemo.vue";
 
 export default {
 	name: "ControlDemoTemplate",

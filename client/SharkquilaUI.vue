@@ -4,7 +4,7 @@
 
 <script>
 import store from "./store/store";
-import PageContent from "./views/PageContent";
+import PageContent from "./views/main/PageContent";
 
 export default {
 	name: "SharkquilaUI",

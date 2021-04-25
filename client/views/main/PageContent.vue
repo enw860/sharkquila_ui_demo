@@ -91,16 +91,16 @@
 </template>
 
 <script>
-import Navigator from "../components/Navigator.vue";
-import MenuBar from "../components/MenuBar.vue";
+import Navigator from "../../components/Navigator.vue";
+import MenuBar from "../../components/MenuBar.vue";
 
 import Welcome from "./Welcome.vue";
 
-import InformationalDC from "./informational";
-import InputsDC from "./inputs";
-import LayoutDC from "./layout";
-import WrapperDC from "./wrapper";
-import OtherDC from "./other";
+import InformationalDC from "../informational";
+import InputsDC from "../inputs";
+import LayoutDC from "../layout";
+import WrapperDC from "../wrapper";
+import OtherDC from "../other";
 
 export default {
 	name: "PageContent",
