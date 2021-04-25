@@ -1,7 +1,7 @@
 .ColorVariablesDemo {
 	.code {
 		background-color: @grey-010;
-		padding: 16px 32px;
+		padding: @spacing-05 @spacing-07;
 		border-left: 6px solid @grey-090;
 		font-weight: 500;
 	}
@@ -13,20 +13,20 @@
 	.Color-block.regular {
 		max-width: 325px;
 		width: calc(50% - 4px);
-		margin: 0 2px 24px 2px;
+		margin: 0 2px @spacing-06 2px;
 	}
 
 	.Color-block.small {
 		width: 100%;
-		margin-bottom: 24px;
+		margin-bottom: @spacing-06;
 	}
 
 	.Color-option {
-		padding: 10px 16px;
+		padding: @spacing-03 @spacing-05;
 	}
 
 	.Hex-color {
-		width: 60px;
+		width: 70px;
 	}
 }
 
@@ -38,13 +38,13 @@
 }
 
 .Layout-demo-block {
-	width: 32px;
-	height: 32px;
+	width: @spacing-07;
+	height: @spacing-07;
 	display: flex;
 	align-content: center;
 	justify-content: center;
 	margin: 1px;
-	padding: 9px;
+	padding: @spacing-03;
 	line-height: 14px;
 	border: 1px solid @grey-100;
 	background-color: @grey-030;

@@ -16,11 +16,11 @@
 	width: 100%;
 	background-color: @grey-100;
 	color: @white;
-	padding: 64px 10% 32px 10%;
+	padding: 64px 10% @spacing-07 10%;
 	border-bottom: 1px solid @grey-070;
 
 	> .category {
-		font-size: 24px;
+		font-size: @spacing-06;
 		letter-spacing: 1px;
 	}
 
@@ -36,7 +36,7 @@
 
 .PageContentNav {
 	width: 100%;
-	padding: 0 calc(~"10% - 16px");
+	padding: 0 calc(~"10% - @spacing-05");
 	background-color: @grey-100;
 	position: sticky;
 	top: 54px;
@@ -52,7 +52,7 @@
 
 .PageContentBody {
 	width: 100%;
-	padding: 32px 10%;
+	padding: @spacing-07 10%;
 }
 
 .PageContentFooter {
@@ -60,11 +60,11 @@
 	width: 100%;
 	background-color: @grey-100;
 	color: @white;
-	padding: 24px 10%;
+	padding: @spacing-06 10%;
 
 	.HLayout,
 	.DisplayText {
-		margin-right: 8px;
+		margin-right: @spacing-03;
 	}
 }
 
@@ -75,8 +75,8 @@
 }
 
 .SectionLabel {
-	font-size: 32px;
-	margin-bottom: 16px;
+	font-size: @spacing-07;
+	margin-bottom: @spacing-05;
 }
 
 
@@ -86,9 +86,9 @@
 	}
 
 	.BP-title {
-		font-size: 32px;
-		line-height: 32px;
-		margin-bottom: 16px;
+		font-size: @spacing-07;
+		line-height: @spacing-07;
+		margin-bottom: @spacing-05;
 	}
 
 	.BP-body p {
