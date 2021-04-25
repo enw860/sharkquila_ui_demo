@@ -1,24 +1,28 @@
+<style lang="less">
+.slider-box {
+	width: 80%;
+}
+</style>
+
 <template>
-	<div class="RangerDemo">
+	<div class="SliderDemo">
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>
-					Ranger is an input control that let user choose their when
+					Slider is an input control that let user choose their when
 					slide the slider.
 				</p>
 			</div>
 
-			<l-toggle
-				slot="widgit"
-				ref="control"
-				:state="true"
-				:size="state.size"
-				:toggleStyle="state.style"
-				:onLabel="state.onLabel"
-				:offLabel="state.offLabel"
-				:labelType="state.labelType"
-				:disabled="state.disabled"
-			/>
+			<div class="slider-box" slot="widgit">
+				<l-input-slider
+					ref="control"
+					:size="state.size"
+					:type="state.type"
+					:sliderStyle="state.sliderStyle"
+					:disabled="state.disabled"
+				/>
+			</div>
 
 			<div slot="control">
 				<l-text value="Controls" size="xlarge" />
@@ -35,7 +39,7 @@
 				<l-label-wrapper value="Style:" size="small">
 					<l-input-single-select
 						slot="labelContent"
-						:value="state.style"
+						:value="state.sliderStyle"
 						:options="STYLES"
 						@change="updateStyle"
 					/>
@@ -45,7 +49,7 @@
 					<l-input-single-select
 						slot="labelContent"
 						:value="state.type"
-						:options="RANGETYPE"
+						:options="TYPES"
 						@change="updateType"
 					/>
 				</l-label-wrapper>
@@ -75,11 +79,11 @@
 import ControlDemoTemplate from "../ControlDemoTemplate.vue";
 
 export default {
-	name: "RangerDemo",
-	displayName: "Ranger",
+	name: "SliderDemo",
+	displayName: "Slider",
 	controlMapping: [
 		{
-			keywords: ["ranger", "input", "slider", "l-ranger"],
+			keywords: ["slider", "input", "l-input-slider"],
 		},
 	],
 	components: {
@@ -89,11 +93,11 @@ export default {
 		return {
 			SIZES: [],
 			STYLES: [],
-			RANGETYPE: [],
+			TYPES: [],
 			state: {
-				style: "danger",
+				sliderStyle: "danger",
 				size: "default",
-				rangeType: "number",
+				type: "ranger",
 				disabled: false,
 			},
 		};
@@ -110,10 +114,10 @@ export default {
 			this.state.size = event.target.value;
 		},
 		updateStyle: function (event) {
-			this.state.style = event.target.value;
+			this.state.sliderStyle = event.target.value;
 		},
 		updateType: function (event) {
-			this.state.rangeType = event.target.value;
+			this.state.type = event.target.value;
 		},
 		updateDisabled: function (event) {
 			this.state.disabled = !event.target.checked;
@@ -121,6 +125,14 @@ export default {
 	},
 	mounted: function () {
 		this.$refs.DT.updateControl(this.$refs.control, 2);
+
+		const { props } = this.$refs.control.$options || {};
+		if (props) {
+			const { size, sliderStyle, type } = props;
+			this.SIZES = (size || {}).options || [];
+			this.STYLES = (sliderStyle || {}).options || [];
+			this.TYPES = (type || {}).options || [];
+		}
 	},
 	updated: function () {
 		this.$refs.DT.setControlDOMStructure(this.$refs.control, 2);
