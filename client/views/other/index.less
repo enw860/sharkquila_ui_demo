@@ -1,3 +1,25 @@
+@color-families: ~"danger", ~"info", ~"primary", ~"success", ~"grey";
+.create-color-families(length(@color-families));
+.create-color-families(@i) when (@i > 0) {
+	.create-color-family(@color-prefix) {
+		.create-color-class(@j) when (@j > 0) {
+			@color-code: extract(@color-options, @j);
+			.@{color-prefix}-@{color-code} {
+				@temp: "@{color-prefix}-@{color-code}";
+				background-color: @@temp;
+			}
+			.create-color-class(@j - 1);
+		}
+		
+		@color-options: ~"100", ~"090", ~"080", ~"070", ~"060", ~"050", ~"040", ~"030", ~"020", ~"010";
+		.create-color-class(length(@color-options));
+	}
+
+	@color-family: extract(@color-families, @i);
+	.create-color-family(@color-family);
+	.create-color-families(@i - 1);
+}
+
 .ColorVariablesDemo {
 	.code {
 		background-color: @grey-010;
