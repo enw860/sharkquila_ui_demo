@@ -5,7 +5,8 @@
 				<p>
 					This control is used to demonstarte the bootstrapt layout
 					classes. You can copy and paste following line to your less
-					file to enable the theme variable.
+					file to enable the theme variable (you can also change the
+					pre-defined colors).
 				</p>
 				<p class="code">
 					@import
