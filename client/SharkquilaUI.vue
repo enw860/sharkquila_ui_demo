@@ -4,7 +4,7 @@
 
 <script>
 import store from "./store/store";
-import PageContent from "./views/PageContent";
+import PageContent from "./views/main/PageContent";
 
 export default {
 	name: "SharkquilaUI",
@@ -35,7 +35,7 @@ export default {
 			store.dispatch("main/switchScreenMode", newVal);
 		},
 	},
-	mounted() {
+	mounted: function () {
 		window.addEventListener("resize", this.onResize);
 		this.onResize();
 	},
