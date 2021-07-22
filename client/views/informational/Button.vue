@@ -23,7 +23,7 @@
 				:iconPosition="state.iconPosition"
 				:btnStyle="state.btnStyle"
 				:size="state.btnSize"
-				:disabled="!state.isActive"
+				:disabled="state.disabled"
 				@click="btnOnClick"
 			/>
 
@@ -90,8 +90,8 @@
 						onLabel="True"
 						offLabel="False"
 						toggleStyle="success"
-						:state="!state.isActive"
-						@toggle="updateActive"
+						:state="state.disabled"
+						@toggle="updateDisabled"
 					/>
 				</l-label-wrapper>
 			</div>
@@ -131,7 +131,7 @@ export default {
 				btnStyle: "primary",
 				btnSize: "default",
 				onClickFunctionBody: `alert("Response to click action on button");`,
-				isActive: true,
+				disabled: false,
 			},
 		};
 	},
@@ -170,8 +170,8 @@ export default {
 		updateFunctionBody: function (event) {
 			this.state.onClickFunctionBody = event.target.value;
 		},
-		updateActive: function (event) {
-			this.state.isActive = !event.target.checked;
+		updateDisabled: function (event) {
+			this.state.disabled = event.target.checked;
 		},
 		btnOnClick: function (event) {
 			(() => eval(this.state.onClickFunctionBody))(event);
