@@ -22,6 +22,7 @@
 					:sliderStyle="state.sliderStyle"
 					:disabled="state.disabled"
 					:mute="state.mute"
+					@change="onSliderValueChange"
 				/>
 			</div>
 
@@ -52,6 +53,15 @@
 						:value="state.type"
 						:options="TYPES"
 						@change="updateType"
+					/>
+				</l-label-wrapper>
+
+				<l-label-wrapper value="On value change:" size="small">
+					<l-input-textarea
+						slot="labelContent"
+						placeholder="function (event) { <body> }"
+						:value="state.onChangeFunctionBody"
+						@blur="updateFunctionBody"
 					/>
 				</l-label-wrapper>
 
@@ -112,6 +122,7 @@ export default {
 				type: "ranger",
 				disabled: false,
 				mute: false,
+				onChangeFunctionBody: `console.log("Slider value has been changed: ", value);`,
 			},
 		};
 	},
@@ -144,6 +155,12 @@ export default {
 		},
 		updateMute: function (event) {
 			this.state.mute = event.target.checked;
+		},
+		updateFunctionBody: function (event) {
+			this.state.onChangeFunctionBody = event.target.value;
+		},
+		onSliderValueChange: function (event, value) {
+			(() => eval(this.state.onChangeFunctionBody))(event, value);
 		},
 	},
 	mounted: function () {
