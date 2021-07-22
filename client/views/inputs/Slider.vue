@@ -136,6 +136,7 @@ export default {
 						:sliderStyle="${this.state.sliderStyle}"\
 						:disabled="${this.state.disabled}"\
 						:mute="${this.state.mute}"\
+						@change="{function}"\
 					/>\
 				</template>`;
 		},
