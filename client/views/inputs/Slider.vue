@@ -9,8 +9,8 @@
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>
-					Slider is an input control that let user choose their when
-					slide the slider.
+					Slider is an input control that allow user to choose a
+					scalable value by sliding the slider thumb.
 				</p>
 			</div>
 
@@ -21,6 +21,7 @@
 					:type="state.type"
 					:sliderStyle="state.sliderStyle"
 					:disabled="state.disabled"
+					:mute="state.mute"
 				/>
 			</div>
 
@@ -51,6 +52,17 @@
 						:value="state.type"
 						:options="TYPES"
 						@change="updateType"
+					/>
+				</l-label-wrapper>
+
+				<l-label-wrapper value="Mute slider thumb:" size="small">
+					<l-toggle
+						slot="labelContent"
+						:state="state.mute"
+						onLabel="Active"
+						offLabel="Mute"
+						toggleStyle="success"
+						@toggle="updateMute"
 					/>
 				</l-label-wrapper>
 
@@ -99,6 +111,7 @@ export default {
 				size: "default",
 				type: "ranger",
 				disabled: false,
+				mute: false,
 			},
 		};
 	},
@@ -106,6 +119,13 @@ export default {
 		codeBody: function () {
 			return `\
 				<template>\
+					<l-input-slider\
+						:size="${this.state.size}"\
+						:type="${this.state.type}"\
+						:sliderStyle="${this.state.sliderStyle}"\
+						:disabled="${this.state.disabled}"\
+						:mute="${this.state.mute}"\
+					/>\
 				</template>`;
 		},
 	},
@@ -121,6 +141,9 @@ export default {
 		},
 		updateDisabled: function (event) {
 			this.state.disabled = !event.target.checked;
+		},
+		updateMute: function (event) {
+			this.state.mute = event.target.checked;
 		},
 	},
 	mounted: function () {

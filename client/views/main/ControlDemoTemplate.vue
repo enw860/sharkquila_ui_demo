@@ -212,8 +212,11 @@ export default {
 				const settings = props[field];
 				return {
 					prop: `${!!settings.required ? "*" : ""}${field}`,
-					type: typeof settings.type(),
-					default: settings.default || "",
+					type: settings.type.name,
+					default:
+						settings.type.name === "Array"
+							? settings.default()
+							: `${settings.default}`,
 					options: (settings.options || []).join(", "),
 					description: settings.description || "",
 				};

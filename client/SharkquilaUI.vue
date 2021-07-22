@@ -35,7 +35,7 @@ export default {
 			store.dispatch("main/switchScreenMode", newVal);
 		},
 	},
-	mounted() {
+	mounted: function () {
 		window.addEventListener("resize", this.onResize);
 		this.onResize();
 	},
