@@ -42,9 +42,9 @@
 				<l-label-wrapper value="Disabled:" size="small">
 					<l-toggle
 						slot="labelContent"
-						:state="!state.disabled"
-						onLabel="Active"
-						offLabel="Disabled"
+						:state="state.disabled"
+						onLabel="True"
+						offLabel="False"
 						toggleStyle="success"
 						@toggle="updateDisabled"
 					/>
@@ -105,7 +105,7 @@ export default {
 			this.state.multipleFiles = event.target.checked;
 		},
 		updateDisabled: function (event) {
-			this.state.disabled = !event.target.checked;
+			this.state.disabled = event.target.checked;
 		},
 	},
 	mounted: function () {

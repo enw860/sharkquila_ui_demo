@@ -84,13 +84,13 @@
 					/>
 				</l-label-wrapper>
 
-				<l-label-wrapper value="Disable:" size="small">
+				<l-label-wrapper value="Disabled:" size="small">
 					<l-toggle
 						slot="labelContent"
-						onLabel="Active"
-						offLabel="Disabled"
+						onLabel="True"
+						offLabel="False"
 						toggleStyle="success"
-						:state="state.isActive"
+						:state="!state.isActive"
 						@toggle="updateActive"
 					/>
 				</l-label-wrapper>
@@ -171,7 +171,7 @@ export default {
 			this.state.onClickFunctionBody = event.target.value;
 		},
 		updateActive: function (event) {
-			this.state.isActive = event.target.checked;
+			this.state.isActive = !event.target.checked;
 		},
 		btnOnClick: function (event) {
 			(() => eval(this.state.onClickFunctionBody))(event);
