@@ -23,7 +23,7 @@
 				:iconPosition="state.iconPosition"
 				:btnStyle="state.btnStyle"
 				:size="state.btnSize"
-				:disabled="!state.isActive"
+				:disabled="state.disabled"
 				@click="btnOnClick"
 			/>
 
@@ -84,14 +84,14 @@
 					/>
 				</l-label-wrapper>
 
-				<l-label-wrapper value="Disable:" size="small">
+				<l-label-wrapper value="Disabled:" size="small">
 					<l-toggle
 						slot="labelContent"
-						onLabel="Active"
-						offLabel="Disabled"
+						onLabel="True"
+						offLabel="False"
 						toggleStyle="success"
-						:state="state.isActive"
-						@toggle="updateActive"
+						:state="state.disabled"
+						@toggle="updateDisabled"
 					/>
 				</l-label-wrapper>
 			</div>
@@ -106,7 +106,7 @@
 </template>
 
 <script>
-import ControlDemoTemplate from "../ControlDemoTemplate.vue";
+import ControlDemoTemplate from "../main/ControlDemoTemplate.vue";
 
 export default {
 	name: "ButtonDemo",
@@ -131,7 +131,7 @@ export default {
 				btnStyle: "primary",
 				btnSize: "default",
 				onClickFunctionBody: `alert("Response to click action on button");`,
-				isActive: true,
+				disabled: false,
 			},
 		};
 	},
@@ -170,8 +170,8 @@ export default {
 		updateFunctionBody: function (event) {
 			this.state.onClickFunctionBody = event.target.value;
 		},
-		updateActive: function (event) {
-			this.state.isActive = event.target.checked;
+		updateDisabled: function (event) {
+			this.state.disabled = event.target.checked;
 		},
 		btnOnClick: function (event) {
 			(() => eval(this.state.onClickFunctionBody))(event);

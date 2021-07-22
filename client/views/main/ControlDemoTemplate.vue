@@ -1,16 +1,3 @@
-<style lang="less">
-.Section {
-	&:not(:last-child) {
-		margin-bottom: 48px;
-	}
-}
-
-.SectionLabel {
-	font-size: 32px;
-	margin-bottom: 16px;
-}
-</style>
-
 <template>
 	<div>
 		<div class="Section" v-if="!!this.$slots['overview']">
@@ -103,7 +90,7 @@
 </template>
 
 <script>
-import WidgitDemo from "../components/WidgitDemo.vue";
+import WidgitDemo from "../../components/WidgitDemo.vue";
 
 export default {
 	name: "ControlDemoTemplate",
@@ -225,8 +212,11 @@ export default {
 				const settings = props[field];
 				return {
 					prop: `${!!settings.required ? "*" : ""}${field}`,
-					type: typeof settings.type(),
-					default: settings.default || "",
+					type: settings.type.name,
+					default:
+						settings.type.name === "Array"
+							? settings.default()
+							: `${settings.default}`,
 					options: (settings.options || []).join(", "),
 					description: settings.description || "",
 				};

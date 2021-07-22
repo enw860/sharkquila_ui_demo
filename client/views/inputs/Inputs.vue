@@ -70,9 +70,9 @@
 				<l-label-wrapper value="Disabled:" size="small">
 					<l-toggle
 						slot="labelContent"
-						:state="!state.disabled"
-						onLabel="Active"
-						offLabel="Disabled"
+						:state="state.disabled"
+						onLabel="True"
+						offLabel="False"
 						toggleStyle="success"
 						@toggle="updateDisabled"
 					/>
@@ -90,7 +90,7 @@
 
 <script>
 import { normalizeInput } from "../../utils/utilities";
-import ControlDemoTemplate from "../ControlDemoTemplate.vue";
+import ControlDemoTemplate from "../main/ControlDemoTemplate.vue";
 
 export default {
 	name: "InputsDemo",
@@ -181,7 +181,7 @@ export default {
 			this.state.error = event.target.value;
 		},
 		updateDisabled: function (event) {
-			this.state.disabled = !event.target.checked;
+			this.state.disabled = event.target.checked;
 		},
 		updateControlSettings: function () {
 			this.$refs.DT.updateControl(this.$refs.control, 2);
