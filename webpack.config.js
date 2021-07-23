@@ -37,9 +37,9 @@ module.exports = {
       meta: {
         'description': { name: 'description', contnet: DESCRIPTION },
         "og:type": { property: 'og:type', content: 'website' },
-        'og:title': { property: 'og:title', content: TITLE },
-        'og:description': { property: 'og:description', content: DESCRIPTION },
-        "og:image": { property: "og:image", content: "https://lh3.googleusercontent.com/pw/AM-JKLUT4ncKKKE8ik-uNhT9otAKUosFa58RFW3tIjXBZY_ShzASzvO5_3c9qNsuxrPW2vZZlC0Qv8op2p9YBsC39bK0vNMIAeLgmx0Z73A43u_dufSQjvjojjYjfcLd5RcZkY4BSwtw-PGJIP9QoX0VxTzl=w1286-h732-no?authuser=0" },
+        'og:title': { name: "title", property: 'og:title', content: TITLE },
+        'og:description': { name: "description", property: 'og:description', content: DESCRIPTION },
+        "og:image": { name: "image", property: "og:image", content: "https://lh3.googleusercontent.com/pw/AM-JKLUT4ncKKKE8ik-uNhT9otAKUosFa58RFW3tIjXBZY_ShzASzvO5_3c9qNsuxrPW2vZZlC0Qv8op2p9YBsC39bK0vNMIAeLgmx0Z73A43u_dufSQjvjojjYjfcLd5RcZkY4BSwtw-PGJIP9QoX0VxTzl=w1286-h732-no?authuser=0" },
         "author": { name: "author", content: "Lionel Wu" }
       }
     })
