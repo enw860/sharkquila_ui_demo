@@ -8,6 +8,9 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 const outputDirectory = "dist";
 
+const TITLE = "Sharkquila UI";
+const DESCRIPTION = "A runtime implementation of sharkquila_ui_toolkit (A Vue based UI toolkit set)."
+
 module.exports = {
   entry: {
     "sharkquila": "./client/index.js",
@@ -26,11 +29,19 @@ module.exports = {
       filename: "[name].bundle.min.css"
     }),
     new HtmlWebpackPlugin({
-      title: 'Sharkquila UI',
+      title: TITLE,
       favicon: "./public/favicon.ico",
       template: "./public/index.html",
       filename: "index.html",
-      chunks: ["sharkquila"]
+      chunks: ["sharkquila"],
+      meta: {
+        'description': { name: 'description', contnet: DESCRIPTION },
+        "og:type": { property: 'og:type', content: 'website' },
+        'og:title': { property: 'og:title', content: TITLE },
+        'og:description': { property: 'og:description', content: DESCRIPTION },
+        "og:image": { property: "og:image", content: "https://lh3.googleusercontent.com/pw/AM-JKLUT4ncKKKE8ik-uNhT9otAKUosFa58RFW3tIjXBZY_ShzASzvO5_3c9qNsuxrPW2vZZlC0Qv8op2p9YBsC39bK0vNMIAeLgmx0Z73A43u_dufSQjvjojjYjfcLd5RcZkY4BSwtw-PGJIP9QoX0VxTzl=w1286-h732-no?authuser=0" },
+        "author": { name: "author", content: "Lionel Wu" }
+      }
     })
   ],
   optimization: {
