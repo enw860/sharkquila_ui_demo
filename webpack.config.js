@@ -10,6 +10,7 @@ const outputDirectory = "dist";
 
 const TITLE = "Sharkquila UI";
 const DESCRIPTION = "A runtime implementation of sharkquila_ui_toolkit (A Vue based UI toolkit set)."
+const META_IMG = "https://lh3.googleusercontent.com/pw/AM-JKLUT4ncKKKE8ik-uNhT9otAKUosFa58RFW3tIjXBZY_ShzASzvO5_3c9qNsuxrPW2vZZlC0Qv8op2p9YBsC39bK0vNMIAeLgmx0Z73A43u_dufSQjvjojjYjfcLd5RcZkY4BSwtw-PGJIP9QoX0VxTzl=w1286-h732-no?authuser=0";
 
 module.exports = {
   entry: {
@@ -35,12 +36,16 @@ module.exports = {
       filename: "index.html",
       chunks: ["sharkquila"],
       meta: {
+        "author": { name: "author", content: "Lionel Wu" },
         'description': { name: 'description', contnet: DESCRIPTION },
-        "og:type": { property: 'og:type', content: 'website' },
-        'og:title': { name: "title", property: 'og:title', content: TITLE },
-        'og:description': { name: "description", property: 'og:description', content: DESCRIPTION },
-        "og:image": { name: "image", property: "og:image", content: "https://lh3.googleusercontent.com/pw/AM-JKLUT4ncKKKE8ik-uNhT9otAKUosFa58RFW3tIjXBZY_ShzASzvO5_3c9qNsuxrPW2vZZlC0Qv8op2p9YBsC39bK0vNMIAeLgmx0Z73A43u_dufSQjvjojjYjfcLd5RcZkY4BSwtw-PGJIP9QoX0VxTzl=w1286-h732-no?authuser=0" },
-        "author": { name: "author", content: "Lionel Wu" }
+        "og:type": { prefix: "og: http://ogp.me/ns#", property: 'og:type', content: 'website' },
+        'og:title': { prefix: "og: http://ogp.me/ns#", property: 'og:title', name: "title", content: TITLE, },
+        'og:description': { prefix: "og: http://ogp.me/ns#", property: 'og:description', name: "description", content: DESCRIPTION, },
+        "og:image": { prefix: "og: http://ogp.me/ns#", property: "og:image", name: "image", content: META_IMG },
+        "twitter:card": { name: "twitter:card", content: "summary_large_image" },
+        "twitter:title": { name: "twitter:title", content: TITLE },
+        "twitter:description": { name: "twitter:description", content: DESCRIPTION },
+        "twitter:image": { name: "twitter:image", content: META_IMG }
       }
     })
   ],
