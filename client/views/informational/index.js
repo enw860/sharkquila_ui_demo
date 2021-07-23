@@ -6,7 +6,8 @@ import ClockDemo from "./Clock";
 import DisplayTextDemo from "./DisplayText";
 import HTMLTextLoaderDemo from "./HTMLTextLoader";
 import LinkDemo from "./Link";
+import StopwatchDemo from "./Stopwatch";
 
 export default [
-    AvatarDemo, BadgeDemo, BreadCrumbsDemo, ButtonDemo, ClockDemo, DisplayTextDemo, HTMLTextLoaderDemo, LinkDemo
+    AvatarDemo, BadgeDemo, BreadCrumbsDemo, ButtonDemo, ClockDemo, DisplayTextDemo, HTMLTextLoaderDemo, LinkDemo, StopwatchDemo
 ]
