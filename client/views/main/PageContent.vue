@@ -80,7 +80,7 @@
 							<l-link
 								value="MIT License."
 								color="#0f62fe"
-								href="https://github.com/enw860/sharkquila_ui_demo/LICENSE"
+								href="https://github.com/enw860/sharkquila_ui_demo/blob/main/LICENSE"
 							/>
 						</div>
 					</div>
