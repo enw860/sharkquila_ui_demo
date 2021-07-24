@@ -15,7 +15,7 @@
 				:value="state.value"
 				:timeFormat="state.timeFormat"
 				:size="state.fontSize"
-				:fontWeight="state.fontWeight"
+				:fontWeight="parseInt(state.fontWeight)"
 				:color="state.color"
 				:hideCtls="state.hideCtls"
 				:alerts="state.alerts"

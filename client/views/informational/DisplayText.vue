@@ -37,10 +37,14 @@
 				</l-label-wrapper>
 
 				<l-label-wrapper value="Font weight:" size="small">
-					<l-input-single-select
+					<l-input-slider
 						slot="labelContent"
+						type="select"
+						:min="FONT_WEIGHT[0].value"
+						:max="FONT_WEIGHT[FONT_WEIGHT.length - 1].value"
 						:value="state.fontWeight"
 						:options="FONT_WEIGHT"
+						sliderStyle="info"
 						@change="updateFontWeight"
 					/>
 				</l-label-wrapper>
@@ -88,11 +92,16 @@ export default {
 	data: function () {
 		return {
 			FONT_SIZES: [],
-			FONT_WEIGHT: ["400", "600", "800"],
+			FONT_WEIGHT: [
+				{ value: 200 },
+				{ value: 400 },
+				{ value: 600 },
+				{ value: 800 },
+			],
 			state: {
 				value: "Some text",
 				fontSize: "default",
-				fontWeight: "400",
+				fontWeight: 400,
 				color: "#000",
 			},
 		};
@@ -117,8 +126,9 @@ export default {
 		updateFontSize: function (event) {
 			this.state.fontSize = event.target.value;
 		},
-		updateFontWeight: function (event) {
-			this.state.fontWeight = event.target.value;
+		updateFontWeight: function (event, option) {
+			this.state.fontWeight =
+				typeof option === "object" ? option.value : option;
 		},
 		updateFontColor: function (event) {
 			this.state.color = event.target.value;
