@@ -59,7 +59,7 @@
 				<l-label-wrapper value="On value change:" size="small">
 					<l-input-textarea
 						slot="labelContent"
-						placeholder="function (event) { <body> }"
+						placeholder="function (option) { <body> }"
 						:value="state.onChangeFunctionBody"
 						@blur="updateFunctionBody"
 					/>
@@ -122,7 +122,7 @@ export default {
 				type: "ranger",
 				disabled: false,
 				mute: false,
-				onChangeFunctionBody: `console.log("Slider value has been changed: ", value);`,
+				onChangeFunctionBody: `console.log("Slider value has been changed: ", option);`,
 			},
 		};
 	},
@@ -157,11 +157,12 @@ export default {
 		updateMute: function (event) {
 			this.state.mute = event.target.checked;
 		},
-		updateFunctionBody: function (event) {
-			this.state.onChangeFunctionBody = event.target.value;
+		updateFunctionBody: function (option) {
+			this.state.onChangeFunctionBody =
+				typeof option === "object" ? option.value : option;
 		},
-		onSliderValueChange: function (event, value) {
-			(() => eval(this.state.onChangeFunctionBody))(event, value);
+		onSliderValueChange: function (option) {
+			(() => eval(this.state.onChangeFunctionBody))(option);
 		},
 	},
 	mounted: function () {

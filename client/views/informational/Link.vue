@@ -181,7 +181,7 @@ export default {
 		updateFontSize: function (event) {
 			this.state.fontSize = event.target.value;
 		},
-		updateFontWeight: function (event, option) {
+		updateFontWeight: function (option) {
 			this.state.fontWeight =
 				typeof option === "object" ? option.value : option;
 		},
