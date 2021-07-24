@@ -1,5 +1,5 @@
 <template>
-	<div class="StopwatchDemo">
+	<div class="TimerDemo">
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>
@@ -8,7 +8,7 @@
 				</p>
 			</div>
 
-			<l-stopwatch slot="widgit" ref="control" :size="state.fontSize" />
+			<l-timer slot="widgit" ref="control" :size="state.fontSize" />
 
 			<div slot="control">
 				<l-text value="Controls" size="xlarge" />
@@ -36,11 +36,11 @@
 import ControlDemoTemplate from "../main/ControlDemoTemplate.vue";
 
 export default {
-	name: "StopwatchDemo",
-	displayName: "Stopwatch",
+	name: "TimerDemo",
+	displayName: "Timer",
 	controlMapping: [
 		{
-			keywords: ["stopwatch", "stop", "watch", "l-stopwatch", "timer"],
+			keywords: ["timer", "count down", "l-timer"],
 		},
 	],
 	components: {
@@ -58,7 +58,7 @@ export default {
 		codeBody: function () {
 			return `\
 				<template>\
-					<l-stopwatch\
+					<l-timer\
 					/>\
 				</template>`;
 		},
