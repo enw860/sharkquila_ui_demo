@@ -73,6 +73,7 @@
 
 <script>
 import ControlDemoTemplate from "../main/ControlDemoTemplate.vue";
+import eventBus from "../../utils/eventBus";
 
 export default {
 	name: "BreadCrumbsDemo",
@@ -102,9 +103,30 @@ export default {
 			],
 			state: {
 				steps: [
-					{ name: "Link1", click: () => alert("Link1") },
-					{ name: "Link2", click: () => alert("Link2") },
-					{ name: "Link3", click: () => alert("Link3") },
+					{
+						name: "Link1",
+						click: () =>
+							eventBus.$emit("postMessage", {
+								value: "Trigger action binded to Link1",
+								messageStyle: "success",
+							}),
+					},
+					{
+						name: "Link2",
+						click: () =>
+							eventBus.$emit("postMessage", {
+								value: "Trigger action binded to Link2",
+								messageStyle: "success",
+							}),
+					},
+					{
+						name: "Link3",
+						click: () =>
+							eventBus.$emit("postMessage", {
+								value: "Trigger action binded to Link3",
+								messageStyle: "success",
+							}),
+					},
 				],
 				separator: "/",
 				fontSize: "default",
