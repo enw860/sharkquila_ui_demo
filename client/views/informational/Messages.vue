@@ -2,15 +2,17 @@
 	<div class="MessageDemo">
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>This control is used to display a piece of short message.</p>
+				<p>
+					This control is used to display a stack of short messages.
+				</p>
 			</div>
 
-			<l-message
+			<l-messages
 				slot="widgit"
 				ref="control"
-				:value="state.value"
-				:size="state.fontSize"
-				:messageStyle="state.messageStyle"
+				messageStyle="info"
+				maxWidth="75%"
+				@change="refreshDOM"
 			/>
 
 			<div slot="control">
@@ -25,15 +27,6 @@
 					/>
 				</l-label-wrapper>
 
-				<l-label-wrapper value="Font size:" size="small">
-					<l-input-single-select
-						slot="labelContent"
-						:value="state.fontSize"
-						:options="FONT_SIZES"
-						@change="updateFontSize"
-					/>
-				</l-label-wrapper>
-
 				<l-label-wrapper value="Message style:" size="small">
 					<l-input-single-select
 						slot="labelContent"
@@ -42,6 +35,29 @@
 						@change="updateMessageStyle"
 					/>
 				</l-label-wrapper>
+
+				<l-label-wrapper value="Timeout(s):" size="small">
+					<l-input-number
+						slot="labelContent"
+						:value="state.timeout"
+						@blur="updateTimeout"
+						placeholder="Please enter a positive number"
+					/>
+				</l-label-wrapper>
+
+				<div class="HLayout flow-between">
+					<l-button
+						value="Clear"
+						btnStyle="danger"
+						@click="clearMessage"
+					/>
+
+					<l-button
+						value="Post"
+						btnStyle="primary"
+						@click="postMessage"
+					/>
+				</div>
 			</div>
 
 			<l-html-text-loader
@@ -57,11 +73,11 @@
 import ControlDemoTemplate from "../main/ControlDemoTemplate.vue";
 
 export default {
-	name: "MessageDemo",
-	displayName: "Message",
+	name: "MessagesDemo",
+	displayName: "Messages",
 	controlMapping: [
 		{
-			keywords: ["message", "msg", "l-message"],
+			keywords: ["messagse", "msgs", "l-messages"],
 		},
 	],
 	components: {
@@ -69,12 +85,12 @@ export default {
 	},
 	data: function () {
 		return {
-			FONT_SIZES: [],
 			MESSAGE_STYLES: [],
+			refreshTimer: null,
 			state: {
 				value: "This is a piece of message",
-				fontSize: "default",
 				messageStyle: "default",
+				timeout: NaN,
 			},
 		};
 	},
@@ -83,6 +99,8 @@ export default {
 			return `\
 				<template>\
 					<l-messages\
+						messageStyle="info"\
+						maxWidth="75%"\
 					/>\
 				</template>`;
 		},
@@ -91,11 +109,26 @@ export default {
 		updateValue: function (event) {
 			this.state.value = event.target.value;
 		},
-		updateFontSize: function (event) {
-			this.state.fontSize = event.target.value;
-		},
 		updateMessageStyle: function (event) {
 			this.state.messageStyle = event.target.value;
+		},
+		updateTimeout: function (event) {
+			this.state.timeout = (parseInt(event.target.value) || 0) * 1000;
+		},
+		postMessage: function () {
+			this.$refs.control.post(this.state);
+		},
+		clearMessage: function () {
+			this.$refs.control.clearAll();
+		},
+		refreshDOM: function () {
+			if (this.refreshTimer) {
+				clearTimeout(this.refreshTimer);
+			}
+
+			this.refreshTimer = setTimeout(() => {
+				this.$refs.DT.updateControl(this.$refs.control);
+			}, 200);
 		},
 	},
 	mounted: function () {
@@ -103,8 +136,7 @@ export default {
 
 		const { props } = this.$refs.control.$options || {};
 		if (props) {
-			const { size, messageStyle } = props;
-			this.FONT_SIZES = (size || {}).options || [];
+			const { messageStyle } = props;
 			this.MESSAGE_STYLES = (messageStyle || {}).options || [];
 		}
 	},
