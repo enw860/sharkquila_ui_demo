@@ -4,6 +4,14 @@
 			<div slot="overview">
 				<p>
 					This control is used to display a stack of short messages.
+					You can also use it as global alerts by combining it with an
+					event bus,
+					<l-link
+						value="TRY ME!"
+						color="#0f62fe"
+						:openInNewTab="false"
+						@click="showAlertMessage"
+					/>.
 				</p>
 			</div>
 
@@ -11,7 +19,7 @@
 				slot="widgit"
 				ref="control"
 				messageStyle="info"
-				maxWidth="75%"
+				width="60%"
 				@change="refreshDOM"
 			/>
 
@@ -36,7 +44,7 @@
 					/>
 				</l-label-wrapper>
 
-				<l-label-wrapper value="Timeout(s):" size="small">
+				<l-label-wrapper value="Timeout in seconds:" size="small">
 					<l-input-number
 						slot="labelContent"
 						:value="state.timeout"
@@ -71,6 +79,7 @@
 
 <script>
 import ControlDemoTemplate from "../main/ControlDemoTemplate.vue";
+import eventBus from "../../utils/eventBus";
 
 export default {
 	name: "MessagesDemo",
@@ -100,7 +109,7 @@ export default {
 				<template>\
 					<l-messages\
 						messageStyle="info"\
-						maxWidth="75%"\
+						width="75%"\
 					/>\
 				</template>`;
 		},
@@ -129,6 +138,11 @@ export default {
 			this.refreshTimer = setTimeout(() => {
 				this.$refs.DT.updateControl(this.$refs.control);
 			}, 200);
+		},
+		showAlertMessage: function () {
+			eventBus.$emit("postMessage", {
+				value: "This is a demo alert!!!",
+			});
 		},
 	},
 	mounted: function () {

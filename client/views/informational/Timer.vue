@@ -220,7 +220,7 @@ export default {
 				this.state.blockStart = true;
 				this.state.blockEnd = false;
 				this.state.blockReset = true;
-				messageObj.value = "Your session starts now!!!";
+				messageObj.value = "Timer starts now!!!";
 				messageObj.messageStyle = "primary";
 			} else if (message === "end") {
 				this.state.blockStart = true;

@@ -16,7 +16,7 @@
 			class="Global-messages"
 			ref="messages"
 			messageStyle="info"
-			maxWidth="30vw"
+			width="30vw"
 			:timeout="2500"
 		/>
 	</div>
