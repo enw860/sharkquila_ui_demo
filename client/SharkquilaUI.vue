@@ -1,10 +1,31 @@
+<style lang="less">
+.Global-messages {
+	position: fixed;
+	left: 50%;
+	top: 16px;
+	transform: translateX(-50%);
+	z-index: 9999;
+}
+</style>
+
 <template>
-	<PageContent />
+	<div>
+		<PageContent />
+
+		<l-messages
+			class="Global-messages"
+			ref="messages"
+			messageStyle="info"
+			maxWidth="30vw"
+			:timeout="2500"
+		/>
+	</div>
 </template>
 
 <script>
 import store from "./store/store";
 import PageContent from "./views/main/PageContent";
+import eventBus from "./utils/eventBus";
 
 export default {
 	name: "SharkquilaUI",
@@ -38,9 +59,16 @@ export default {
 	mounted: function () {
 		window.addEventListener("resize", this.onResize);
 		this.onResize();
+
+		if (this.$refs.messages.post) {
+			eventBus.$on("postMessage", (messageObj) => {
+				this.$refs.messages.post(messageObj);
+			});
+		}
 	},
 	beforeDestroy: function () {
 		window.removeEventListener("resize", this.onResize);
+		eventBus.$off("postMessage");
 	},
 };
 </script>

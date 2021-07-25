@@ -128,6 +128,7 @@
 
 <script>
 import ControlDemoTemplate from "../main/ControlDemoTemplate.vue";
+import eventBus from "../../utils/eventBus";
 
 export default {
 	name: "TimerDemo",
@@ -151,16 +152,16 @@ export default {
 				{ value: 800 },
 			],
 			state: {
-				value: { ss: 50 },
+				value: { ss: 25 },
 				timeFormat: "<mm> mins <ss> secs",
 				fontSize: "default",
 				fontWeight: 400,
 				color: "#000",
 				hideCtls: true,
 				alerts: [
-					{ time: { ss: 30 }, message: "30s left!" },
-					{ time: { ss: 20 }, message: "20s left!" },
-					{ time: { ss: 10 }, message: "10s left!" },
+					{ time: { ss: 20 }, message: "You have 20 seconds left!" },
+					{ time: { ss: 10 }, message: "You still have 10 seconds!" },
+					{ time: { ss: 5 }, message: "You only have 5 seconds!" },
 				],
 				blockStart: false,
 				blockEnd: true,
@@ -179,10 +180,10 @@ export default {
 						:fontWeight="${this.state.fontWeight}"\
 						:color="${this.state.color}"\
 						:hideCtls="${this.state.hideCtls}"\
-						:alerts="[{time: { ss: 30 }, message: '30s left!'}, {time: { ss: 20 }, message: '20s left!'}, {time: { ss: 10 }, message: '10s left!'}]"\
-						@start="console.log"\
-						@end="console.log"\
-						@alert="console.log"\
+						:alerts="[<{time: <{hh, ss, mm}>, message: <string>}>]"\
+						@start="alert"\
+						@end="alert"\
+						@alert="alert"\
 					/>\
 				</template>`;
 		},
@@ -211,16 +212,25 @@ export default {
 			this.state.hideCtls = event.target.checked;
 		},
 		consoleAlert: function (message) {
-			console.log(message);
+			if (!message) return;
+
+			const messageObj = { value: message, messageStyle: "info" };
+
 			if (message === "start") {
 				this.state.blockStart = true;
 				this.state.blockEnd = false;
 				this.state.blockReset = true;
+				messageObj.value = "Your session starts now!!!";
+				messageObj.messageStyle = "primary";
 			} else if (message === "end") {
 				this.state.blockStart = true;
 				this.state.blockEnd = true;
 				this.state.blockReset = false;
+				messageObj.value = "Time's up!!";
+				messageObj.messageStyle = "danger";
 			}
+
+			eventBus.$emit("postMessage", messageObj);
 		},
 		startTimer: function () {
 			this.$refs.control.start();
