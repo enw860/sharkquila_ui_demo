@@ -6,9 +6,9 @@ import ClockDemo from "./Clock";
 import DisplayTextDemo from "./DisplayText";
 import HTMLTextLoaderDemo from "./HTMLTextLoader";
 import LinkDemo from "./Link";
-import MessagesDemo from "./Messages";
+import MessageDemo from "./Message";
 import TimerDemo from "./Timer";
 
 export default [
-    AvatarDemo, BadgeDemo, BreadCrumbsDemo, ButtonDemo, ClockDemo, DisplayTextDemo, HTMLTextLoaderDemo, LinkDemo, MessagesDemo, TimerDemo
+    AvatarDemo, BadgeDemo, BreadCrumbsDemo, ButtonDemo, ClockDemo, DisplayTextDemo, HTMLTextLoaderDemo, LinkDemo, MessageDemo, TimerDemo
 ]

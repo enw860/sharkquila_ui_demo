@@ -1,13 +1,14 @@
 <template>
-	<div class="MessagesDemo">
+	<div class="MessageDemo">
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>This control is used to display a piece of short message.</p>
 			</div>
 
-			<l-messages
+			<l-message
 				slot="widgit"
 				ref="control"
+				:value="state.value"
 				:size="state.fontSize"
 				:messageStyle="state.messageStyle"
 			/>
@@ -56,11 +57,11 @@
 import ControlDemoTemplate from "../main/ControlDemoTemplate.vue";
 
 export default {
-	name: "MessagesDemo",
-	displayName: "Messages",
+	name: "MessageDemo",
+	displayName: "Message",
 	controlMapping: [
 		{
-			keywords: ["message", "messages", "l-messages"],
+			keywords: ["message", "msg", "l-message"],
 		},
 	],
 	components: {
@@ -71,7 +72,7 @@ export default {
 			FONT_SIZES: [],
 			MESSAGE_STYLES: [],
 			state: {
-				value: "",
+				value: "This is a piece of message",
 				fontSize: "default",
 				messageStyle: "default",
 			},
@@ -102,8 +103,9 @@ export default {
 
 		const { props } = this.$refs.control.$options || {};
 		if (props) {
-			const { size } = props;
+			const { size, messageStyle } = props;
 			this.FONT_SIZES = (size || {}).options || [];
+			this.MESSAGE_STYLES = (messageStyle || {}).options || [];
 		}
 	},
 	updated: function () {
