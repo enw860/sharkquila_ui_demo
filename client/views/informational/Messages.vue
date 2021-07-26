@@ -19,7 +19,7 @@
 				slot="widgit"
 				ref="control"
 				messageStyle="info"
-				width="60%"
+				width="75%"
 				@change="refreshDOM"
 			/>
 
@@ -39,7 +39,7 @@
 					<l-input-single-select
 						slot="labelContent"
 						:value="state.messageStyle"
-						:options="MESSAGE_STYLES"
+						:options="STYLES"
 						@change="updateMessageStyle"
 					/>
 				</l-label-wrapper>
@@ -94,7 +94,7 @@ export default {
 	},
 	data: function () {
 		return {
-			MESSAGE_STYLES: [],
+			STYLES: [],
 			refreshTimer: null,
 			state: {
 				value: "This is a piece of message",
@@ -151,7 +151,7 @@ export default {
 		const { props } = this.$refs.control.$options || {};
 		if (props) {
 			const { messageStyle } = props;
-			this.MESSAGE_STYLES = (messageStyle || {}).options || [];
+			this.STYLES = (messageStyle || {}).options || [];
 		}
 	},
 	updated: function () {
