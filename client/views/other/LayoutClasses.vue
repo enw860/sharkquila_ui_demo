@@ -26,9 +26,9 @@
 				ref="control"
 				slot="widgit"
 			>
-				<div class="Layout-demo-block">1</div>
-				<div class="Layout-demo-block">2</div>
-				<div class="Layout-demo-block">3</div>
+				<l-sk class="Layout-demo-block" width="32px" height="32px" />
+				<l-sk class="Layout-demo-block" width="32px" height="32px" />
+				<l-sk class="Layout-demo-block" width="32px" height="32px" />
 			</div>
 
 			<div slot="control">
