@@ -1,3 +1,9 @@
+<style lang="less">
+.ExCtls.VLayout > :not(:last-child) {
+	margin-bottom: 8px;
+}
+</style>
+
 <template>
 	<div class="TimerDemo">
 		<ControlDemoTemplate ref="DT">
@@ -93,7 +99,12 @@
 				>
 					<div
 						slot="labelContent"
-						class="HLayout align-center flow-between"
+						class="ExCtls flow-between"
+						v-bind:class="[
+							screenMode === 'small'
+								? 'VLayout'
+								: 'HLayout align-center',
+						]"
 					>
 						<l-button
 							value="Start"
@@ -186,6 +197,9 @@ export default {
 						@alert="alert"\
 					/>\
 				</template>`;
+		},
+		screenMode: function () {
+			return this.$store.state.main.screenMode;
 		},
 	},
 	methods: {
