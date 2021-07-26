@@ -36,7 +36,7 @@
 					/>
 				</l-label-wrapper>
 
-				<l-label-wrapper value="Font size:" size="small">
+				<l-label-wrapper value="Time format:" size="small">
 					<l-input-single-select
 						slot="labelContent"
 						:value="state.timeFormat"

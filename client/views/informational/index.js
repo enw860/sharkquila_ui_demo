@@ -8,7 +8,8 @@ import HTMLTextLoaderDemo from "./HTMLTextLoader";
 import LinkDemo from "./Link";
 import MessagesDemo from "./Messages";
 import TimerDemo from "./Timer";
+import SkeletonDemo from "./Skeleton";
 
 export default [
-    AvatarDemo, BadgeDemo, BreadCrumbsDemo, ButtonDemo, ClockDemo, DisplayTextDemo, HTMLTextLoaderDemo, LinkDemo, MessagesDemo, TimerDemo
+    AvatarDemo, BadgeDemo, BreadCrumbsDemo, ButtonDemo, ClockDemo, DisplayTextDemo, HTMLTextLoaderDemo, LinkDemo, MessagesDemo, TimerDemo, SkeletonDemo
 ]
