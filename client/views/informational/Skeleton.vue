@@ -1,8 +1,44 @@
+<style lang="less">
+.Sample-card {
+	padding: 16px;
+	background: #f4f4f4;
+	width: 300px;
+
+	.Sample-card-left {
+		margin-right: 16px;
+	}
+
+	.Sample-card-right {
+		width: 100%;
+		:nth-child(2) {
+			margin-top: 4px;
+			margin-bottom: auto;
+		}
+	}
+}
+</style>
+
 <template>
 	<div class="SkeletonDemo">
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
-				<p>Display the structure of given block while loading.</p>
+				<p>
+					Display the structure of given block while loading.
+					Following is an advance use case of using the skeleton to
+					represent the DOM structure while waiting for the async
+					results.
+				</p>
+
+				<div class="Sample-card HLayout">
+					<div class="Sample-card-left">
+						<l-sk width="64px" height="64px" />
+					</div>
+					<div class="Sample-card-right VLayout">
+						<l-sk width="70%" textSize="xlarge" />
+						<l-sk width="40%" textSize="xsmall" />
+						<l-sk width="90%" />
+					</div>
+				</div>
 			</div>
 
 			<div slot="widgit" :style="{ width: '70%' }">
