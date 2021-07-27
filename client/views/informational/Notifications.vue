@@ -3,14 +3,19 @@
 		<ControlDemoTemplate ref="DT">
 			<div slot="overview">
 				<p>
-					This control is used to display a block of messages. You can
-					also use it as global alerts by combining it with an event
-					bus,
+					This control is used to display notification messages. You
+					can also use it as global alerts by combining it with an
+					event bus, for example
 					<l-link
-						value="TRY ME!"
-						color="#0f62fe"
+						value="a failed message"
 						:openInNewTab="false"
-						@click="() => {}"
+						@click="() => showSampleNotification('danger')"
+					/>
+					or
+					<l-link
+						value="a success message"
+						:openInNewTab="false"
+						@click="() => showSampleNotification('success')"
 					/>.
 				</p>
 			</div>
@@ -162,6 +167,7 @@ export default {
 			// eventBus.$emit("postMessage", {
 			// 	value: "This is a demo alert!!!",
 			// });
+			alert("Not done yet!");
 		},
 	},
 	mounted: function () {
