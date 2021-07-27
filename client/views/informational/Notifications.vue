@@ -7,6 +7,11 @@
 					can also use it as global alerts by combining it with an
 					event bus, for example
 					<l-link
+						value="a info message"
+						:openInNewTab="false"
+						@click="() => showSampleNotification()"
+					/>,
+					<l-link
 						value="a failed message"
 						:openInNewTab="false"
 						@click="() => showSampleNotification('danger')"
@@ -117,8 +122,8 @@ export default {
 			STYLES: [],
 			refreshTimer: null,
 			state: {
-				title: "This is a title",
-				content: "This is body",
+				title: "Title of a notification",
+				content: "You can put anything you wanna to show here!",
 				notificationStyle: "default",
 				timeout: NaN,
 			},
@@ -163,11 +168,36 @@ export default {
 				this.$refs.DT.updateControl(this.$refs.control);
 			}, 200);
 		},
-		showSampleNotification: function () {
-			// eventBus.$emit("postMessage", {
-			// 	value: "This is a demo alert!!!",
-			// });
-			alert("Not done yet!");
+		showSampleNotification: function (type) {
+			let notiObj = {};
+
+			if (type === "danger") {
+				notiObj = {
+					title: "Somehting is wrong (sample)",
+					content:
+						"We just detected something wrong in your local environment. Please contact the adminstrator!",
+					notificationStyle: "danger",
+				};
+			} else if (type === "success") {
+				notiObj = {
+					title: "Thanks for subscription! (sample)",
+					content:
+						"Congratuation! Thanks for subscribe our channel, you will receive our latest news via email.",
+					action: { displayName: "Dismiss" },
+					notificationStyle: "success",
+				};
+			} else {
+				notiObj = {
+					title: "New Task! (sample)",
+					content:
+						"Attention! Your manager just assigns you an urgent task, you only have 3 hrs to complete the task.",
+					action: {
+						displayName: "Launch the task",
+						callback: () => alert("Some fun stuff!"),
+					},
+				};
+			}
+			eventBus.$emit("postNotification", notiObj);
 		},
 	},
 	mounted: function () {

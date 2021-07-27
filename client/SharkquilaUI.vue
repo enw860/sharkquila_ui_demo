@@ -6,6 +6,13 @@
 	transform: translateX(-50%);
 	z-index: 9999;
 }
+
+.Global-notifications {
+	position: fixed;
+	right: 16px;
+	top: 16px;
+	z-index: 9999;
+}
 </style>
 
 <template>
@@ -18,6 +25,14 @@
 			messageStyle="info"
 			width="30vw"
 			:timeout="2500"
+		/>
+
+		<l-notifications
+			class="Global-notifications"
+			ref="notifications"
+			messageStyle="dark"
+			width="350px"
+			:timeout="12000"
 		/>
 	</div>
 </template>
@@ -65,10 +80,17 @@ export default {
 				this.$refs.messages.post(messageObj);
 			});
 		}
+
+		if (this.$refs.notifications.post) {
+			eventBus.$on("postNotification", (notiObj) => {
+				this.$refs.notifications.post(notiObj);
+			});
+		}
 	},
 	beforeDestroy: function () {
 		window.removeEventListener("resize", this.onResize);
 		eventBus.$off("postMessage");
+		eventBus.$off("postNotification");
 	},
 };
 </script>
