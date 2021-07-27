@@ -50,7 +50,6 @@
 					<div class="HLayout">
 						<l-link
 							value="Github"
-							color="#0f62fe"
 							href="https://github.com/enw860/sharkquila_ui_demo"
 						/>
 						<l-text value="- Version 1.4.0" color="#e0e0e0" />
@@ -68,7 +67,6 @@
 							/>
 							<l-link
 								value="Lionel Wu."
-								color="#0f62fe"
 								href="https://www.linkedin.com/in/enhao-wu-18a596138"
 							/>
 						</div>
@@ -79,7 +77,6 @@
 							/>
 							<l-link
 								value="MIT License."
-								color="#0f62fe"
 								href="https://github.com/enw860/sharkquila_ui_demo/blob/main/LICENSE"
 							/>
 						</div>

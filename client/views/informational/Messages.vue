@@ -8,7 +8,6 @@
 					event bus,
 					<l-link
 						value="TRY ME!"
-						color="#0f62fe"
 						:openInNewTab="false"
 						@click="showAlertMessage"
 					/>.
