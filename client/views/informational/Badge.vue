@@ -29,7 +29,6 @@
 
 				<l-label-wrapper value="Badge content:" size="small">
 					<l-input-number
-						ref="content"
 						slot="labelContent"
 						:value="state.content"
 						@blur="updateContent"
@@ -134,7 +133,7 @@ export default {
 	},
 	methods: {
 		updateContent: function (event) {
-			this.state.content = parseFloat(this.$refs.content.getValue());
+			this.state.content = event.target.value;
 		},
 		updateBackgroundColor: function (event) {
 			this.state.backgroundColor = event.target.value;

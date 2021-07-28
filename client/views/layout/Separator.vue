@@ -46,11 +46,13 @@
 				</l-label-wrapper>
 
 				<l-label-wrapper value="Thickness:" size="small">
-					<l-input-number
+					<l-input-slider
 						slot="labelContent"
+						:min="1"
+						:max="10"
 						:value="state.thickness"
-						@blur="updateThickness"
-						placeholder="Thickness"
+						sliderStyle="info"
+						@change="updateThickness"
 					/>
 				</l-label-wrapper>
 			</div>
@@ -84,7 +86,7 @@ export default {
 			DIRECTIONS: [],
 			state: {
 				direction: "horizontal",
-				thickness: 1,
+				thickness: 2,
 				color: "#000000",
 			},
 		};
@@ -108,8 +110,9 @@ export default {
 		updateColor: function (event) {
 			this.state.color = event.target.value;
 		},
-		updateThickness: function (event) {
-			this.state.thickness = parseFloat(event.target.value);
+		updateThickness: function (option) {
+			this.state.thickness =
+				typeof option === "object" ? option.value : option;
 		},
 	},
 	mounted: function () {

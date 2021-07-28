@@ -9,7 +9,6 @@
 					<l-link
 						size="large"
 						value="Sharkquila UI"
-                        color="#0f62fe"
 						href="https://github.com/enw860/sharkquila_ui_toolkit"
 					/>.
 				</p>

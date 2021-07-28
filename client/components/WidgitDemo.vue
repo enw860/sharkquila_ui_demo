@@ -1,5 +1,8 @@
 <template>
-	<div class="widgitDemoControl HLayout">
+	<div
+		class="widgitDemoControl"
+		v-bind:class="[screenMode === 'regular' ? 'HLayout' : 'VLayout']"
+	>
 		<div
 			class="widgit VLayout"
 			:style="{ backgroundColor: backgroundColor }"
@@ -34,6 +37,12 @@ export default {
 		return {
 			backgroundColor: "#f4f4f4",
 		};
+	},
+	computed: {
+		screenMode: function () {
+			console.warn(this.$store.state.main.screenMode);
+			return this.$store.state.main.screenMode;
+		},
 	},
 	methods: {
 		updateBackgoundColor: function (event) {
