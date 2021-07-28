@@ -36,11 +36,13 @@
 				</l-label-wrapper>
 
 				<l-label-wrapper value="Wrap offset:" size="small">
-					<l-input-number
+					<l-input-slider
 						slot="labelContent"
+						:min="1"
+						:max="5"
 						:value="state.wrapOffset"
-						@blur="updateWrapOffset"
-						placeholder="wrap offset"
+						sliderStyle="info"
+						@change="updateWrapOffset"
 					/>
 				</l-label-wrapper>
 
@@ -108,8 +110,9 @@ export default {
 		updateType: function (event) {
 			this.state.type = event.target.value;
 		},
-		updateWrapOffset: function (event) {
-			this.state.wrapOffset = parseInt(event.target.value);
+		updateWrapOffset: function (option) {
+			this.state.wrapOffset =
+				typeof option === "object" ? option.value : option;
 		},
 		updateInputError: function (error) {
 			this.state.error = error;

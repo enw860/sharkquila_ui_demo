@@ -7,6 +7,7 @@
 	.temp-block {
 		height: 100%;
 		width: 350px;
+		max-width: 50vw;
 		background-color: #000000;
 	}
 }
@@ -76,8 +77,7 @@
 				</l-label-wrapper>
 
 				<l-button
-					value="Show slideout"
-					size="Large"
+					value="Show"
 					btnStyle="Primary"
 					@click="launchSlideout"
 				/>

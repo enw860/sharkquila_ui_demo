@@ -175,7 +175,7 @@ export default {
 				this.state.content =
 					"https://previews.123rf.com/images/pongcpre/pongcpre1607/pongcpre160700046/61442802-a-hand-sign-of-thumb-point-upward-meaning-ok-good-like-etc-with-white-background.jpg";
 			} else if (event.target.value === "icon") {
-				this.state.content = "fa fa-apple";
+				this.state.content = "fa-apple";
 			} else {
 				this.state.content = "avatar";
 			}

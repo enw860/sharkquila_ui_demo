@@ -49,7 +49,7 @@
 					/>
 				</l-label-wrapper>
 
-				<l-label-wrapper value="Time zone offset:" size="small">
+				<l-label-wrapper value="Time zone offset (hours):" size="small">
 					<l-input-number
 						slot="labelContent"
 						placeholder="Time zone in hours"
@@ -144,7 +144,7 @@ export default {
 			this.state.fontSize = event.target.value;
 		},
 		updateTimezoneOffset: function (event) {
-			this.state.timezoneOffset = parseFloat(event.target.value);
+			this.state.timezoneOffset = parseFloat(event.target.value || 0);
 		},
 		updateShowTimeString: function (event) {
 			this.state.showTimeString = event.target.checked;

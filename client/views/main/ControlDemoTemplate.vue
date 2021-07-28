@@ -214,7 +214,7 @@ export default {
 					prop: `${!!settings.required ? "*" : ""}${field}`,
 					type: settings.type.name,
 					default:
-						settings.type.name === "Array"
+						["Array", "Object"].indexOf(settings.type.name) >= 0
 							? settings.default()
 							: `${settings.default}`,
 					options: (settings.options || []).join(", "),
