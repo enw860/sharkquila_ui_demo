@@ -133,8 +133,22 @@
 .widgitDemoControl {
 	width: 100%;
 
+	&.HLayout {
+		.widgit {
+			width: 60%;
+		}
+		.widgitControl {
+			width: 40%;
+		}
+	}
+
+	&.VLayout {
+		.widgit {
+			margin-bottom: @spacing-04;
+		}
+	}
+
 	.widgit {
-		width: 60%;
 		margin-right: 16px;
 		position: relative;
 
@@ -145,6 +159,7 @@
 		}
 
 		> .Demo-box {
+			min-height: 300px;
 			width: 100%;
 			height: 100%;
 			overflow: auto;
@@ -153,8 +168,6 @@
 	}
 
 	.widgitControl {
-		width: 40%;
-
 		> * > * {
 			margin-left: 8px;
 			margin-right: 8px;
