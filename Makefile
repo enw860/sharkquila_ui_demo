@@ -5,6 +5,7 @@
 PORT=8080
 IMAGE_NAME=sharkquila_ui
 CONTAINER_NAME=sharkquila_ui_runtime
+PUBLISH_IMAGE_NAME=wulionel/sharkquila_ui
 
 setup: build launch
 build: build_image
@@ -22,6 +23,10 @@ launch:
 
 build_image: build_app
 	docker build -t ${IMAGE_NAME} .
+
+publish_image: build_app
+	docker build -t ${PUBLISH_IMAGE_NAME} .
+	docker push ${PUBLISH_IMAGE_NAME}
 
 build_app:
 	npm run build
